@@ -1,16 +1,17 @@
 // src/app/biting/page.tsx
-// Halaman detail — Biting Bambu Segelan
+// Halaman detail — Biting Bambu Segelan (REVISI humas)
 //
-// Konsep: halaman "edukasi + jualan" — jelasin apa itu biting,
-// ceritakan prosesnya dari data wawancara asli, lalu arahkan ke WA.
-// Aksen produk: hijau bambu #4E7248. Signature halaman: dupa menyala
-// dengan asap naik (animasi CSS ringan) — karena biting = rangka dupa.
+// - Fokus utama: tusuk makanan (pentol, sempol, sate); dupa jadi contoh penggunaan
+// - Katalog ukuran 30 / 40 / 50 cm bergaya visual
+// - Background diberi motif & taburan siluet biar tidak polos
+// - Profil pengrajin tanpa nama (diringkas jadi narasi umum)
+// - Harga: arahkan tanya via WA karena bisa berubah
+// - Animasi: parallax hero + reveal saat scroll (murni CSS scroll-driven),
+//   daun gugur, marquee, tusuk pentol bergoyang, bara dupa berpendar
 //
 // CATATAN:
-// - Navbar & footer sementara ditulis di sini juga (duplikat dari home).
-//   Nanti kalau semua halaman sudah jadi, sebaiknya dipindah ke layout.tsx.
-// - Data dari wawancara: Bu Saima & Pak Sukarji, Pak Suri, dan pengepul.
-//   Bagian bertanda TODO = masih asumsi, ganti saat data real ada.
+// - Navbar & footer masih duplikat dari home; nanti dirapikan ke layout.tsx.
+// - Bagian bertanda TODO = masih asumsi, ganti saat data real ada.
 // - Semua gambar sementara ke /images/desa-balesari.jpeg (const IMG).
 
 import type { Metadata } from "next";
@@ -29,15 +30,15 @@ const fraunces = Fraunces({
    ============================================================ */
 export const metadata: Metadata = {
   title:
-    "Biting Bambu Segelan — Lidi Dupa Serut Tangan | Desa Balesari, Ngajum, Malang",
+    "Biting Bambu Segelan — Tusuk Pentol, Sempol, Sate & Dupa | Desa Balesari, Ngajum, Malang",
   description:
-    "Biting bambu buatan tangan warga Dusun Segelan, Desa Balesari, Ngajum, Kabupaten Malang: lidi bambu petung, jawa, dan apus untuk rangka dupa, tusuk sempol, hingga tusuk sate. Diserut manual, lebih rapi dari mesin, kapasitas hingga ton-an per minggu.",
+    "Biting bambu serut tangan dari Dusun Segelan, Desa Balesari, Ngajum, Kabupaten Malang: lidi bambu 30, 40, dan 50 cm untuk tusuk pentol, sempol, sate, hingga rangka dupa. Kapasitas ton-an per minggu.",
   keywords: [
     "biting bambu",
-    "lidi dupa",
+    "tusuk pentol bambu",
     "tusuk sempol bambu",
     "tusuk sate bambu",
-    "bahan baku dupa",
+    "lidi dupa",
     "kerajinan bambu Malang",
     "Desa Balesari",
     "Dusun Segelan",
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Biting Bambu Segelan — Lidi Serut Tangan dari Balesari",
     description:
-      "Di balik dupa, sempol, dan sate — ada lidi bambu dari Dusun Segelan yang diserut satu per satu oleh tangan warga.",
+      "Di balik pentol, sempol, sate, sampai dupa, ada lidi bambu dari Dusun Segelan yang diserut satu per satu oleh tangan warga.",
     locale: "id_ID",
     type: "website",
   },
@@ -70,16 +71,16 @@ const content = {
       { label: "Beranda", href: "/" },
       { label: "Apa itu Biting", href: "#apa-itu" },
       { label: "Proses", href: "#proses" },
-      { label: "Pengrajin", href: "#pengrajin" },
+      { label: "Ukuran", href: "#ukuran" },
     ],
     cta: "Pesan Biting",
   },
   hero: {
     breadcrumb: { home: "Beranda", current: "Biting Bambu" },
     badge: "Kerajinan · Dusun Segelan",
-    title: "Biting Bambu: Lidi Kecil di Balik Dupa, Sempol, dan Sate",
+    title: "Biting Bambu: Lidi Kecil di Balik Pentol, Sempol, dan Sate",
     subtitle:
-      "Dari dupa yang menyala sampai sempol di gerobak langganan — banyak hal bertumpu pada lidi bambu kecil ini. Dari Dusun Segelan, lidi-lidi itu diserut satu per satu oleh tangan warga, sudah lebih dari dua puluh tahun.",
+      "Dari pentol di gerobak langganan sampai sate di angkringan, banyak jajanan bertumpu pada lidi bambu kecil ini. Dupa pun memakainya sebagai rangka. Dari Dusun Segelan, lidi-lidi itu diserut satu per satu oleh tangan warga, sudah lebih dari dua puluh tahun.",
     img: IMG,
     imgAlt:
       "Ikatan biting bambu hasil serutan tangan pengrajin Dusun Segelan, Desa Balesari",
@@ -91,33 +92,49 @@ const content = {
     cta: "Pesan via WhatsApp",
   },
   marquee: [
-    "Bambu Petung",
-    "Bambu Jawa",
-    "Bambu Apus",
+    "Tusuk Pentol",
+    "Tusuk Sempol",
+    "Tusuk Sate",
+    "Rangka Dupa",
     "Serut Tangan",
-    "Dupa · Sempol · Sate",
     "Dusun Segelan",
   ],
   apaItu: {
     heading: "Apa Itu Biting?",
     paragraphs: [
-      "Biting adalah lidi bambu tipis, lurus, dan serbaguna. Ia menjadi rangka batang dupa, tusuk sempol, tusuk sate, sampai berbagai keperluan dapur lain. Pada dupa, pasta wangi dibalutkan ke lidi ini dan ujung bawahnya disisakan polos sebagai pegangan.",
-      "Warga Segelan sendiri pernah memproduksi tusuk bakso sebelum masa pandemi. Kini permintaan terbesar memang datang dari pasar dupa, tapi lidi yang sama juga mengalir ke kebutuhan tusuk makanan.",
+      "Biting adalah lidi bambu tipis, lurus, dan serbaguna. Paling banyak dipakai sebagai tusuk makanan: pentol, sempol, sate, sampai aneka jajanan gorengan. Lidi yang sama juga dipakai sebagai rangka batang dupa.",
+      "Warga Segelan sudah lama melayani kedua pasar itu. Mereka sempat memproduksi tusuk bakso sebelum masa pandemi, dan kini serutannya mengalir ke mana pun permintaan datang, dari pedagang makanan sampai pasar dupa.",
     ],
     fakta: [
+      "Tusuk pentol, sempol & sate",
       "Rangka batang dupa",
-      "Tusuk sempol, sate & bakso",
       "Dijual per kilogram",
     ],
-    diagram: {
-      labelBiting: "Biting bambu — rangka & pegangan",
-      labelPasta: "Pasta dupa — lapisan wangi yang dibakar",
+    contoh: {
+      heading: "Contoh Penggunaannya",
+      items: [
+        {
+          jenis: "pentol" as const,
+          judul: "Tusuk Pentol & Bakso",
+          keterangan: "Kuat menahan beberapa butir sekaligus, favorit pedagang keliling.",
+        },
+        {
+          jenis: "sempol" as const,
+          judul: "Tusuk Sempol",
+          keterangan: "Adonan dililitkan langsung ke lidi sebelum digoreng.",
+        },
+        {
+          jenis: "dupa" as const,
+          judul: "Rangka Dupa",
+          keterangan: "Pasta wangi dibalut ke lidi, ujung polosnya jadi pegangan.",
+        },
+      ],
     },
   },
   sejarah: {
     heading: "Dari Blitar ke Segelan",
     intro:
-      "Kerajinan ini tidak muncul tiba-tiba — ia menyebar dari satu keluarga ke hampir seisi dusun.",
+      "Kerajinan ini tidak muncul tiba-tiba. Ia menyebar dari satu keluarga ke hampir seisi dusun.",
     milestones: [
       {
         judul: "Berawal dari saudara di Blitar",
@@ -127,7 +144,7 @@ const content = {
       {
         judul: "Pengepul hadir lebih dekat",
         cerita:
-          "Seiring waktu, pengepul muncul di Sumbersari — warga tak perlu lagi mengirim jauh, hasil serutan cukup disetor dan dijemput mobil.",
+          "Seiring waktu, pengepul muncul di Sumbersari. Warga tak perlu lagi mengirim jauh, hasil serutan cukup disetor dan dijemput mobil.",
       },
       {
         judul: "Menyebar ke seisi dusun",
@@ -137,20 +154,20 @@ const content = {
       {
         judul: "Hari ini",
         cerita:
-          "Puluhan warga terlibat dalam rantai produksi — dari penyerut rumahan hingga pengepul bermesin — dengan hasil ton-an biting setiap minggunya.",
+          "Puluhan warga terlibat dalam rantai produksi, dari penyerut rumahan hingga pengepul bermesin, dengan hasil ton-an biting setiap minggunya.",
       },
     ],
   },
   proses: {
     heading: "Dari Rumpun Bambu Jadi Biting",
     intro:
-      "Prosesnya kelihatan sederhana, tapi tiap tahap butuh ketelatenan — salah pilih bambu saja, lidinya mudah patah.",
+      "Prosesnya kelihatan sederhana, tapi tiap tahap butuh ketelatenan. Salah pilih bambu saja, lidinya mudah patah.",
     bahan: {
       heading: "Bahan bakunya dipilih, bukan sembarang bambu",
       items: [
         {
           nama: "Bambu Petung",
-          deskripsi: "Berbatang besar dan tebal — bahan andalan karena seratnya kuat.",
+          deskripsi: "Berbatang besar dan tebal, bahan andalan karena seratnya kuat.",
         },
         {
           nama: "Bambu Jawa",
@@ -161,7 +178,7 @@ const content = {
           deskripsi: "Lentur dan mudah dirajang halus.",
         },
       ],
-      catatan: "Tidak semua bambu bisa dipakai — pengrajin memilih batang yang cukup tua langsung dari rumpunnya.",
+      catatan: "Tidak semua bambu bisa dipakai. Pengrajin memilih batang yang cukup tua langsung dari rumpunnya.",
     },
     langkah: [
       {
@@ -173,14 +190,14 @@ const content = {
       {
         judul: "Membelah & membuang hati bambu",
         deskripsi:
-          "Ruas dibelah memanjang; bagian dalam yang lunak — 'hati' bambu — dibuang karena mudah patah.",
+          "Ruas dibelah memanjang, lalu bagian dalam yang lunak, disebut hati bambu, dibuang karena mudah patah.",
         img: null,
         alt: "",
       },
       {
         judul: "Merajang jadi lidi",
         deskripsi:
-          "Bilah bambu dirajang dan diserut menjadi lidi-lidi tipis berukuran seragam. Inilah tahap yang paling menuntut jam terbang.",
+          "Bilah bambu dirajang dan diserut menjadi lidi-lidi tipis berukuran seragam. Tahap inilah yang paling menuntut jam terbang.",
         img: IMG,
         alt: "Tangan pengrajin menyerut bilah bambu menjadi lidi biting",
       },
@@ -201,7 +218,7 @@ const content = {
       {
         judul: "Menyetor ke pengepul",
         deskripsi:
-          "Hasil serutan — bisa sampai kuintalan per keluarga — dijemput mobil pengepul dan dibayar tunai di tempat.",
+          "Hasil serutan, bisa sampai kuintalan per keluarga, dijemput mobil pengepul dan dibayar tunai di tempat.",
         img: null,
         alt: "",
       },
@@ -209,13 +226,12 @@ const content = {
     kendala: {
       judul: "Musim hujan? Perapian yang bekerja.",
       cerita:
-        "Saat matahari tak muncul, lidi tak bisa kering dijemur. Pengrajin menyalakan perapian dan mengeringkan biting di atas baranya — cara lama yang tetap dipakai sampai sekarang.",
+        "Saat matahari tak muncul, lidi tak bisa kering dijemur. Pengrajin menyalakan perapian dan mengeringkan biting di atas baranya. Cara lama yang tetap dipakai sampai sekarang.",
     },
   },
   manualVsMesin: {
     heading: "Serutan Tangan Justru Lebih Rapi",
-    intro:
-      "Di dusun ini ada dua cara membuat biting — dan hasilnya tidak sama.",
+    intro: "Di dusun ini ada dua cara membuat biting, dan hasilnya tidak sama.",
     manual: {
       judul: "Serut Tangan",
       poin: [
@@ -227,63 +243,59 @@ const content = {
     mesin: {
       judul: "Mesin Semi-Manual",
       poin: [
-        "Lebih cepat — satu mesin bisa 50–100 kg per hari",
+        "Lebih cepat, satu mesin bisa 50–100 kg per hari",
         "Cocok untuk volume besar",
         "Kerapian di bawah serutan tangan",
       ],
     },
     insight:
-      "Menurut pengrajin, serutan tangan menghasilkan lidi yang lebih rapi — mesin memang ringkas, tapi hasilnya kalah halus. Keduanya kini berjalan berdampingan: tangan menjaga mutu, mesin mengejar volume.",
+      "Menurut pengrajin, serutan tangan menghasilkan lidi yang lebih rapi. Mesin memang ringkas, tapi hasilnya kalah halus. Keduanya kini berjalan berdampingan: tangan menjaga mutu, mesin mengejar volume.",
   },
   pengrajin: {
-    heading: "Wajah di Balik Biting",
-    intro: "Dua dari sekian banyak keluarga penyerut di Dusun Segelan.",
-    profil: [
-      {
-        nama: "Bu Saima & Pak Sukarji",
-        pengalaman: "20 tahun menyerut",
-        cerita:
-          "Suami-istri yang menekuni biting sebagai usaha keluarga. Keterampilannya warisan turun-temurun, dikerjakan setiap hari di sela waktu — hasilnya untuk kebutuhan sehari-hari, disetor kuintalan ke pengepul.",
-        img: IMG,
-        alt: "Bu Saima dan Pak Sukarji, pengrajin biting bambu Dusun Segelan",
-      },
-      {
-        nama: "Pak Suri",
-        pengalaman: "10+ tahun menyerut",
-        cerita:
-          "Bersama istrinya memproduksi sekitar satu kuintal per minggu. Pernah merambah tusuk bakso sebelum pandemi, kini kembali fokus ke biting dupa — dan tetap memilih menjaga kerapian serutan tangan.",
-        img: IMG,
-        alt: "Pak Suri, pengrajin biting bambu Dusun Segelan",
-      },
+    heading: "Di Balik Setiap Ikat Biting",
+    paragraphs: [
+      "Biting di dusun ini dikerjakan oleh keluarga-keluarga penyerut, kebanyakan pasangan suami-istri yang bekerja dari rumah. Ada yang sudah dua puluh tahun menekuninya, dengan keterampilan yang diturunkan dari orang tua ke anak.",
+      "Setiap keluarga bisa menghasilkan hingga kuintalan lidi per minggu. Hasilnya dijemput langsung dari rumah dan dibayar di tempat, menjadi penghasilan yang menghidupi dapur sehari-hari.",
     ],
+    img: IMG,
+    alt: "Warga Dusun Segelan menyerut bambu menjadi biting di teras rumah",
     // TODO: ganti dengan kutipan verbatim hasil rekaman wawancara
     kutipan:
-      "Sing penting telaten — bambu dipilih sing tuwek, dirajang alon-alon, hasile mesti apik.",
+      "Sing penting telaten. Bambu dipilih sing tuwek, dirajang alon-alon, hasile mesti apik.",
     kutipanSumber: "Pengrajin biting, Dusun Segelan",
     harapan:
-      "Para pengrajin berharap akses pasar yang lebih luas dan dukungan pengembangan usaha — supaya kerajinan ini terus tumbuh dan makin banyak warga yang terangkat.",
+      "Para pengrajin berharap akses pasar yang lebih luas dan dukungan pengembangan usaha, supaya kerajinan ini terus tumbuh dan makin banyak warga yang terangkat.",
   },
   pemesanan: {
-    heading: "Spesifikasi & Pemesanan",
+    heading: "Katalog & Pemesanan",
     intro:
       "Biting dijual per kilogram dalam ikatan. Untuk kebutuhan volume besar, mari diskusikan langsung.",
+    katalog: {
+      heading: "Pilih Panjangnya",
+      // TODO: konfirmasi pemetaan ukuran ↔ kegunaan ke pengrajin
+      items: [
+        { cm: 30, lebar: 58, cocok: "Tusuk pentol & sempol" },
+        { cm: 40, lebar: 78, cocok: "Tusuk sate & dupa sedang" },
+        { cm: 50, lebar: 100, cocok: "Dupa panjang & kebutuhan khusus" },
+      ],
+    },
     spesifikasi: [
       { label: "Satuan jual", nilai: "Per kg, diikat per bal" },
-      { label: "Varian", nilai: "Lidi pendek & panjang" }, // TODO: ukuran cm
-      { label: "Harga", nilai: "± Rp4.500–6.000 / kg" }, // TODO: konfirmasi harga jual langsung
+      { label: "Varian panjang", nilai: "30, 40, dan 50 cm" },
+      { label: "Harga", nilai: "Tanya via WhatsApp" },
       { label: "Kapasitas", nilai: "Kuintalan per minggu per pengrajin" },
       { label: "Pembayaran", nilai: "Tunai / transfer" }, // TODO: konfirmasi
       { label: "Pengambilan", nilai: "Ambil di tempat / kirim (nego)" }, // TODO: konfirmasi
     ],
     catatan:
-      "Harga dapat berubah mengikuti ukuran, proses (tangan/mesin), dan kondisi pasar.",
+      "Harga mengikuti ukuran, proses (tangan atau mesin), dan kondisi pasar, jadi bisa berubah sewaktu-waktu. Chat kami kapan saja untuk penawaran terbaru.",
     cta: {
       heading: "Butuh Pasokan Biting?",
       deskripsi:
-        "Hubungi kami untuk harga terbaru, contoh produk, atau penjadwalan kunjungan langsung ke Dusun Segelan.",
+        "Hubungi kami untuk harga terkini, contoh produk, atau penjadwalan kunjungan langsung ke Dusun Segelan.",
       waNumber: "6281234567890", // TODO: ganti nomor WhatsApp asli
       waText: "Halo, saya tertarik memesan biting bambu dari Desa Balesari.",
-      label: "Pesan via WhatsApp",
+      label: "Tanya Harga & Pesan",
     },
   },
   galeri: {
@@ -319,7 +331,7 @@ const content = {
   footer: {
     brand: "Potensi Balesari",
     tagline:
-      "Profil potensi dan UMKM Dusun Segelan, Desa Balesari — dari lereng Gunung Kawi untuk lebih banyak orang.",
+      "Profil potensi dan UMKM Dusun Segelan, Desa Balesari, dari lereng Gunung Kawi untuk lebih banyak orang.",
     alamat: "Dusun Segelan, Desa Balesari, Kec. Ngajum, Kab. Malang, Jawa Timur",
     kredit: `© ${new Date().getFullYear()} KKN 165 UMM × Warga Desa Balesari`,
     kolomProduk: [
@@ -339,7 +351,7 @@ const content = {
    ORNAMEN SVG
    ============================================================ */
 
-/* Logo mini: ruas bambu (sama dengan home) */
+/* Logo mini: ruas bambu */
 function LogoBambu({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 32" aria-hidden="true" className={className}>
@@ -351,7 +363,7 @@ function LogoBambu({ className = "" }: { className?: string }) {
   );
 }
 
-/* Daun bambu kecil (dekorasi gugur) */
+/* Daun bambu kecil (dekorasi gugur & taburan) */
 function DaunBambu({ className = "", style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <svg viewBox="0 0 60 24" aria-hidden="true" className={className} style={style} fill="currentColor">
@@ -369,7 +381,7 @@ function Wave({ fill, flip = false, className = "" }: { fill: string; flip?: boo
   );
 }
 
-/* Ikatan biting: kipas lidi-lidi tipis diikat dua tali (hiasan hero) */
+/* Ikatan biting: kipas lidi diikat tali (hiasan besar) */
 function IkatanBiting({ className = "" }: { className?: string }) {
   const lidi = [-16, -12, -8, -5, -2, 0, 2, 5, 8, 12, 16];
   return (
@@ -387,12 +399,10 @@ function IkatanBiting({ className = "" }: { className?: string }) {
           />
         ))}
       </g>
-      {/* variasi warna beberapa lidi biar tidak flat */}
       <g stroke="#A88B5C" strokeWidth="4" strokeLinecap="round" opacity="0.9">
         <line x1="100" y1="235" x2="66" y2="28" />
         <line x1="100" y1="235" x2="138" y2="30" />
       </g>
-      {/* tali pengikat */}
       <rect x="82" y="150" width="36" height="12" rx="6" fill="#7A5C3E" />
       <rect x="84" y="196" width="32" height="10" rx="5" fill="#7A5C3E" />
       <rect x="82" y="153" width="36" height="3" rx="1.5" fill="#A88B5C" opacity="0.7" />
@@ -400,54 +410,133 @@ function IkatanBiting({ className = "" }: { className?: string }) {
   );
 }
 
-/* Dupa menyala + asap (signature halaman ini) */
-function DupaMenyala({ className = "" }: { className?: string }) {
+/* Kipas lidi kecil satu warna (taburan dekorasi) */
+function LidiBiting({ className = "" }: { className?: string }) {
   return (
-    <div className={`pointer-events-none ${className}`} aria-hidden="true">
-      <div className="relative flex flex-col items-center">
-        {/* asap */}
-        <span className="asap h-2.5 w-2.5" style={{ "--asap-del": "0s" } as React.CSSProperties} />
-        <span className="asap h-3 w-3" style={{ "--asap-del": "1.4s", "--asap-dur": "5.4s" } as React.CSSProperties} />
-        <span className="asap h-2 w-2" style={{ "--asap-del": "2.8s", "--asap-dur": "4.8s" } as React.CSSProperties} />
-        {/* bara */}
-        <span className="bara relative z-10 h-2 w-2 rounded-full bg-gradient-to-b from-[#FF9A56] to-[#D9531E]" />
-        {/* batang dupa: atas berlapis pasta, bawah biting polos */}
-        <span className="h-24 w-[5px] rounded-t-sm bg-gradient-to-b from-[#5C3A21] via-[#6B4226] to-[#6B4226]" />
-        <span className="h-10 w-[4px] rounded-b-sm bg-[#D9C9A3]" />
-      </div>
-    </div>
-  );
-}
-
-/* Diagram anatomi dupa (horizontal, berlabel) */
-function AnatomiDupa({ labelBiting, labelPasta }: { labelBiting: string; labelPasta: string }) {
-  return (
-    <svg viewBox="0 0 640 170" role="img" aria-label="Diagram bagian-bagian dupa: pasta wangi dan biting bambu" className="w-full">
-      {/* batang: kiri biting polos, kanan berlapis pasta */}
-      <rect x="40" y="86" width="150" height="9" rx="4.5" fill="#D9C9A3" />
-      <rect x="186" y="82" width="380" height="17" rx="8.5" fill="#6B4226" />
-      {/* tekstur pasta */}
-      {[210, 250, 290, 330, 370, 410, 450, 490, 530].map((x) => (
-        <circle key={x} cx={x} cy={90.5} r="1.6" fill="#5C3A21" />
-      ))}
-      {/* bara di ujung */}
-      <circle cx="572" cy="90.5" r="8" fill="#D9531E" />
-      <circle cx="572" cy="90.5" r="4" fill="#FF9A56" />
-      {/* garis penunjuk biting */}
-      <line x1="115" y1="84" x2="115" y2="46" stroke="#4E7248" strokeWidth="2" />
-      <circle cx="115" cy="90.5" r="3.5" fill="#4E7248" />
-      <text x="115" y="34" textAnchor="middle" fontSize="15" fontWeight="600" fill="#2E4230">
-        {labelBiting}
-      </text>
-      {/* garis penunjuk pasta */}
-      <line x1="380" y1="100" x2="380" y2="136" stroke="#7A5C3E" strokeWidth="2" />
-      <circle cx="380" cy="90.5" r="3.5" fill="#A88B5C" />
-      <text x="380" y="156" textAnchor="middle" fontSize="15" fontWeight="600" fill="#6B4226">
-        {labelPasta}
-      </text>
+    <svg viewBox="0 0 120 160" aria-hidden="true" className={className} fill="none" stroke="currentColor">
+      <g strokeWidth="3" strokeLinecap="round">
+        <line x1="60" y1="150" x2="14" y2="16" />
+        <line x1="60" y1="150" x2="34" y2="8" />
+        <line x1="60" y1="150" x2="60" y2="4" />
+        <line x1="60" y1="150" x2="86" y2="8" />
+        <line x1="60" y1="150" x2="106" y2="16" />
+      </g>
+      <rect x="48" y="104" width="24" height="9" rx="4.5" fill="currentColor" stroke="none" />
     </svg>
   );
 }
+
+/* Batang bambu hias bergradasi: dua batang + ruas + mata tunas.
+   idPrefix wajib unik per pemakaian supaya id gradient tidak bentrok. */
+function BatangBambu({ idPrefix, className = "" }: { idPrefix: string; className?: string }) {
+  const gid = `${idPrefix}-grad-bambu`;
+  return (
+    <svg viewBox="0 0 96 330" aria-hidden="true" className={className}>
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#3F5C3A" />
+          <stop offset="0.45" stopColor="#4E7248" />
+          <stop offset="1" stopColor="#6C8F60" />
+        </linearGradient>
+      </defs>
+      {/* batang utama */}
+      <rect x="18" y="6" width="24" height="324" rx="12" fill={`url(#${gid})`} />
+      <rect x="24" y="8" width="4" height="320" rx="2" fill="#9DBE85" opacity="0.55" />
+      {[64, 130, 196, 262].map((y) => (
+        <g key={y}>
+          <rect x="15" y={y} width="30" height="7" rx="3.5" fill="#2E4230" />
+          <rect x="15" y={y + 1.4} width="30" height="1.8" rx="0.9" fill="#9DBE85" opacity="0.45" />
+        </g>
+      ))}
+      <circle cx="20" cy="100" r="3" fill="#2E4230" />
+      <circle cx="40" cy="230" r="3" fill="#2E4230" />
+      {/* batang kedua, lebih pendek */}
+      <rect x="60" y="96" width="17" height="234" rx="8.5" fill={`url(#${gid})`} opacity="0.9" />
+      <rect x="64" y="98" width="3" height="230" rx="1.5" fill="#9DBE85" opacity="0.5" />
+      {[150, 214, 278].map((y) => (
+        <rect key={y} x="58" y={y} width="21" height="6" rx="3" fill="#2E4230" />
+      ))}
+    </svg>
+  );
+}
+
+/* Dupa berdiri: badan terbalut, pegangan lidi polos, bara berpendar + asap tipis */
+function DupaBerdiri({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 44 230" aria-hidden="true" className={className}>
+      <path d="M22 30 q 7 -8 0 -16 q -6 -7 2 -12" stroke="#7A5C3E" strokeWidth="2" fill="none" opacity="0.3" strokeLinecap="round" />
+      <circle className="ember-glow" cx="22" cy="40" r="9" fill="#FF9A56" opacity="0.35" />
+      <circle cx="22" cy="40" r="4.5" fill="#D9531E" />
+      <circle cx="22" cy="40" r="2" fill="#FF9A56" />
+      <rect x="19" y="44" width="6" height="132" rx="3" fill="#6B4226" />
+      {[62, 84, 106, 128, 150].map((y) => (
+        <circle key={y} cx="22" cy={y} r="1.2" fill="#5C3A21" />
+      ))}
+      <rect x="20" y="176" width="4" height="50" rx="2" fill="#D9C9A3" />
+    </svg>
+  );
+}
+
+/* Tusuk pentol tegak (signature hero): lidi + tiga pentol */
+function TusukPentol({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 56 170" aria-hidden="true" className={className}>
+      <rect x="25" y="8" width="6" height="158" rx="3" fill="#D9C9A3" />
+      <rect x="27" y="10" width="2" height="154" rx="1" fill="#F3EDE0" opacity="0.5" />
+      {[34, 68, 102].map((cy, i) => (
+        <g key={cy}>
+          <circle cx="28" cy={cy} r="17" fill={i === 1 ? "#9A7355" : "#A98467"} />
+          <circle cx="22" cy={cy - 6} r="5" fill="#F3EDE0" opacity="0.3" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+/* Ilustrasi horizontal: contoh penggunaan */
+function IlustrasiPentol() {
+  return (
+    <svg viewBox="0 0 240 52" aria-hidden="true" className="w-full">
+      <rect x="4" y="23" width="232" height="6" rx="3" fill="#D9C9A3" />
+      {[124, 162, 200].map((cx, i) => (
+        <g key={cx}>
+          <circle cx={cx} cy="26" r="17" fill={i === 1 ? "#9A7355" : "#A98467"} />
+          <circle cx={cx - 6} cy="20" r="4.5" fill="#F3EDE0" opacity="0.35" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+function IlustrasiSempol() {
+  return (
+    <svg viewBox="0 0 240 52" aria-hidden="true" className="w-full">
+      <rect x="4" y="23" width="232" height="6" rx="3" fill="#D9C9A3" />
+      <rect x="108" y="9" width="122" height="34" rx="17" fill="#D9A05B" />
+      <path d="M120 18 q 20 8 0 16 M146 15 q 22 10 0 22 M174 15 q 22 10 0 22 M202 18 q 16 8 0 16" stroke="#B97F3E" strokeWidth="3" fill="none" strokeLinecap="round" />
+      <ellipse cx="132" cy="16" rx="10" ry="4" fill="#F3EDE0" opacity="0.3" />
+    </svg>
+  );
+}
+function IlustrasiDupa() {
+  return (
+    <svg viewBox="0 0 240 52" aria-hidden="true" className="w-full">
+      <rect x="4" y="23" width="72" height="6" rx="3" fill="#D9C9A3" />
+      <rect x="72" y="20" width="146" height="12" rx="6" fill="#6B4226" />
+      {[92, 116, 140, 164, 188].map((x) => (
+        <circle key={x} cx={x} cy="26" r="1.4" fill="#5C3A21" />
+      ))}
+      {/* bara berpendar (animasi opacity, aman untuk SVG) */}
+      <circle className="ember-glow" cx="226" cy="26" r="11" fill="#FF9A56" opacity="0.35" />
+      <circle cx="226" cy="26" r="6.5" fill="#D9531E" />
+      <circle cx="226" cy="26" r="3" fill="#FF9A56" />
+    </svg>
+  );
+}
+const ilustrasiContoh = {
+  pentol: <IlustrasiPentol />,
+  sempol: <IlustrasiSempol />,
+  dupa: <IlustrasiDupa />,
+};
 
 /* Ikon tangan & mesin untuk perbandingan */
 const ikonTangan = (
@@ -492,7 +581,7 @@ export default function BitingPage() {
           background-size: 22px 22px;
         }
 
-        /* Navbar glass → menggelap saat scroll (sama seperti home) */
+        /* Navbar glass → menggelap saat scroll */
         @supports (animation-timeline: scroll()) {
           .navbar-glass {
             animation: navbar-solid linear both;
@@ -502,39 +591,56 @@ export default function BitingPage() {
         }
         @keyframes navbar-solid { to { background-color: rgba(30, 46, 32, 0.95); } }
 
-        /* Asap dupa: naik meliuk lalu pudar; bara berdenyut */
-        .asap {
-          position: absolute;
-          bottom: calc(100% - 4px);
-          left: 50%;
-          border-radius: 9999px;
-          background: rgba(243, 237, 224, 0.55);
-          filter: blur(3px);
-          opacity: 0;
+        /* ---- PARALLAX & REVEAL (murni CSS scroll-driven) ---- */
+        @supports (animation-timeline: view()) {
+          @media (prefers-reduced-motion: no-preference) {
+            /* Hero: ikatan biting & konten bergeser keluar saat di-scroll */
+            .hero-timeline { view-timeline: --heroB block; }
+            .hero-ikatan {
+              animation: ikatan-exit linear both;
+              animation-timeline: --heroB;
+              animation-range: exit 0% exit 80%;
+              will-change: transform, opacity;
+            }
+            .hero-drift {
+              animation: heroB-drift linear both;
+              animation-timeline: --heroB;
+              animation-range: exit 0% exit 100%;
+            }
+            /* Reveal: elemen muncul naik saat masuk viewport */
+            .reveal {
+              animation: reveal-up linear both;
+              animation-timeline: view();
+              animation-range: entry 0% entry 38%;
+            }
+          }
         }
+        @keyframes ikatan-exit { to { transform: translate(30%, 15%); opacity: 0; } }
+        @keyframes heroB-drift { to { transform: translateY(-6%); opacity: 0.25; } }
+        @keyframes reveal-up {
+          from { opacity: 0; transform: translateY(26px); }
+          to   { opacity: 1; transform: none; }
+        }
+
         @media (prefers-reduced-motion: no-preference) {
           .marquee-track { animation: marquee 26s linear infinite; }
-          .asap { animation: asap-naik var(--asap-dur, 4.6s) ease-out var(--asap-del, 0s) infinite; }
-          .bara { animation: bara-denyut 1.6s ease-in-out infinite alternate; }
+          /* Bambu hias bergoyang pelan dari pangkalnya */
+          .bamboo-sway { transform-origin: 50% 100%; animation: bamboo-sway var(--sway-dur, 7s) ease-in-out infinite alternate; }
+          .ember-glow { animation: ember-glow 1.5s ease-in-out infinite alternate; }
+          /* Tusuk pentol di hero bergoyang pelan dari pangkalnya */
+          .tusuk-goyang { transform-origin: 50% 96%; animation: tusuk-goyang 4.5s ease-in-out infinite alternate; }
           .leaf-fall {
             animation: leaf-fall var(--fall-dur, 14s) linear var(--fall-del, 0s) infinite;
             will-change: transform, opacity;
           }
         }
         @media (prefers-reduced-motion: reduce) {
-          .asap, .leaf-fall { display: none; }
+          .leaf-fall { display: none; }
         }
         @keyframes marquee { to { transform: translateX(-50%); } }
-        @keyframes asap-naik {
-          0%   { transform: translate(-50%, 0) scale(0.6); opacity: 0; }
-          15%  { opacity: 0.7; }
-          60%  { transform: translate(calc(-50% + 9px), -46px) scale(1.05); }
-          100% { transform: translate(calc(-50% - 7px), -92px) scale(1.6); opacity: 0; }
-        }
-        @keyframes bara-denyut {
-          from { box-shadow: 0 0 6px 2px rgba(255, 130, 60, 0.45); }
-          to   { box-shadow: 0 0 13px 4px rgba(255, 160, 70, 0.75); }
-        }
+        @keyframes ember-glow { from { opacity: 0.2; } to { opacity: 0.6; } }
+        @keyframes tusuk-goyang { from { rotate: -2.5deg; } to { rotate: 3deg; } }
+        @keyframes bamboo-sway { from { rotate: -2.6deg; } to { rotate: 3deg; } }
         @keyframes leaf-fall {
           0%   { transform: translate3d(0, -8vh, 0) rotate(0deg); opacity: 0; }
           8%   { opacity: 0.75; }
@@ -577,7 +683,7 @@ export default function BitingPage() {
       </header>
 
       {/* ================= 1. HERO PRODUK ================= */}
-      <section aria-label="Biting Bambu Segelan" className="relative isolate overflow-hidden bg-[#2E4230] text-[#F3EDE0]">
+      <section aria-label="Biting Bambu Segelan" className="hero-timeline relative isolate overflow-hidden bg-[#2E4230] text-[#F3EDE0]">
         <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(243,237,224,0.10),transparent_62%)]" />
         <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-40" />
 
@@ -595,12 +701,13 @@ export default function BitingPage() {
           />
         ))}
 
-        {/* ikatan biting besar sebagai latar sisi kanan */}
-        <IkatanBiting className="pointer-events-none absolute -right-16 bottom-0 hidden h-[420px] w-auto opacity-25 lg:block" aria-hidden="true" />
+        {/* ikatan biting besar sebagai latar, ikut parallax keluar saat scroll */}
+        <div aria-hidden="true" className="hero-ikatan pointer-events-none absolute -right-16 bottom-0 hidden lg:block">
+          <IkatanBiting className="h-[420px] w-auto opacity-25" />
+        </div>
 
-        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 pt-32 pb-24 sm:pt-36 lg:grid-cols-[1.1fr_0.9fr] lg:pb-32">
+        <div className="hero-drift relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 pt-32 pb-24 sm:pt-36 lg:grid-cols-[1.1fr_0.9fr] lg:pb-32">
           <div>
-            {/* breadcrumb */}
             <nav aria-label="Breadcrumb" className="mb-5 text-xs text-[#F3EDE0]/60">
               <ol className="flex items-center gap-2">
                 <li><Link href="/" className="transition hover:text-[#F3EDE0]">{c.hero.breadcrumb.home}</Link></li>
@@ -628,7 +735,6 @@ export default function BitingPage() {
               {c.hero.cta} <span aria-hidden="true">→</span>
             </a>
 
-            {/* statistik dari wawancara */}
             <dl className="mt-10 grid max-w-lg grid-cols-3 gap-3">
               {c.hero.stats.map((s) => (
                 <div key={s.label} className="rounded-2xl border border-[#F3EDE0]/15 bg-[#F3EDE0]/10 px-3 py-4 text-center backdrop-blur-sm">
@@ -640,7 +746,7 @@ export default function BitingPage() {
             </dl>
           </div>
 
-          {/* foto produk + dupa menyala */}
+          {/* foto produk + tusuk pentol bergoyang */}
           <figure className="relative mx-auto w-full max-w-sm">
             <div aria-hidden="true" className="absolute inset-0 translate-x-4 translate-y-4 -rotate-2 rounded-3xl bg-[#F3EDE0]/10" />
             <div className="relative rotate-[1.5deg] overflow-hidden rounded-3xl border-8 border-[#F8F4EA] bg-[#DCD2BC] shadow-2xl">
@@ -655,8 +761,11 @@ export default function BitingPage() {
                 />
               </div>
             </div>
-            {/* dupa menyala bersandar di sisi kiri foto */}
-            <DupaMenyala className="absolute -bottom-4 -left-7 ml-6 rotate-[-18deg] sm:-left-10" />
+            <div aria-hidden="true" className="pointer-events-none absolute -bottom-5 -left-8 rotate-[-8deg] sm:-left-11">
+              <div className="tusuk-goyang">
+                <TusukPentol className="h-36 w-auto drop-shadow-[0_8px_10px_rgba(0,0,0,0.35)]" />
+              </div>
+            </div>
           </figure>
         </div>
 
@@ -678,8 +787,17 @@ export default function BitingPage() {
       </div>
 
       {/* ================= 2. APA ITU BITING ================= */}
-      <section id="apa-itu" aria-labelledby="apaitu-heading" className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+      <section id="apa-itu" aria-labelledby="apaitu-heading" className="relative overflow-hidden py-20 sm:py-24">
+        {/* bambu tumbuh miring dari pojok kiri bawah, bergoyang */}
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-12 -left-8 hidden origin-bottom-left rotate-[14deg] opacity-[0.35] md:block">
+          <div className="bamboo-sway" style={{ "--sway-dur": "6.6s" } as React.CSSProperties}>
+            <BatangBambu idPrefix="apaitu" className="h-[340px] w-auto" />
+          </div>
+        </div>
+        <LidiBiting className="pointer-events-none absolute top-10 -right-8 h-48 w-auto -rotate-12 text-[#4E7248] opacity-[0.14]" />
+        <DaunBambu className="pointer-events-none absolute bottom-16 left-[16%] hidden h-5 w-14 rotate-12 text-[#4E7248]/25 lg:block" />
+
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2">
           <div>
             <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Kenalan Dulu</p>
             <h2 id="apaitu-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
@@ -699,12 +817,22 @@ export default function BitingPage() {
             </ul>
           </div>
 
-          {/* diagram anatomi dupa */}
-          <div className="rounded-3xl border border-[#3A2E22]/10 bg-[#F8F4EA] p-6 shadow-sm sm:p-8">
-            <p className="mb-4 text-center text-xs font-semibold tracking-[0.18em] uppercase text-[#7A5C3E]">
-              Penggunaan paling umum: posisi biting pada dupa
+          {/* kartu contoh penggunaan */}
+          <div className="reveal rounded-3xl border border-[#3A2E22]/10 bg-[#F8F4EA] p-6 shadow-sm sm:p-8">
+            <p className="mb-6 text-center text-xs font-semibold tracking-[0.18em] uppercase text-[#7A5C3E]">
+              {c.apaItu.contoh.heading}
             </p>
-            <AnatomiDupa labelBiting={c.apaItu.diagram.labelBiting} labelPasta={c.apaItu.diagram.labelPasta} />
+            <ul className="space-y-6">
+              {c.apaItu.contoh.items.map((item) => (
+                <li key={item.judul} className="grid items-center gap-4 sm:grid-cols-[190px_1fr]">
+                  <div className="rounded-2xl bg-[#EAE1CD] px-4 py-3">{ilustrasiContoh[item.jenis]}</div>
+                  <div>
+                    <p className="font-display font-semibold text-[#2E4230]">{item.judul}</p>
+                    <p className="mt-0.5 text-sm leading-relaxed text-[#4A3B2C]/85">{item.keterangan}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -713,6 +841,8 @@ export default function BitingPage() {
       <section aria-labelledby="sejarah-heading" className="relative bg-[#EAE1CD]">
         <Wave fill="#F3EDE0" flip className="absolute inset-x-0 top-0" />
         <div className="pattern-anyaman absolute inset-0" aria-hidden="true" />
+        <DaunBambu className="pointer-events-none absolute top-32 right-[6%] hidden h-5 w-14 rotate-12 text-[#4E7248]/30 md:block" />
+        <LidiBiting className="pointer-events-none absolute bottom-12 left-[3%] hidden h-32 w-auto rotate-6 text-[#7A5C3E]/20 lg:block" />
 
         <div className="relative mx-auto max-w-4xl px-6 pt-28 pb-20 sm:pt-32 sm:pb-24">
           <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Cerita Perjalanan</p>
@@ -721,10 +851,9 @@ export default function BitingPage() {
           </h2>
           <p className="mt-3 max-w-xl text-[#4A3B2C]/80">{c.sejarah.intro}</p>
 
-          {/* timeline vertikal */}
           <ol className="relative mt-12 space-y-10 border-l-2 border-[#4E7248]/30 pl-8">
             {c.sejarah.milestones.map((m, i) => (
-              <li key={m.judul} className="relative">
+              <li key={m.judul} className="reveal relative">
                 <span
                   aria-hidden="true"
                   className="absolute top-1 -left-[41px] flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#EAE1CD] text-[9px] font-bold text-[#F3EDE0]"
@@ -742,7 +871,16 @@ export default function BitingPage() {
 
       {/* ================= 4. PROSES PRODUKSI ================= */}
       <section id="proses" aria-labelledby="proses-heading" className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+        {/* rumpun bambu tumbuh miring dari pojok kanan bawah, sumber bahan bakunya */}
+        <div aria-hidden="true" className="pointer-events-none absolute -right-10 -bottom-14 hidden origin-bottom-right -rotate-[14deg] opacity-[0.32] lg:block">
+          <div className="bamboo-sway" style={{ "--sway-dur": "8s" } as React.CSSProperties}>
+            <BatangBambu idPrefix="proses" className="h-[380px] w-auto -scale-x-100" />
+          </div>
+        </div>
+        <DaunBambu className="pointer-events-none absolute top-24 right-[14%] hidden h-5 w-14 -rotate-12 text-[#4E7248]/25 md:block" />
+        <LidiBiting className="pointer-events-none absolute -bottom-6 -left-6 h-44 w-auto rotate-12 text-[#4E7248] opacity-[0.12]" />
+
+        <div className="relative mx-auto max-w-6xl px-6 py-20 sm:py-24">
           <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Dapur Produksi</p>
           <h2 id="proses-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
             {c.proses.heading}
@@ -750,7 +888,7 @@ export default function BitingPage() {
           <p className="mt-3 max-w-2xl text-[#4A3B2C]/80">{c.proses.intro}</p>
 
           {/* bahan baku */}
-          <div className="mt-10 rounded-3xl border border-[#3A2E22]/10 bg-[#F8F4EA] p-6 sm:p-8">
+          <div className="reveal mt-10 rounded-3xl border border-[#3A2E22]/10 bg-[#F8F4EA] p-6 sm:p-8">
             <h3 className="font-display text-lg font-semibold text-[#2E4230]">{c.proses.bahan.heading}</h3>
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
               {c.proses.bahan.items.map((b) => (
@@ -764,10 +902,10 @@ export default function BitingPage() {
             <p className="mt-4 text-sm text-[#7A5C3E] italic">{c.proses.bahan.catatan}</p>
           </div>
 
-          {/* langkah-langkah: timeline vertikal — rapat, tanpa sisi kosong */}
+          {/* langkah-langkah: timeline vertikal */}
           <ol className="relative mt-14 space-y-11 border-l-2 border-[#4E7248]/25 pl-8 sm:pl-12">
             {c.proses.langkah.map((l, i) => (
-              <li key={l.judul} className="relative">
+              <li key={l.judul} className="reveal relative">
                 <span
                   aria-hidden="true"
                   className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
@@ -791,7 +929,7 @@ export default function BitingPage() {
           </ol>
 
           {/* kendala musim hujan */}
-          <div className="relative mt-14 overflow-hidden rounded-3xl bg-[#2E4230] px-6 py-10 text-[#F3EDE0] sm:px-10">
+          <div className="reveal relative mt-14 overflow-hidden rounded-3xl bg-[#2E4230] px-6 py-10 text-[#F3EDE0] sm:px-10">
             <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-25" />
             <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
               <span aria-hidden="true" className="text-5xl">🔥</span>
@@ -808,6 +946,12 @@ export default function BitingPage() {
       <section aria-labelledby="mvm-heading" className="relative bg-[#2E4230] text-[#F3EDE0]">
         <Wave fill="#F3EDE0" className="absolute inset-x-0 top-0 rotate-180" />
         <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-30" />
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-6 -left-9 hidden origin-bottom-left rotate-[12deg] opacity-25 lg:block">
+          <div className="bamboo-sway" style={{ "--sway-dur": "7s" } as React.CSSProperties}>
+            <BatangBambu idPrefix="mvm" className="h-80 w-auto" />
+          </div>
+        </div>
+        <DaunBambu className="pointer-events-none absolute top-28 left-[5%] h-5 w-14 -rotate-12 text-[#9DBE85]/20" />
 
         <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-24 sm:pt-32 sm:pb-28">
           <div className="text-center">
@@ -825,7 +969,7 @@ export default function BitingPage() {
             ].map(({ data, ikon, utama }) => (
               <div
                 key={data.judul}
-                className={`rounded-3xl border p-7 ${
+                className={`reveal rounded-3xl border p-7 ${
                   utama
                     ? "border-[#9DBE85]/50 bg-[#F3EDE0]/10 shadow-lg backdrop-blur-sm"
                     : "border-[#F3EDE0]/15 bg-[#F3EDE0]/5"
@@ -858,49 +1002,61 @@ export default function BitingPage() {
         <Wave fill="#F3EDE0" className="absolute inset-x-0 bottom-0" />
       </section>
 
-      {/* ================= 6. PENGRAJIN ================= */}
-      <section id="pengrajin" aria-labelledby="pengrajin-heading" className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
-        <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Orang-Orangnya</p>
-        <h2 id="pengrajin-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-          {c.pengrajin.heading}
-        </h2>
-        <p className="mt-3 max-w-xl text-[#4A3B2C]/80">{c.pengrajin.intro}</p>
+      {/* ================= 6. PENGRAJIN (tanpa nama) ================= */}
+      <section id="pengrajin" aria-labelledby="pengrajin-heading" className="relative overflow-hidden py-20 sm:py-24">
+        {/* dupa menyala di tepi kanan, salah satu hasil karya mereka */}
+        <DupaBerdiri className="pointer-events-none absolute top-12 right-[3%] hidden h-56 w-auto rotate-6 opacity-40 md:block" />
+        <LidiBiting className="pointer-events-none absolute bottom-10 -left-8 h-44 w-auto rotate-12 text-[#4E7248] opacity-[0.12]" />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          {c.pengrajin.profil.map((p) => (
-            <article key={p.nama} className="grid overflow-hidden rounded-3xl border border-[#3A2E22]/10 bg-[#F8F4EA] shadow-md sm:grid-cols-[200px_1fr]">
-              <div className="relative aspect-[4/3] bg-[#DCD2BC] sm:aspect-auto">
-                <Image src={p.img} alt={p.alt} fill sizes="(min-width: 640px) 200px, 100vw" className="object-cover" />
+        <div className="relative mx-auto max-w-6xl px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <figure className="reveal relative mx-auto w-full max-w-md">
+              <div aria-hidden="true" className="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-3xl bg-[#2E4230]/15" />
+              <div className="relative rotate-[-1.5deg] overflow-hidden rounded-3xl border-8 border-[#F8F4EA] bg-[#DCD2BC] shadow-xl">
+                <div className="relative aspect-[4/3]">
+                  <Image src={c.pengrajin.img} alt={c.pengrajin.alt} fill sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" />
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-semibold text-[#2E4230]">{p.nama}</h3>
-                <p className="mt-0.5 text-xs font-semibold tracking-wide uppercase" style={{ color: AKSEN }}>
-                  {p.pengalaman}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-[#4A3B2C]/85">{p.cerita}</p>
+            </figure>
+
+            <div>
+              <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Orang-Orangnya</p>
+              <h2 id="pengrajin-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+                {c.pengrajin.heading}
+              </h2>
+              <div className="mt-6 space-y-4 text-base leading-relaxed text-[#4A3B2C] sm:text-lg">
+                {c.pengrajin.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
               </div>
-            </article>
-          ))}
+            </div>
+          </div>
+
+          <figure className="reveal relative mt-12 overflow-hidden rounded-3xl bg-[#EAE1CD] px-6 py-10 text-center sm:px-16">
+            <span aria-hidden="true" className="font-display absolute top-2 left-6 text-7xl text-[#4E7248]/25">“</span>
+            <DaunBambu className="absolute -right-3 -bottom-2 h-8 w-24 rotate-[-12deg] text-[#4E7248]/20" />
+            <blockquote className="font-display mx-auto max-w-2xl text-xl leading-relaxed text-[#2E4230] italic sm:text-2xl">
+              {c.pengrajin.kutipan}
+            </blockquote>
+            <figcaption className="mt-4 text-sm font-medium text-[#7A5C3E]">— {c.pengrajin.kutipanSumber}</figcaption>
+          </figure>
+          <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-[#4A3B2C]/75 sm:text-base">
+            {c.pengrajin.harapan}
+          </p>
         </div>
-
-        {/* kutipan + harapan */}
-        <figure className="relative mt-10 overflow-hidden rounded-3xl bg-[#EAE1CD] px-6 py-10 text-center sm:px-16">
-          <span aria-hidden="true" className="font-display absolute top-2 left-6 text-7xl text-[#4E7248]/25">“</span>
-          <DaunBambu className="absolute -right-3 -bottom-2 h-8 w-24 rotate-[-12deg] text-[#4E7248]/20" />
-          <blockquote className="font-display mx-auto max-w-2xl text-xl leading-relaxed text-[#2E4230] italic sm:text-2xl">
-            {c.pengrajin.kutipan}
-          </blockquote>
-          <figcaption className="mt-4 text-sm font-medium text-[#7A5C3E]">— {c.pengrajin.kutipanSumber}</figcaption>
-        </figure>
-        <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-[#4A3B2C]/75 sm:text-base">
-          {c.pengrajin.harapan}
-        </p>
       </section>
 
-      {/* ================= 7. SPESIFIKASI & PEMESANAN ================= */}
-      <section aria-labelledby="pesan-heading" className="relative bg-[#EAE1CD]">
+      {/* ================= 7. KATALOG, SPESIFIKASI & PEMESANAN ================= */}
+      <section id="ukuran" aria-labelledby="pesan-heading" className="relative bg-[#EAE1CD]">
         <Wave fill="#F3EDE0" flip className="absolute inset-x-0 top-0" />
         <div className="pattern-anyaman absolute inset-0" aria-hidden="true" />
+        {/* tusuk pentol bergoyang di tepi kanan, produk andalannya */}
+        <div aria-hidden="true" className="pointer-events-none absolute top-44 right-[4%] hidden rotate-12 opacity-45 lg:block">
+          <div className="tusuk-goyang">
+            <TusukPentol className="h-44 w-auto" />
+          </div>
+        </div>
+        <DaunBambu className="pointer-events-none absolute top-32 left-[5%] hidden h-5 w-14 rotate-12 text-[#4E7248]/25 md:block" />
 
         <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-20 sm:pt-32 sm:pb-24">
           <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Untuk Pembeli</p>
@@ -909,9 +1065,35 @@ export default function BitingPage() {
           </h2>
           <p className="mt-3 max-w-xl text-[#4A3B2C]/80">{c.pemesanan.intro}</p>
 
-          <dl className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-3">
+          {/* katalog ukuran: panjang lidi digambar proporsional */}
+          <div className="mt-10">
+            <h3 className="font-display text-lg font-semibold text-[#2E4230]">{c.pemesanan.katalog.heading}</h3>
+            <div className="mt-5 grid gap-4 sm:grid-cols-3">
+              {c.pemesanan.katalog.items.map((k) => (
+                <div key={k.cm} className="reveal rounded-2xl border border-[#3A2E22]/10 bg-[#F8F4EA] p-6 shadow-sm transition hover:shadow-md">
+                  <p className="font-display text-3xl font-semibold text-[#2E4230]">
+                    {k.cm}
+                    <span className="ml-1 text-base font-normal text-[#7A5C3E]">cm</span>
+                  </p>
+                  {/* lidi digambar sepanjang persentase kartu, biar beda panjangnya kelihatan */}
+                  <div aria-hidden="true" className="mt-4 h-2 rounded-full bg-[#EAE1CD]">
+                    <div
+                      className="h-2 rounded-full bg-gradient-to-r from-[#C9B285] to-[#A88B5C]"
+                      style={{ width: `${k.lebar}%` }}
+                    />
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-[#4A3B2C]/85">
+                    <span className="font-semibold text-[#2E4230]">Cocok untuk:</span> {k.cocok}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* spesifikasi */}
+          <dl className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-3">
             {c.pemesanan.spesifikasi.map((s) => (
-              <div key={s.label} className="rounded-2xl border border-[#3A2E22]/10 bg-[#F8F4EA] p-5 shadow-sm">
+              <div key={s.label} className="reveal rounded-2xl border border-[#3A2E22]/10 bg-[#F8F4EA] p-5 shadow-sm">
                 <dt className="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#7A5C3E]">{s.label}</dt>
                 <dd className="font-display mt-1.5 font-semibold text-[#2E4230]">{s.nilai}</dd>
               </div>
@@ -920,7 +1102,7 @@ export default function BitingPage() {
           <p className="mt-4 text-sm text-[#7A5C3E] italic">{c.pemesanan.catatan}</p>
 
           {/* CTA */}
-          <div className="relative mt-12 overflow-hidden rounded-3xl bg-gradient-to-br from-[#2E4230] to-[#22331F] px-6 py-12 text-center text-[#F3EDE0] shadow-2xl sm:px-12">
+          <div className="reveal relative mt-12 overflow-hidden rounded-3xl bg-gradient-to-br from-[#2E4230] to-[#22331F] px-6 py-12 text-center text-[#F3EDE0] shadow-2xl sm:px-12">
             <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-25" />
             <IkatanBiting className="pointer-events-none absolute -left-10 -bottom-16 h-56 w-auto opacity-20" />
             <div className="relative">
@@ -940,29 +1122,39 @@ export default function BitingPage() {
       </section>
 
       {/* ================= 8. GALERI MINI ================= */}
-      <section aria-labelledby="galeri-heading" className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
-        <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Dokumentasi</p>
-        <h2 id="galeri-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-          {c.galeri.heading}
-        </h2>
-        <ul className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {c.galeri.items.map((foto, i) => (
-            <li
-              key={i}
-              className={`overflow-hidden rounded-xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg transition hover:z-10 hover:scale-[1.03] hover:rotate-0 motion-reduce:hover:scale-100 ${
-                i % 2 === 0 ? "rotate-[1.2deg]" : "-rotate-[1.2deg]"
-              }`}
-            >
-              <div className="relative aspect-[4/3]">
-                <Image src={foto.img} alt={foto.alt} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
-              </div>
-            </li>
-          ))}
-        </ul>
+      <section aria-labelledby="galeri-heading" className="relative overflow-hidden py-20 sm:py-24">
+        {/* bambu kecil tumbuh miring dari pojok kanan bawah */}
+        <div aria-hidden="true" className="pointer-events-none absolute -right-6 -bottom-10 hidden origin-bottom-right -rotate-[13deg] opacity-30 md:block">
+          <div className="bamboo-sway" style={{ "--sway-dur": "6.2s" } as React.CSSProperties}>
+            <BatangBambu idPrefix="galeri" className="h-72 w-auto -scale-x-100" />
+          </div>
+        </div>
+        <DaunBambu className="pointer-events-none absolute top-16 right-[6%] hidden h-5 w-14 rotate-12 text-[#4E7248]/25 md:block" />
+
+        <div className="relative mx-auto max-w-6xl px-6">
+          <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Dokumentasi</p>
+          <h2 id="galeri-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+            {c.galeri.heading}
+          </h2>
+          <ul className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {c.galeri.items.map((foto, i) => (
+              <li
+                key={i}
+                className={`reveal overflow-hidden rounded-xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg transition hover:z-10 hover:scale-[1.03] hover:rotate-0 motion-reduce:hover:scale-100 ${
+                  i % 2 === 0 ? "rotate-[1.2deg]" : "-rotate-[1.2deg]"
+                }`}
+              >
+                <div className="relative aspect-[4/3]">
+                  <Image src={foto.img} alt={foto.alt} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* ================= 9. POTENSI LAINNYA ================= */}
-      <section aria-labelledby="lainnya-heading" className="mx-auto max-w-6xl px-6 pb-24">
+      <section aria-labelledby="lainnya-heading" className="relative mx-auto max-w-6xl px-6 pb-24">
         <h2 id="lainnya-heading" className="font-display text-2xl font-semibold text-[#2E4230] sm:text-3xl">
           {c.lainnya.heading}
         </h2>
@@ -970,7 +1162,7 @@ export default function BitingPage() {
           {c.lainnya.items.map((item) => (
             <article
               key={item.slug}
-              className="group relative overflow-hidden rounded-2xl border border-[#3A2E22]/10 bg-[#F8F4EA] shadow-md transition hover:-translate-y-1.5 hover:shadow-xl motion-reduce:hover:translate-y-0"
+              className="group reveal relative overflow-hidden rounded-2xl border border-[#3A2E22]/10 bg-[#F8F4EA] shadow-md transition hover:-translate-y-1.5 hover:shadow-xl motion-reduce:hover:translate-y-0"
             >
               <span aria-hidden="true" className="absolute inset-x-0 top-0 z-10 h-1.5" style={{ backgroundColor: item.aksen }} />
               <Link href={item.slug} className="flex items-center gap-5 p-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2E4230]">

@@ -15,16 +15,16 @@ import type { Map as LeafletMap } from "leaflet";
 
 /* ===== Konten & konfigurasi — gampang diedit ===== */
 const peta = {
-  // Koordinat sekitar Kantor Desa Balesari, Ngajum
-  lat: -8.0272,
-  lng: 112.5204,
+  // Titik spesifik dari tim KKN (Desa Balesari)
+  lat: -8.01775,
+  lng: 112.489564,
   zoom: 14,
   radiusMeter: 900, // lingkaran sorotan kawasan desa
   judulPin: "Desa Balesari",
   deskripsiPin: "Dusun Segelan · Kec. Ngajum · Kab. Malang",
   infoBaris: ["650–900 mdpl", "Lereng timur Gunung Kawi"],
   googleMapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=Desa+Balesari,+Ngajum,+Kabupaten+Malang",
+    "https://www.google.com/maps/search/?api=1&query=-8.017750,112.489564",
 };
 
 /* Pin SVG custom (hijau bambu) yang dipakai sebagai divIcon Leaflet */

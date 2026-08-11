@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Potensi Balesari — Biting, Kopi & Batok Kelapa",
     description:
-      "Produk asli warga Dusun Segelan, Desa Balesari, Ngajum, Kabupaten Malang — dibuat manual, diwariskan turun-temurun.",
+      "Produk asli warga Dusun Segelan, Desa Balesari, Ngajum, Kabupaten Malang, dibuat manual dan diwariskan turun-temurun.",
     locale: "id_ID",
     type: "website",
   },
@@ -72,7 +72,7 @@ const content = {
     title:
       "Potensi Desa Balesari: Biting, Kopi & Batok Kelapa dari Kaki Gunung Kawi",
     subtitle:
-      "Tiga hasil bumi dan kerajinan yang lahir dari tangan warga — dikerjakan manual, diwariskan turun-temurun.",
+      "Tiga hasil bumi dan kerajinan yang lahir dari tangan warga, dikerjakan manual dan diwariskan turun-temurun.",
     ctaUtama: "Jelajahi Potensi",
     chips: [
       { label: "Biting Bambu", href: "/biting", warna: "#9DBE85" },
@@ -92,7 +92,7 @@ const content = {
     heading: "Sekilas Desa Balesari",
     paragraphs: [
       "Desa Balesari terletak di Kecamatan Ngajum, Kabupaten Malang, di lereng timur Gunung Kawi dengan udara sejuk dan tanah yang subur.",
-      "Di Dusun Segelan, keseharian warga tak lepas dari rumpun bambu, kebun kopi, dan pohon kelapa — tiga bahan yang diolah menjadi produk bernilai lewat keterampilan yang diwariskan antargenerasi.",
+      "Di Dusun Segelan, keseharian warga tak lepas dari rumpun bambu, kebun kopi, dan pohon kelapa, tiga bahan yang diolah menjadi produk bernilai lewat keterampilan yang diwariskan antargenerasi.",
     ],
     imgUtama: IMG,
     imgUtamaAlt:
@@ -115,7 +115,7 @@ const content = {
         nama: "Biting Bambu",
         kategori: "Kerajinan",
         pancingan:
-          "Lidi bambu tipis nan presisi, bahan utama dupa — diserut satu per satu dengan tangan.",
+          "Lidi bambu tipis nan presisi untuk dupa, sempol, hingga sate, diserut satu per satu dengan tangan.",
         img: IMG,
         alt: "Ikatan biting bambu hasil serutan tangan warga Dusun Segelan, Desa Balesari",
         aksen: "#4E7248",
@@ -144,12 +144,12 @@ const content = {
   },
   keunggulan: {
     heading: "Kenapa Produk Sini Beda",
-    intro: "Bukan produksi massal — tiap barang lewat tangan orang yang sama dari awal sampai akhir.",
+    intro: "Bukan produksi massal, tiap barang lewat tangan orang yang sama dari awal sampai akhir.",
     items: [
       {
         judul: "Dikerjakan Manual",
         deskripsi:
-          "Tanpa mesin pabrik — tiap biting diserut, tiap biji kopi dipilah, tiap batok dibentuk dengan tangan.",
+          "Tanpa mesin pabrik, tiap biting diserut, tiap biji kopi dipilah, tiap batok dibentuk dengan tangan.",
       },
       {
         judul: "Ilmu Turun-Temurun",
@@ -159,17 +159,19 @@ const content = {
       {
         judul: "Langsung dari Warga",
         deskripsi:
-          "Tanpa perantara panjang — harga adil untuk pembeli, hasil utuh untuk pengrajin dan petani.",
+          "Tanpa perantara panjang, harga adil untuk pembeli, hasil utuh untuk pengrajin dan petani.",
       },
     ],
     // TODO: ganti dengan kutipan asli warga saat wawancara KKN
     kutipan:
-      "Sing penting telaten. Bambu, kopi, kelapa — kabeh butuh sabar sebelum dadi rezeki.",
+      "Sing penting telaten. Bambu, kopi, kelapa, kabeh butuh sabar sebelum dadi rezeki.",
     kutipanSumber: "Pengrajin biting, Dusun Segelan",
   },
   galeri: {
     heading: "Cuplikan Kegiatan",
     intro: "Suasana produksi dan keseharian warga Dusun Segelan.",
+    // TODO: taruh file video di public/images/dokumentasi.mp4 (atau ganti src ini sesuai nama filenya)
+    videoSrc: "/images/dokumentasi.mp4",
     items: [
       { img: IMG, alt: "Warga menyerut bambu menjadi biting di teras rumah" },
       { img: IMG, alt: "Proses penjemuran biji kopi di halaman rumah warga Balesari" },
@@ -182,12 +184,12 @@ const content = {
   peta: {
     heading: "Lokasi Desa Balesari",
     intro:
-      "Desa Balesari, Kecamatan Ngajum, Kabupaten Malang, Jawa Timur — di lereng timur Gunung Kawi.",
+      "Desa Balesari, Kecamatan Ngajum, Kabupaten Malang, Jawa Timur, tepat di lereng timur Gunung Kawi.",
   },
   kontak: {
     heading: "Tertarik Bekerja Sama?",
     deskripsi:
-      "Kami terbuka untuk pemesanan, kemitraan, maupun kunjungan langsung ke Dusun Segelan. Hubungi kami — warga siap menyambut.",
+      "Kami terbuka untuk pemesanan, kemitraan, maupun kunjungan langsung ke Dusun Segelan. Hubungi kami, warga siap menyambut.",
     waNumber: "6281234567890", // TODO: ganti dengan nomor WhatsApp asli
     waText: "Halo, saya tertarik dengan produk Desa Balesari.",
     ctaLabel: "Hubungi via WhatsApp",
@@ -196,7 +198,7 @@ const content = {
   footer: {
     brand: "Potensi Balesari",
     tagline:
-      "Profil potensi dan UMKM Dusun Segelan, Desa Balesari — dari lereng Gunung Kawi untuk lebih banyak orang.",
+      "Profil potensi dan UMKM Dusun Segelan, Desa Balesari, dari lereng Gunung Kawi untuk lebih banyak orang.",
     alamat: "Dusun Segelan, Desa Balesari, Kec. Ngajum, Kab. Malang, Jawa Timur",
     kredit: `© ${new Date().getFullYear()} KKN 165 UMM × Warga Desa Balesari`,
     kolomProduk: [
@@ -375,6 +377,33 @@ function LogoBambu({ className = "" }: { className?: string }) {
   );
 }
 
+/* Batok kelapa terbelah (siluet dekorasi) */
+function BatokKelapa({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 48" aria-hidden="true" className={className}>
+      <path d="M2 12 Q 32 24 62 12 L62 14 C 62 34 49 46 32 46 C 15 46 2 34 2 14 Z" fill="currentColor" />
+      <ellipse cx="32" cy="11" rx="29" ry="7" fill="currentColor" opacity="0.45" />
+      <path d="M13 24 q 4 12 11 16 M51 24 q -4 12 -11 16" stroke="currentColor" strokeWidth="2.5" fill="none" opacity="0.5" />
+    </svg>
+  );
+}
+
+/* Kipas lidi biting kecil (siluet dekorasi) */
+function LidiBiting({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 160" aria-hidden="true" className={className} fill="none" stroke="currentColor">
+      <g strokeWidth="3" strokeLinecap="round">
+        <line x1="60" y1="150" x2="14" y2="16" />
+        <line x1="60" y1="150" x2="34" y2="8" />
+        <line x1="60" y1="150" x2="60" y2="4" />
+        <line x1="60" y1="150" x2="86" y2="8" />
+        <line x1="60" y1="150" x2="106" y2="16" />
+      </g>
+      <rect x="48" y="104" width="24" height="9" rx="4.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 /* Ikon poin keunggulan */
 const keunggulanIcons = [
   <svg key="0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8" aria-hidden="true">
@@ -431,7 +460,7 @@ export default function HomePage() {
              Dipasang di elemen DALAM container parallax supaya
              tidak bentrok dengan animasi scroll-nya. */
           .bamboo-sway {
-            --sway-dur: 6.5s;
+            --sway-dur: 2.5s;
             --sway-del: 0s;
             transform-origin: 50% 100%;
             animation: bamboo-sway var(--sway-dur) ease-in-out var(--sway-del) infinite alternate;
@@ -442,7 +471,7 @@ export default function HomePage() {
              lalu mengulang dari atas. Tiap daun punya durasi/jeda
              sendiri lewat CSS variable (di-set inline per daun). */
           .leaf-fall {
-            animation: leaf-fall var(--fall-dur, 14s) linear var(--fall-del, 0s) infinite;
+            animation: leaf-fall var(--fall-dur, 4s) linear var(--fall-del, 0s) infinite;
             will-change: transform, opacity;
           }
         }
@@ -653,6 +682,8 @@ export default function HomePage() {
             <path key={o} d={`M0 ${300 + o} C 180 ${180 + o}, 320 ${380 + o}, 520 ${240 + o} S 820 ${160 + o}, 900 ${260 + o}`} />
           ))}
         </svg>
+        {/* aksen biting: kipas lidi samar di sisi kiri */}
+        <LidiBiting className="pointer-events-none absolute bottom-8 -left-8 h-44 w-auto rotate-12 text-[#4E7248] opacity-[0.13]" />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-2">
           <div>
@@ -715,6 +746,11 @@ export default function HomePage() {
       <section id="potensi" aria-labelledby="potensi-heading" className="relative bg-[#EAE1CD]">
         <Wave fill="#F3EDE0" flip className="absolute inset-x-0 top-0" />
         <div className="pattern-anyaman absolute inset-0" aria-hidden="true" />
+        {/* aksen tiga produk bertebaran samar */}
+        <DaunBambu className="pointer-events-none absolute top-28 left-[6%] hidden h-5 w-14 -rotate-12 text-[#4E7248]/30 md:block" />
+        <BijiKopi className="pointer-events-none absolute top-36 right-[7%] hidden h-10 w-8 rotate-12 text-[#6B4226]/25 md:block" />
+        <BatokKelapa className="pointer-events-none absolute bottom-16 left-[8%] hidden h-9 w-14 -rotate-6 text-[#8B5E3C]/25 md:block" />
+        <LidiBiting className="pointer-events-none absolute right-[4%] bottom-24 hidden h-28 w-auto rotate-6 text-[#4E7248]/20 lg:block" />
 
         <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-20 sm:pt-32 sm:pb-24">
           <div className="text-center">
@@ -770,6 +806,9 @@ export default function HomePage() {
         <svg aria-hidden="true" viewBox="0 0 200 200" className="pointer-events-none absolute -bottom-24 -left-20 h-72 w-72 text-[#2E4230] opacity-[0.07]">
           <path d="M100 10 C 40 60, 30 140, 100 190 C 170 140, 160 60, 100 10 Z M100 30 L 100 175" fill="currentColor" />
         </svg>
+        {/* watermark kopi & batok: tiga produk hadir dalam satu bingkai */}
+        <BijiKopi className="pointer-events-none absolute -top-8 right-10 h-36 w-28 rotate-[18deg] text-[#6B4226] opacity-[0.06]" />
+        <BatokKelapa className="pointer-events-none absolute right-1/4 -bottom-14 h-32 w-48 text-[#8B5E3C] opacity-[0.06]" />
 
         <div className="relative mx-auto max-w-6xl px-6 py-20 sm:py-24">
           <div className="max-w-2xl">
@@ -812,6 +851,8 @@ export default function HomePage() {
       <section id="galeri" aria-labelledby="galeri-heading" className="relative bg-[#2E4230] text-[#F3EDE0]">
         <Wave fill="#F3EDE0" className="absolute inset-x-0 top-0 rotate-180" />
         <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-30" />
+        <DaunBambu className="pointer-events-none absolute top-24 right-10 h-6 w-16 rotate-12 text-[#9DBE85]/20" />
+        <BijiKopi className="pointer-events-none absolute bottom-44 left-8 h-11 w-8 -rotate-12 text-[#C9BC9C]/15" />
         {/* siluet pegunungan samar di dasar galeri */}
         <div aria-hidden="true" className="absolute inset-x-0 bottom-6 opacity-40">
           <Pegunungan belakang="#263C28" depan="#1F3320" className="h-32" />
@@ -823,6 +864,23 @@ export default function HomePage() {
             {c.galeri.heading}
           </h2>
           <p className="mt-3 max-w-xl text-[#F3EDE0]/75">{c.galeri.intro}</p>
+
+          {/* video dokumentasi: autoplay senyap + berulang, tetap ada kontrol
+              (browser hanya mengizinkan autoplay jika muted) */}
+          <div className="mt-10 overflow-hidden rounded-3xl border-[6px] border-[#F8F4EA] bg-[#1F3320] shadow-2xl">
+            <video
+              src={c.galeri.videoSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              preload="metadata"
+              className="aspect-video w-full object-cover"
+            >
+              Browser Anda tidak mendukung pemutaran video.
+            </video>
+          </div>
 
           {/* mozaik: foto pertama tampil besar */}
           <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
@@ -851,7 +909,23 @@ export default function HomePage() {
       </section>
 
       {/* ================= 6. PETA LOKASI ================= */}
-      <section id="lokasi" aria-labelledby="peta-heading" className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+      <section id="lokasi" aria-labelledby="peta-heading" className="relative overflow-hidden py-20 sm:py-24">
+        {/* kontur perbukitan samar, meneruskan benang merah lereng Kawi */}
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 900 600"
+          className="pointer-events-none absolute top-4 -left-24 h-[380px] w-auto -scale-x-100 text-[#4E7248] opacity-[0.1]"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          {[0, 42, 84, 126, 168].map((o) => (
+            <path key={o} d={`M0 ${300 + o} C 180 ${180 + o}, 320 ${380 + o}, 520 ${240 + o} S 820 ${160 + o}, 900 ${260 + o}`} />
+          ))}
+        </svg>
+        <BatokKelapa className="pointer-events-none absolute top-16 right-[6%] hidden h-10 w-16 rotate-6 text-[#8B5E3C]/25 md:block" />
+
+        <div className="relative mx-auto max-w-6xl px-6">
         <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Kunjungi Kami</p>
         <h2 id="peta-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
           {c.peta.heading}
@@ -859,6 +933,7 @@ export default function HomePage() {
         <p className="mt-3 max-w-2xl text-[#4A3B2C]/80">{c.peta.intro}</p>
         <div className="mt-8">
           <PetaLokasi />
+        </div>
         </div>
       </section>
 
