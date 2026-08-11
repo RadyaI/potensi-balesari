@@ -14,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fraunces } from "next/font/google";
 import PetaLokasi from "@/components/potensi/PetaLokasi";
+import Reveal from "@/components/Reveal";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -116,7 +117,7 @@ const content = {
         kategori: "Kerajinan",
         pancingan:
           "Lidi bambu tipis nan presisi untuk dupa, sempol, hingga sate, diserut satu per satu dengan tangan.",
-        img: IMG,
+        img: "/images/biting.jpg",
         alt: "Ikatan biting bambu hasil serutan tangan warga Dusun Segelan, Desa Balesari",
         aksen: "#4E7248",
       },
@@ -171,7 +172,7 @@ const content = {
     heading: "Cuplikan Kegiatan",
     intro: "Suasana produksi dan keseharian warga Dusun Segelan.",
     // TODO: taruh file video di public/images/dokumentasi.mp4 (atau ganti src ini sesuai nama filenya)
-    videoSrc: "/images/dokumentasi.mp4",
+    videoSrc: "/images/cuplikan_biting.mp4",
     items: [
       { img: IMG, alt: "Warga menyerut bambu menjadi biting di teras rumah" },
       { img: IMG, alt: "Proses penjemuran biji kopi di halaman rumah warga Balesari" },
@@ -687,30 +688,39 @@ export default function HomePage() {
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-2">
           <div>
-            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Tentang Desa</p>
-            <h2 id="sekilas-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-              {c.sekilas.heading}
-            </h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-[#4A3B2C] sm:text-lg">
-              {c.sekilas.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+            <Reveal type="from-left">
+              <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Tentang Desa</p>
+              <h2 id="sekilas-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+                {c.sekilas.heading}
+              </h2>
+              <div className="mt-6 space-y-4 text-base leading-relaxed text-[#4A3B2C] sm:text-lg">
+                {c.sekilas.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            </Reveal>
+
             <dl className="mt-8 grid grid-cols-3 gap-3">
-              {c.sekilas.stats.map((s) => (
-                <div key={s.label} className="rounded-2xl border border-[#3A2E22]/10 bg-[#EAE1CD] px-4 py-4 text-center shadow-sm">
+              {c.sekilas.stats.map((s, i) => (
+                <Reveal
+                  key={s.label}
+                  as="div"
+                  index={i}
+                  delay={120}
+                  className="rounded-2xl border border-[#3A2E22]/10 bg-[#EAE1CD] px-4 py-4 text-center shadow-sm"
+                >
                   <dt className="order-2 mt-1 block text-[11px] leading-tight text-[#4A3B2C]/70">{s.label}</dt>
                   <dd className="font-display text-xl font-semibold text-[#2E4230]">
                     {s.angka}
                     <span className="ml-1 text-xs font-normal text-[#7A5C3E]">{s.satuan}</span>
                   </dd>
-                </div>
+                </Reveal>
               ))}
             </dl>
           </div>
 
           {/* dua foto bertumpuk gaya cetakan */}
-          <figure className="relative mx-auto w-full max-w-md pb-10">
+          <Reveal as="figure" type="from-right" delay={100} className="relative mx-auto w-full max-w-md pb-10">
             <div aria-hidden="true" className="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-3xl bg-[#2E4230]/15" />
             <div className="relative rotate-[-1.5deg] overflow-hidden rounded-3xl border-8 border-[#F8F4EA] bg-[#DCD2BC] shadow-xl">
               <div className="relative aspect-[4/5]">
@@ -738,7 +748,7 @@ export default function HomePage() {
             <figcaption className="absolute bottom-4 left-4 rotate-[-1.5deg] rounded-full bg-[#2E4230] px-4 py-2 text-xs font-medium text-[#F3EDE0] shadow-lg">
               📍 {c.sekilas.imgCaption}
             </figcaption>
-          </figure>
+          </Reveal>
         </div>
       </section>
 
@@ -867,7 +877,7 @@ export default function HomePage() {
 
           {/* video dokumentasi: autoplay senyap + berulang, tetap ada kontrol
               (browser hanya mengizinkan autoplay jika muted) */}
-          <div className="mt-10 overflow-hidden rounded-3xl border-[6px] border-[#F8F4EA] bg-[#1F3320] shadow-2xl">
+          {/* <div className="mt-10 overflow-hidden rounded-3xl border-[6px] border-[#F8F4EA] bg-[#1F3320] shadow-2xl">
             <video
               src={c.galeri.videoSrc}
               autoPlay
@@ -880,16 +890,15 @@ export default function HomePage() {
             >
               Browser Anda tidak mendukung pemutaran video.
             </video>
-          </div>
+          </div> */}
 
           {/* mozaik: foto pertama tampil besar */}
           <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
             {c.galeri.items.map((foto, i) => (
               <li
                 key={i}
-                className={`overflow-hidden rounded-xl border-[6px] border-[#F8F4EA] bg-[#3E5A3B] shadow-lg transition hover:z-10 hover:scale-[1.03] hover:rotate-0 motion-reduce:hover:scale-100 ${
-                  i % 2 === 0 ? "rotate-[1.2deg]" : "-rotate-[1.2deg]"
-                } ${i === 0 ? "col-span-2 row-span-2" : ""}`}
+                className={`overflow-hidden rounded-xl border-[6px] border-[#F8F4EA] bg-[#3E5A3B] shadow-lg transition hover:z-10 hover:scale-[1.03] hover:rotate-0 motion-reduce:hover:scale-100 ${i % 2 === 0 ? "rotate-[1.2deg]" : "-rotate-[1.2deg]"
+                  } ${i === 0 ? "col-span-2 row-span-2" : ""}`}
               >
                 <div className={`relative ${i === 0 ? "h-full min-h-64" : "aspect-[4/3]"}`}>
                   <Image
@@ -926,14 +935,14 @@ export default function HomePage() {
         <BatokKelapa className="pointer-events-none absolute top-16 right-[6%] hidden h-10 w-16 rotate-6 text-[#8B5E3C]/25 md:block" />
 
         <div className="relative mx-auto max-w-6xl px-6">
-        <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Kunjungi Kami</p>
-        <h2 id="peta-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-          {c.peta.heading}
-        </h2>
-        <p className="mt-3 max-w-2xl text-[#4A3B2C]/80">{c.peta.intro}</p>
-        <div className="mt-8">
-          <PetaLokasi />
-        </div>
+          <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Kunjungi Kami</p>
+          <h2 id="peta-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+            {c.peta.heading}
+          </h2>
+          <p className="mt-3 max-w-2xl text-[#4A3B2C]/80">{c.peta.intro}</p>
+          <div className="mt-8">
+            <PetaLokasi />
+          </div>
         </div>
       </section>
 

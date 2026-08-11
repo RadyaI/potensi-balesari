@@ -30,7 +30,7 @@ const fraunces = Fraunces({
    ============================================================ */
 export const metadata: Metadata = {
   title:
-    "Biting Bambu Segelan — Tusuk Pentol, Sempol, Sate & Dupa | Desa Balesari, Ngajum, Malang",
+    "Biting Bambu Segelan - Tusuk Pentol, Sempol, Sate & Dupa | Desa Balesari, Ngajum, Malang",
   description:
     "Biting bambu serut tangan dari Dusun Segelan, Desa Balesari, Ngajum, Kabupaten Malang: lidi bambu 30, 40, dan 50 cm untuk tusuk pentol, sempol, sate, hingga rangka dupa. Kapasitas ton-an per minggu.",
   keywords: [
@@ -78,10 +78,10 @@ const content = {
   hero: {
     breadcrumb: { home: "Beranda", current: "Biting Bambu" },
     badge: "Kerajinan · Dusun Segelan",
-    title: "Biting Bambu: Lidi Kecil di Balik Pentol, Sempol, dan Sate",
+    title: "Biting Bambu: Lidi Untuk Tusuk Pentol, Sempol, dan Sate",
     subtitle:
       "Dari pentol di gerobak langganan sampai sate di angkringan, banyak jajanan bertumpu pada lidi bambu kecil ini. Dupa pun memakainya sebagai rangka. Dari Dusun Segelan, lidi-lidi itu diserut satu per satu oleh tangan warga, sudah lebih dari dua puluh tahun.",
-    img: IMG,
+    img: "/images/dokum_biting5.jpg",
     imgAlt:
       "Ikatan biting bambu hasil serutan tangan pengrajin Dusun Segelan, Desa Balesari",
     stats: [
@@ -102,8 +102,8 @@ const content = {
   apaItu: {
     heading: "Apa Itu Biting?",
     paragraphs: [
-      "Biting adalah lidi bambu tipis, lurus, dan serbaguna. Paling banyak dipakai sebagai tusuk makanan: pentol, sempol, sate, sampai aneka jajanan gorengan. Lidi yang sama juga dipakai sebagai rangka batang dupa.",
-      "Warga Segelan sudah lama melayani kedua pasar itu. Mereka sempat memproduksi tusuk bakso sebelum masa pandemi, dan kini serutannya mengalir ke mana pun permintaan datang, dari pedagang makanan sampai pasar dupa.",
+      "Biting adalah lidi bambu tipis, lurus, dan serbaguna. Paling banyak dipakai sebagai tusuk makanan seperti pentol, sempol, sate, sampai aneka jajanan gorengan. Lidi yang sama juga dipakai sebagai rangka batang dupa.",
+      "Warga Dusun Segelan sudah lama melayani kedua pasar itu. Mereka sempat memproduksi tusuk bakso sebelum masa pandemi, dan kini serutannya mengalir ke mana pun permintaan datang, dari pedagang makanan sampai pasar dupa.",
     ],
     fakta: [
       "Tusuk pentol, sempol & sate",
@@ -134,7 +134,7 @@ const content = {
   sejarah: {
     heading: "Dari Blitar ke Segelan",
     intro:
-      "Kerajinan ini tidak muncul tiba-tiba. Ia menyebar dari satu keluarga ke hampir seisi dusun.",
+      "Sejarah Biting Bambu di Dusun Sagelan",
     milestones: [
       {
         judul: "Berawal dari saudara di Blitar",
@@ -163,7 +163,7 @@ const content = {
     intro:
       "Prosesnya kelihatan sederhana, tapi tiap tahap butuh ketelatenan. Salah pilih bambu saja, lidinya mudah patah.",
     bahan: {
-      heading: "Bahan bakunya dipilih, bukan sembarang bambu",
+      heading: "Jenis bambu yang biasa digunakan untuk biting.",
       items: [
         {
           nama: "Bambu Petung",
@@ -184,47 +184,47 @@ const content = {
       {
         judul: "Menebang & memotong",
         deskripsi: "Bambu tua dipotong per ruas, dipilih bagian yang lurus dan mulus.",
-        img: IMG,
-        alt: "Pengrajin memotong bambu per ruas di kebun Dusun Segelan",
+        img: "",
+        alt: "",
       },
       {
         judul: "Membelah & membuang hati bambu",
         deskripsi:
           "Ruas dibelah memanjang, lalu bagian dalam yang lunak, disebut hati bambu, dibuang karena mudah patah.",
-        img: null,
+        img: "",
         alt: "",
       },
       {
         judul: "Merajang jadi lidi",
         deskripsi:
           "Bilah bambu dirajang dan diserut menjadi lidi-lidi tipis berukuran seragam. Tahap inilah yang paling menuntut jam terbang.",
-        img: IMG,
+        video: "/images/cuplikan_biting.mp4",
         alt: "Tangan pengrajin menyerut bilah bambu menjadi lidi biting",
       },
       {
         judul: "Menjemur",
         deskripsi:
           "Lidi dijemur sampai benar-benar kering. Saat panas terik, sehari saja cukup.",
-        img: null,
+        img: "",
         alt: "",
       },
       {
         judul: "Menyortir & mengikat",
         deskripsi:
           "Lidi dipilah menurut panjang dan mutu, lalu diikat rapi per bal, siap ditimbang.",
-        img: IMG,
-        alt: "Ikatan biting bambu yang sudah disortir dan diikat per bal",
+        img: "",
+        alt: "",
       },
       {
         judul: "Menyetor ke pengepul",
         deskripsi:
           "Hasil serutan, bisa sampai kuintalan per keluarga, dijemput mobil pengepul dan dibayar tunai di tempat.",
-        img: null,
+        img: "",
         alt: "",
       },
     ],
     kendala: {
-      judul: "Musim hujan? Perapian yang bekerja.",
+      judul: "Bagaimana Saat Musim Hujan?",
       cerita:
         "Saat matahari tak muncul, lidi tak bisa kering dijemur. Pengrajin menyalakan perapian dan mengeringkan biting di atas baranya. Cara lama yang tetap dipakai sampai sekarang.",
     },
@@ -252,12 +252,12 @@ const content = {
       "Menurut pengrajin, serutan tangan menghasilkan lidi yang lebih rapi. Mesin memang ringkas, tapi hasilnya kalah halus. Keduanya kini berjalan berdampingan: tangan menjaga mutu, mesin mengejar volume.",
   },
   pengrajin: {
-    heading: "Di Balik Setiap Ikat Biting",
+    heading: "Warga Pengrajin Biting",
     paragraphs: [
       "Biting di dusun ini dikerjakan oleh keluarga-keluarga penyerut, kebanyakan pasangan suami-istri yang bekerja dari rumah. Ada yang sudah dua puluh tahun menekuninya, dengan keterampilan yang diturunkan dari orang tua ke anak.",
       "Setiap keluarga bisa menghasilkan hingga kuintalan lidi per minggu. Hasilnya dijemput langsung dari rumah dan dibayar di tempat, menjadi penghasilan yang menghidupi dapur sehari-hari.",
     ],
-    img: IMG,
+    img: "/images/dokum_biting7.jpg",
     alt: "Warga Dusun Segelan menyerut bambu menjadi biting di teras rumah",
     // TODO: ganti dengan kutipan verbatim hasil rekaman wawancara
     kutipan:
@@ -284,7 +284,7 @@ const content = {
       { label: "Varian panjang", nilai: "30, 40, dan 50 cm" },
       { label: "Harga", nilai: "Tanya via WhatsApp" },
       { label: "Kapasitas", nilai: "Kuintalan per minggu per pengrajin" },
-      { label: "Pembayaran", nilai: "Tunai / transfer" }, // TODO: konfirmasi
+      { label: "Pembayaran", nilai: "Tunai / transfer (Bisa diskusi)" }, // TODO: konfirmasi
       { label: "Pengambilan", nilai: "Ambil di tempat / kirim (nego)" }, // TODO: konfirmasi
     ],
     catatan:
@@ -301,10 +301,10 @@ const content = {
   galeri: {
     heading: "Sekilas dari Dapur Produksi",
     items: [
-      { img: IMG, alt: "Warga menyerut bambu menjadi biting di teras rumah" },
-      { img: IMG, alt: "Ikatan biting bambu tersusun siap disetor ke pengepul" },
-      { img: IMG, alt: "Penjemuran lidi biting di halaman rumah warga" },
-      { img: IMG, alt: "Rumpun bambu petung di Dusun Segelan" },
+      { img: "/images/dokum_biting2.jpg", alt: "Warga menyerut bambu menjadi biting di teras rumah" },
+      { img: "/images/dokum_biting4.jpg", alt: "Ikatan biting bambu tersusun siap disetor ke pengepul" },
+      { img: "/images/dokum_biting1.jpg", alt: "Penjemuran lidi biting di halaman rumah warga" },
+      { img: "/images/dokum_biting3.jpg", alt: "Rumpun bambu petung di Dusun Segelan" },
     ],
   },
   lainnya: {
@@ -755,7 +755,7 @@ export default function BitingPage() {
                   src={c.hero.img}
                   alt={c.hero.imgAlt}
                   fill
-                  sizes="(min-width: 1024px) 36vw, 90vw"
+                  // sizes="(min-width: 1024px) 36vw, 90vw"
                   className="object-cover"
                   priority
                 />
@@ -904,28 +904,120 @@ export default function BitingPage() {
 
           {/* langkah-langkah: timeline vertikal */}
           <ol className="relative mt-14 space-y-11 border-l-2 border-[#4E7248]/25 pl-8 sm:pl-12">
-            {c.proses.langkah.map((l, i) => (
-              <li key={l.judul} className="reveal relative">
-                <span
-                  aria-hidden="true"
-                  className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
-                  style={{ backgroundColor: AKSEN }}
-                >
-                  {i + 1}
-                </span>
-                <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{l.judul}</h3>
-                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{l.deskripsi}</p>
-                {l.img && (
-                  <div
-                    className={`relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg ${
-                      i % 2 === 0 ? "rotate-[0.8deg]" : "-rotate-[0.8deg]"
-                    }`}
+            {/* Step 1 — Menebang & memotong */}
+            <li className="reveal relative">
+              <span
+                aria-hidden="true"
+                className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
+                style={{ backgroundColor: AKSEN }}
+              >
+                1
+              </span>
+              <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[0].judul}</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[0].deskripsi}</p>
+              {c.proses.langkah[0].img && (
+                <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
+                  <Image
+                    src={c.proses.langkah[0].img}
+                    alt={c.proses.langkah[0].alt}
+                    fill
+                    sizes="(min-width: 640px) 576px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </li>
+
+            {/* Step 2 — Membelah & membuang hati bambu (tanpa media) */}
+            <li className="reveal relative">
+              <span
+                aria-hidden="true"
+                className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
+                style={{ backgroundColor: AKSEN }}
+              >
+                2
+              </span>
+              <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[1].judul}</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[1].deskripsi}</p>
+            </li>
+
+            {/* Step 3 — Merajang jadi lidi (VIDEO) */}
+            <li className="reveal relative">
+              <span
+                aria-hidden="true"
+                className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
+                style={{ backgroundColor: AKSEN }}
+              >
+                3
+              </span>
+              <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[2].judul}</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[2].deskripsi}</p>
+              {c.proses.langkah[2].video && (
+                <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
+                  <video
+                    src={c.proses.langkah[2].video}
+                    controls
+                    muted
+                    autoPlay
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-cover"
                   >
-                    <Image src={l.img} alt={l.alt} fill sizes="(min-width: 640px) 576px, 100vw" className="object-cover" />
-                  </div>
-                )}
-              </li>
-            ))}
+                    Browser Anda tidak mendukung tag video.
+                  </video>
+                </div>
+              )}
+            </li>
+
+            {/* Step 4 — Menjemur (tanpa media) */}
+            <li className="reveal relative">
+              <span
+                aria-hidden="true"
+                className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
+                style={{ backgroundColor: AKSEN }}
+              >
+                4
+              </span>
+              <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[3].judul}</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[3].deskripsi}</p>
+            </li>
+
+            {/* Step 5 — Menyortir & mengikat */}
+            <li className="reveal relative">
+              <span
+                aria-hidden="true"
+                className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
+                style={{ backgroundColor: AKSEN }}
+              >
+                5
+              </span>
+              <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[4].judul}</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[4].deskripsi}</p>
+              {c.proses.langkah[4].img && (
+                <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
+                  <Image
+                    src={c.proses.langkah[4].img}
+                    alt={c.proses.langkah[4].alt}
+                    fill
+                    sizes="(min-width: 640px) 576px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </li>
+
+            {/* Step 6 — Menyetor ke pengepul (tanpa media) */}
+            <li className="reveal relative">
+              <span
+                aria-hidden="true"
+                className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
+                style={{ backgroundColor: AKSEN }}
+              >
+                6
+              </span>
+              <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[5].judul}</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[5].deskripsi}</p>
+            </li>
           </ol>
 
           {/* kendala musim hujan */}
@@ -955,7 +1047,7 @@ export default function BitingPage() {
 
         <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-24 sm:pt-32 sm:pb-28">
           <div className="text-center">
-            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#C9BC9C]">Rahasia Mutu</p>
+            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#C9BC9C]">FYI</p>
             <h2 id="mvm-heading" className="font-display text-3xl font-semibold sm:text-4xl">
               {c.manualVsMesin.heading}
             </h2>
@@ -969,11 +1061,10 @@ export default function BitingPage() {
             ].map(({ data, ikon, utama }) => (
               <div
                 key={data.judul}
-                className={`reveal rounded-3xl border p-7 ${
-                  utama
-                    ? "border-[#9DBE85]/50 bg-[#F3EDE0]/10 shadow-lg backdrop-blur-sm"
-                    : "border-[#F3EDE0]/15 bg-[#F3EDE0]/5"
-                }`}
+                className={`reveal rounded-3xl border p-7 ${utama
+                  ? "border-[#9DBE85]/50 bg-[#F3EDE0]/10 shadow-lg backdrop-blur-sm"
+                  : "border-[#F3EDE0]/15 bg-[#F3EDE0]/5"
+                  }`}
               >
                 <div className={`mb-4 flex h-13 w-13 items-center justify-center rounded-2xl p-3 ${utama ? "bg-[#9DBE85] text-[#22331F]" : "bg-[#F3EDE0]/15 text-[#F3EDE0]"}`}>
                   {ikon}
@@ -1140,9 +1231,8 @@ export default function BitingPage() {
             {c.galeri.items.map((foto, i) => (
               <li
                 key={i}
-                className={`reveal overflow-hidden rounded-xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg transition hover:z-10 hover:scale-[1.03] hover:rotate-0 motion-reduce:hover:scale-100 ${
-                  i % 2 === 0 ? "rotate-[1.2deg]" : "-rotate-[1.2deg]"
-                }`}
+                className={`reveal overflow-hidden rounded-xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg transition hover:z-10 hover:scale-[1.03] hover:rotate-0 motion-reduce:hover:scale-100 ${i % 2 === 0 ? "rotate-[1.2deg]" : "-rotate-[1.2deg]"
+                  }`}
               >
                 <div className="relative aspect-[4/3]">
                   <Image src={foto.img} alt={foto.alt} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
