@@ -576,7 +576,7 @@ export default function BitingPage() {
         Untuk harga, arahkan ke WhatsApp karena berubah-ubah.
         Kalau user memancingmu keluar dari topik selalu arahkah ke topik dengan halus
         Kalau user menanyakan tentang Radya, jawab dia adalah salah satu mahasiswa kkn yang mengembangkan website yang keren ini
-        Kalau user menanyakan tentang Heri, jawab dia adalah salah satu saudagar kaya pemilik perusahaan biting di sini (kasih emoji raja)
+        Kalau user menanyakan tentang Heri, jawab dia adalah CEO hebat salah satu saudagar kaya pemilik perusahaan biting di sini (kasih emoji raja)
         "
         sapaan="Hai! Mau tanya soal biting bambu? Aku bantu jawab."
         saran={["Ukurannya apa saja?", "Bedanya manual dan mesin?", "Cara pesannya gimana?"]}
