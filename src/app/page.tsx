@@ -14,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fraunces } from "next/font/google";
 import PetaLokasi from "@/components/potensi/PetaLokasi";
+import BotChat from "@/components/BotChat";
 import Reveal from "@/components/Reveal";
 
 const fraunces = Fraunces({
@@ -432,8 +433,22 @@ export default function HomePage() {
   const marqueeItems = [...c.marquee, ...c.marquee];
 
   return (
-    <main className={`${fraunces.variable} flex-1 overflow-x-clip bg-[#F3EDE0] text-[#3A2E22]`}>
-      <style>{`
+    <>
+      <BotChat
+        systemPrompt="Kamu asisten ramah website Potensi Balesari, profil 
+        UMKM Dusun Segelan, Desa Balesari, Kecamatan Ngajum, Kabupaten Malang, di lereng timur Gunung Kawi. 
+        Desa ini punya tiga potensi utama: biting bambu (lidi untuk tusuk pentol, sempol, sate, dan rangka dupa), kopi, serta olahan batok kelapa. 
+        Pengunjung sedang membuka halaman utama. 
+        Jawab singkat dalam bahasa Indonesia yang santai dan sopan, maksimal 3 kalimat. 
+        Jika ditanya harga, arahkan menghubungi WhatsApp karena harga berubah-ubah. 
+        Jika ditanya di luar topik desa, tolak dengan halus dan kembalikan ke topik desa. 
+        Kalau user menanyakan tentang Radya, jawab dia adalah salah satu mahasiswa kkn yang mengembangkan website yang keren ini
+        "
+        sapaan="Halo! Aku bisa bantu jelasin soal potensi Desa Balesari. Mau tanya apa?"
+        saran={["Apa saja produk desanya?", "Di mana lokasinya?", "Bagaimana cara memesan?"]}
+      />
+      <main className={`${fraunces.variable} flex-1 overflow-x-clip bg-[#F3EDE0] text-[#3A2E22]`}>
+        <style>{`
         .font-display { font-family: var(--font-fraunces), Georgia, serif; }
 
         /* Navbar sekarang fixed (mengambang di atas hero) — beri jarak
@@ -534,350 +549,350 @@ export default function HomePage() {
         @keyframes hero-drift        { to { transform: translateY(-8%); opacity: 0.15; } }
       `}</style>
 
-      {/* ================= NAVBAR ================= */}
-      <header className="navbar-glass fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#2E4230]/30 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
-          <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-semibold text-[#F3EDE0]">
-            <LogoBambu className="h-7 w-auto" />
-            {c.nav.brand}
-          </Link>
-          <nav aria-label="Navigasi utama" className="hidden md:block">
-            <ul className="flex items-center gap-7 text-sm font-medium text-[#F3EDE0]/85">
-              {c.nav.links.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} className="transition hover:text-[#F3EDE0]">
-                    {l.label}
-                  </a>
+        {/* ================= NAVBAR ================= */}
+        <header className="navbar-glass fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#2E4230]/30 backdrop-blur-md">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
+            <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-semibold text-[#F3EDE0]">
+              <LogoBambu className="h-7 w-auto" />
+              {c.nav.brand}
+            </Link>
+            <nav aria-label="Navigasi utama" className="hidden md:block">
+              <ul className="flex items-center gap-7 text-sm font-medium text-[#F3EDE0]/85">
+                {c.nav.links.map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href} className="transition hover:text-[#F3EDE0]">
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <a
+              href={waHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-[#F3EDE0] px-4 py-2 text-xs font-semibold text-[#2E4230] shadow transition hover:bg-[#EAE1CD] sm:text-sm"
+            >
+              {c.nav.cta}
+            </a>
+          </div>
+        </header>
+
+        {/* ================= 1. HERO ================= */}
+        <section
+          aria-label="Beranda Potensi Balesari"
+          className="hero-timeline relative isolate flex min-h-[92svh] items-center justify-center overflow-hidden bg-[#2E4230] text-[#F3EDE0]"
+        >
+          <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(243,237,224,0.10),transparent_62%)]" />
+          <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-40" />
+
+          {/* Siluet lereng Gunung Kawi di kejauhan */}
+          <div aria-hidden="true" className="absolute inset-x-0 bottom-0 z-0 opacity-70">
+            <Pegunungan belakang="#243A26" depan="#1C2E1E" className="h-40 sm:h-56" />
+          </div>
+
+          {/* Daun gugur — jatuh melayang dari atas hero, tempo & posisi acak.
+            Ini daun lepas (bukan daun di bambu), disembunyikan saat reduced motion. */}
+          {[
+            { left: "10%", dur: "13s", del: "0s", ukuran: "h-4 w-11", warna: "text-[#7FA36F]/60" },
+            { left: "26%", dur: "17s", del: "-9s", ukuran: "h-3 w-9", warna: "text-[#9DBE85]/45" },
+            { left: "44%", dur: "15s", del: "-4s", ukuran: "h-3.5 w-10", warna: "text-[#A88B5C]/50" },
+            { left: "62%", dur: "19s", del: "-13s", ukuran: "h-3 w-8", warna: "text-[#7FA36F]/40" },
+            { left: "78%", dur: "14s", del: "-6s", ukuran: "h-4 w-11", warna: "text-[#9DBE85]/55" },
+            { left: "90%", dur: "16s", del: "-11s", ukuran: "h-3 w-9", warna: "text-[#A88B5C]/40" },
+          ].map((daun, i) => (
+            <DaunBambu
+              key={i}
+              className={`leaf-fall pointer-events-none absolute -top-8 ${daun.ukuran} ${daun.warna}`}
+              style={{ left: daun.left, "--fall-dur": daun.dur, "--fall-del": daun.del } as React.CSSProperties}
+            />
+          ))}
+
+          {/* Bambu 3D dari pojok kiri & kanan */}
+          <div
+            aria-hidden="true"
+            className="bamboo-left pointer-events-none absolute -bottom-10 -left-24 z-0 hidden h-[118%] origin-bottom-left rotate-[15deg] drop-shadow-[0_18px_24px_rgba(0,0,0,0.35)] md:block lg:-left-12"
+          >
+            <div className="bamboo-sway h-full">
+              <BambooCluster idPrefix="bmb-l" />
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            className="bamboo-right pointer-events-none absolute -right-24 -bottom-10 z-0 hidden h-[118%] origin-bottom-right -rotate-[15deg] -scale-x-100 drop-shadow-[0_18px_24px_rgba(0,0,0,0.35)] md:block lg:-right-12"
+          >
+            <div className="bamboo-sway bamboo-sway-2 h-full">
+              <BambooCluster idPrefix="bmb-r" />
+            </div>
+          </div>
+
+          <div className="hero-inner relative z-10 mx-auto max-w-3xl px-6 pt-20 pb-32 text-center sm:pb-40">
+            <p className="mb-5 inline-block rounded-full border border-[#F3EDE0]/25 bg-[#F3EDE0]/10 px-4 py-1.5 text-xs tracking-[0.18em] uppercase backdrop-blur-sm">
+              {c.hero.eyebrow}
+            </p>
+            <h1 className="font-display text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
+              {c.hero.title}
+            </h1>
+            <p className="mx-auto mt-6 max-w-xl text-base text-[#F3EDE0]/85 sm:text-lg">
+              {c.hero.subtitle}
+            </p>
+
+            <a
+              href="#sekilas-desa"
+              className="group mt-9 inline-flex flex-col items-center gap-2 text-sm font-medium tracking-wide text-[#F3EDE0]/90 transition hover:text-[#F3EDE0]"
+            >
+              {c.hero.ctaUtama}
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#F3EDE0]/40 bg-[#F3EDE0]/5 transition group-hover:translate-y-1 group-hover:border-[#F3EDE0] motion-reduce:group-hover:translate-y-0"
+              >
+                ↓
+              </span>
+            </a>
+
+            {/* Pintasan ke tiga produk */}
+            <ul className="mt-9 flex flex-wrap items-center justify-center gap-3">
+              {c.hero.chips.map((chip) => (
+                <li key={chip.href}>
+                  <Link
+                    href={chip.href}
+                    className="inline-flex items-center gap-2 rounded-full border border-[#F3EDE0]/20 bg-[#F3EDE0]/10 px-4 py-2 text-xs font-medium backdrop-blur-sm transition hover:border-[#F3EDE0]/50 hover:bg-[#F3EDE0]/20"
+                  >
+                    <span aria-hidden="true" className="h-2 w-2 rounded-full" style={{ backgroundColor: chip.warna }} />
+                    {chip.label}
+                  </Link>
                 </li>
               ))}
             </ul>
-          </nav>
-          <a
-            href={waHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-[#F3EDE0] px-4 py-2 text-xs font-semibold text-[#2E4230] shadow transition hover:bg-[#EAE1CD] sm:text-sm"
-          >
-            {c.nav.cta}
-          </a>
-        </div>
-      </header>
-
-      {/* ================= 1. HERO ================= */}
-      <section
-        aria-label="Beranda Potensi Balesari"
-        className="hero-timeline relative isolate flex min-h-[92svh] items-center justify-center overflow-hidden bg-[#2E4230] text-[#F3EDE0]"
-      >
-        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(243,237,224,0.10),transparent_62%)]" />
-        <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-40" />
-
-        {/* Siluet lereng Gunung Kawi di kejauhan */}
-        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 z-0 opacity-70">
-          <Pegunungan belakang="#243A26" depan="#1C2E1E" className="h-40 sm:h-56" />
-        </div>
-
-        {/* Daun gugur — jatuh melayang dari atas hero, tempo & posisi acak.
-            Ini daun lepas (bukan daun di bambu), disembunyikan saat reduced motion. */}
-        {[
-          { left: "10%", dur: "13s", del: "0s", ukuran: "h-4 w-11", warna: "text-[#7FA36F]/60" },
-          { left: "26%", dur: "17s", del: "-9s", ukuran: "h-3 w-9", warna: "text-[#9DBE85]/45" },
-          { left: "44%", dur: "15s", del: "-4s", ukuran: "h-3.5 w-10", warna: "text-[#A88B5C]/50" },
-          { left: "62%", dur: "19s", del: "-13s", ukuran: "h-3 w-8", warna: "text-[#7FA36F]/40" },
-          { left: "78%", dur: "14s", del: "-6s", ukuran: "h-4 w-11", warna: "text-[#9DBE85]/55" },
-          { left: "90%", dur: "16s", del: "-11s", ukuran: "h-3 w-9", warna: "text-[#A88B5C]/40" },
-        ].map((daun, i) => (
-          <DaunBambu
-            key={i}
-            className={`leaf-fall pointer-events-none absolute -top-8 ${daun.ukuran} ${daun.warna}`}
-            style={{ left: daun.left, "--fall-dur": daun.dur, "--fall-del": daun.del } as React.CSSProperties}
-          />
-        ))}
-
-        {/* Bambu 3D dari pojok kiri & kanan */}
-        <div
-          aria-hidden="true"
-          className="bamboo-left pointer-events-none absolute -bottom-10 -left-24 z-0 hidden h-[118%] origin-bottom-left rotate-[15deg] drop-shadow-[0_18px_24px_rgba(0,0,0,0.35)] md:block lg:-left-12"
-        >
-          <div className="bamboo-sway h-full">
-            <BambooCluster idPrefix="bmb-l" />
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          className="bamboo-right pointer-events-none absolute -right-24 -bottom-10 z-0 hidden h-[118%] origin-bottom-right -rotate-[15deg] -scale-x-100 drop-shadow-[0_18px_24px_rgba(0,0,0,0.35)] md:block lg:-right-12"
-        >
-          <div className="bamboo-sway bamboo-sway-2 h-full">
-            <BambooCluster idPrefix="bmb-r" />
-          </div>
-        </div>
-
-        <div className="hero-inner relative z-10 mx-auto max-w-3xl px-6 pt-20 pb-32 text-center sm:pb-40">
-          <p className="mb-5 inline-block rounded-full border border-[#F3EDE0]/25 bg-[#F3EDE0]/10 px-4 py-1.5 text-xs tracking-[0.18em] uppercase backdrop-blur-sm">
-            {c.hero.eyebrow}
-          </p>
-          <h1 className="font-display text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
-            {c.hero.title}
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-base text-[#F3EDE0]/85 sm:text-lg">
-            {c.hero.subtitle}
-          </p>
-
-          <a
-            href="#sekilas-desa"
-            className="group mt-9 inline-flex flex-col items-center gap-2 text-sm font-medium tracking-wide text-[#F3EDE0]/90 transition hover:text-[#F3EDE0]"
-          >
-            {c.hero.ctaUtama}
-            <span
-              aria-hidden="true"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#F3EDE0]/40 bg-[#F3EDE0]/5 transition group-hover:translate-y-1 group-hover:border-[#F3EDE0] motion-reduce:group-hover:translate-y-0"
-            >
-              ↓
-            </span>
-          </a>
-
-          {/* Pintasan ke tiga produk */}
-          <ul className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            {c.hero.chips.map((chip) => (
-              <li key={chip.href}>
-                <Link
-                  href={chip.href}
-                  className="inline-flex items-center gap-2 rounded-full border border-[#F3EDE0]/20 bg-[#F3EDE0]/10 px-4 py-2 text-xs font-medium backdrop-blur-sm transition hover:border-[#F3EDE0]/50 hover:bg-[#F3EDE0]/20"
-                >
-                  <span aria-hidden="true" className="h-2 w-2 rounded-full" style={{ backgroundColor: chip.warna }} />
-                  {chip.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="absolute inset-x-0 bottom-0 z-20">
-          <Wave fill="#F3EDE0" />
-        </div>
-      </section>
-
-      {/* ============ PITA MARQUEE ============ */}
-      <div aria-hidden="true" className="overflow-hidden border-y border-[#3A2E22]/10 bg-[#EAE1CD] py-3.5">
-        <div className="marquee-track flex w-max items-center gap-8 whitespace-nowrap px-4">
-          {marqueeItems.map((item, i) => (
-            <span key={i} className="flex items-center gap-8 text-sm font-medium tracking-[0.14em] text-[#7A5C3E] uppercase">
-              {item}
-              <DaunBambu className="h-3 w-8 text-[#4E7248]/60" />
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ================= 2. SEKILAS DESA ================= */}
-      <section id="sekilas-desa" aria-labelledby="sekilas-heading" className="relative overflow-hidden py-20 sm:py-24">
-        {/* garis kontur perbukitan sebagai latar */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 900 600"
-          className="pointer-events-none absolute top-8 -right-24 h-[420px] w-auto text-[#8B5E3C] opacity-[0.12]"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          {[0, 42, 84, 126, 168, 210].map((o) => (
-            <path key={o} d={`M0 ${300 + o} C 180 ${180 + o}, 320 ${380 + o}, 520 ${240 + o} S 820 ${160 + o}, 900 ${260 + o}`} />
-          ))}
-        </svg>
-        {/* aksen biting: kipas lidi samar di sisi kiri */}
-        <LidiBiting className="pointer-events-none absolute bottom-8 -left-8 h-44 w-auto rotate-12 text-[#4E7248] opacity-[0.13]" />
-
-        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-2">
-          <div>
-            <Reveal type="from-left">
-              <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Tentang Desa</p>
-              <h2 id="sekilas-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-                {c.sekilas.heading}
-              </h2>
-              <div className="mt-6 space-y-4 text-base leading-relaxed text-[#4A3B2C] sm:text-lg">
-                {c.sekilas.paragraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
-            </Reveal>
-
-            <dl className="mt-8 grid grid-cols-3 gap-3">
-              {c.sekilas.stats.map((s, i) => (
-                <Reveal
-                  key={s.label}
-                  as="div"
-                  index={i}
-                  delay={120}
-                  className="rounded-2xl border border-[#3A2E22]/10 bg-[#EAE1CD] px-4 py-4 text-center shadow-sm"
-                >
-                  <dt className="order-2 mt-1 block text-[11px] leading-tight text-[#4A3B2C]/70">{s.label}</dt>
-                  <dd className="font-display text-xl font-semibold text-[#2E4230]">
-                    {s.angka}
-                    <span className="ml-1 text-xs font-normal text-[#7A5C3E]">{s.satuan}</span>
-                  </dd>
-                </Reveal>
-              ))}
-            </dl>
           </div>
 
-          {/* dua foto bertumpuk gaya cetakan */}
-          <Reveal as="figure" type="from-right" delay={100} className="relative mx-auto w-full max-w-md pb-10">
-            <div aria-hidden="true" className="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-3xl bg-[#2E4230]/15" />
-            <div className="relative rotate-[-1.5deg] overflow-hidden rounded-3xl border-8 border-[#F8F4EA] bg-[#DCD2BC] shadow-xl">
-              <div className="relative aspect-[4/5]">
-                <Image
-                  src={c.sekilas.imgUtama}
-                  alt={c.sekilas.imgUtamaAlt}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 90vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            {/* foto kecil menimpa di kanan bawah */}
-            <div className="absolute -right-2 bottom-0 w-36 rotate-[4deg] overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] shadow-lg sm:-right-6 sm:w-44">
-              <div className="relative aspect-square bg-[#DCD2BC]">
-                <Image
-                  src={c.sekilas.imgKecil}
-                  alt={c.sekilas.imgKecilAlt}
-                  fill
-                  sizes="200px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <figcaption className="absolute bottom-4 left-4 rotate-[-1.5deg] rounded-full bg-[#2E4230] px-4 py-2 text-xs font-medium text-[#F3EDE0] shadow-lg">
-              📍 {c.sekilas.imgCaption}
-            </figcaption>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ================= 3. POTENSI UNGGULAN ================= */}
-      <section id="potensi" aria-labelledby="potensi-heading" className="relative bg-[#EAE1CD]">
-        <Wave fill="#F3EDE0" flip className="absolute inset-x-0 top-0" />
-        <div className="pattern-anyaman absolute inset-0" aria-hidden="true" />
-        {/* aksen tiga produk bertebaran samar */}
-        <DaunBambu className="pointer-events-none absolute top-28 left-[6%] hidden h-5 w-14 -rotate-12 text-[#4E7248]/30 md:block" />
-        <BijiKopi className="pointer-events-none absolute top-36 right-[7%] hidden h-10 w-8 rotate-12 text-[#6B4226]/25 md:block" />
-        <BatokKelapa className="pointer-events-none absolute bottom-16 left-[8%] hidden h-9 w-14 -rotate-6 text-[#8B5E3C]/25 md:block" />
-        <LidiBiting className="pointer-events-none absolute right-[4%] bottom-24 hidden h-28 w-auto rotate-6 text-[#4E7248]/20 lg:block" />
-
-        <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-20 sm:pt-32 sm:pb-24">
-          <div className="text-center">
-            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Produk Warga</p>
-            <h2 id="potensi-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-              {c.potensi.heading}
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-[#4A3B2C]/80">{c.potensi.intro}</p>
+          <div className="absolute inset-x-0 bottom-0 z-20">
+            <Wave fill="#F3EDE0" />
           </div>
+        </section>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {c.potensi.items.map((item) => (
-              <article
-                key={item.slug}
-                className="group relative overflow-hidden rounded-2xl border border-[#3A2E22]/10 bg-[#F8F4EA] shadow-md transition hover:-translate-y-1.5 hover:shadow-xl motion-reduce:hover:translate-y-0"
-              >
-                <span aria-hidden="true" className="absolute inset-x-0 top-0 z-10 h-1.5" style={{ backgroundColor: item.aksen }} />
-                <Link href={item.slug} className="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2E4230]">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-[#DCD2BC]">
-                    <Image
-                      src={item.img}
-                      alt={item.alt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover transition duration-500 group-hover:scale-105 motion-reduce:group-hover:scale-100"
-                    />
-                    <span
-                      className="absolute top-3 left-3 rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide text-[#F3EDE0] shadow"
-                      style={{ backgroundColor: item.aksen }}
-                    >
-                      {item.kategori}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-display text-xl font-semibold text-[#2E4230]">{item.nama}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[#4A3B2C]/85">{item.pancingan}</p>
-                    <span
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold transition-all group-hover:gap-2.5 motion-reduce:group-hover:gap-1.5"
-                      style={{ color: item.aksen }}
-                    >
-                      Lihat selengkapnya <span aria-hidden="true">→</span>
-                    </span>
-                  </div>
-                </Link>
-              </article>
+        {/* ============ PITA MARQUEE ============ */}
+        <div aria-hidden="true" className="overflow-hidden border-y border-[#3A2E22]/10 bg-[#EAE1CD] py-3.5">
+          <div className="marquee-track flex w-max items-center gap-8 whitespace-nowrap px-4">
+            {marqueeItems.map((item, i) => (
+              <span key={i} className="flex items-center gap-8 text-sm font-medium tracking-[0.14em] text-[#7A5C3E] uppercase">
+                {item}
+                <DaunBambu className="h-3 w-8 text-[#4E7248]/60" />
+              </span>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* ================= 4. KENAPA BEDA ================= */}
-      <section aria-labelledby="keunggulan-heading" className="relative overflow-hidden">
-        <svg aria-hidden="true" viewBox="0 0 200 200" className="pointer-events-none absolute -bottom-24 -left-20 h-72 w-72 text-[#2E4230] opacity-[0.07]">
-          <path d="M100 10 C 40 60, 30 140, 100 190 C 170 140, 160 60, 100 10 Z M100 30 L 100 175" fill="currentColor" />
-        </svg>
-        {/* watermark kopi & batok: tiga produk hadir dalam satu bingkai */}
-        <BijiKopi className="pointer-events-none absolute -top-8 right-10 h-36 w-28 rotate-[18deg] text-[#6B4226] opacity-[0.06]" />
-        <BatokKelapa className="pointer-events-none absolute right-1/4 -bottom-14 h-32 w-48 text-[#8B5E3C] opacity-[0.06]" />
+        {/* ================= 2. SEKILAS DESA ================= */}
+        <section id="sekilas-desa" aria-labelledby="sekilas-heading" className="relative overflow-hidden py-20 sm:py-24">
+          {/* garis kontur perbukitan sebagai latar */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 900 600"
+            className="pointer-events-none absolute top-8 -right-24 h-[420px] w-auto text-[#8B5E3C] opacity-[0.12]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            {[0, 42, 84, 126, 168, 210].map((o) => (
+              <path key={o} d={`M0 ${300 + o} C 180 ${180 + o}, 320 ${380 + o}, 520 ${240 + o} S 820 ${160 + o}, 900 ${260 + o}`} />
+            ))}
+          </svg>
+          {/* aksen biting: kipas lidi samar di sisi kiri */}
+          <LidiBiting className="pointer-events-none absolute bottom-8 -left-8 h-44 w-auto rotate-12 text-[#4E7248] opacity-[0.13]" />
 
-        <div className="relative mx-auto max-w-6xl px-6 py-20 sm:py-24">
-          <div className="max-w-2xl">
-            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Nilai Kami</p>
-            <h2 id="keunggulan-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-              {c.keunggulan.heading}
-            </h2>
-            <p className="mt-3 text-[#4A3B2C]/80">{c.keunggulan.intro}</p>
-          </div>
-
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {c.keunggulan.items.map((item, i) => (
-              <div
-                key={item.judul}
-                className="relative rounded-2xl border border-[#3A2E22]/10 bg-gradient-to-b from-[#F8F4EA] to-[#EFE7D4] p-6 shadow-sm transition hover:shadow-md"
-              >
-                <span aria-hidden="true" className="absolute inset-x-6 top-0 h-1 rounded-b-full bg-gradient-to-r from-[#2E4230] via-[#7FA36F] to-[#8B5E3C]" />
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#2E4230] text-[#F3EDE0] shadow-inner ring-4 ring-[#2E4230]/10">
-                  {keunggulanIcons[i]}
+          <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-2">
+            <div>
+              <Reveal type="from-left">
+                <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Tentang Desa</p>
+                <h2 id="sekilas-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+                  {c.sekilas.heading}
+                </h2>
+                <div className="mt-6 space-y-4 text-base leading-relaxed text-[#4A3B2C] sm:text-lg">
+                  {c.sekilas.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
                 </div>
-                <h3 className="font-display text-lg font-semibold text-[#2E4230]">{item.judul}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#4A3B2C]/85">{item.deskripsi}</p>
+              </Reveal>
+
+              <dl className="mt-8 grid grid-cols-3 gap-3">
+                {c.sekilas.stats.map((s, i) => (
+                  <Reveal
+                    key={s.label}
+                    as="div"
+                    index={i}
+                    delay={120}
+                    className="rounded-2xl border border-[#3A2E22]/10 bg-[#EAE1CD] px-4 py-4 text-center shadow-sm"
+                  >
+                    <dt className="order-2 mt-1 block text-[11px] leading-tight text-[#4A3B2C]/70">{s.label}</dt>
+                    <dd className="font-display text-xl font-semibold text-[#2E4230]">
+                      {s.angka}
+                      <span className="ml-1 text-xs font-normal text-[#7A5C3E]">{s.satuan}</span>
+                    </dd>
+                  </Reveal>
+                ))}
+              </dl>
+            </div>
+
+            {/* dua foto bertumpuk gaya cetakan */}
+            <Reveal as="figure" type="from-right" delay={100} className="relative mx-auto w-full max-w-md pb-10">
+              <div aria-hidden="true" className="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-3xl bg-[#2E4230]/15" />
+              <div className="relative rotate-[-1.5deg] overflow-hidden rounded-3xl border-8 border-[#F8F4EA] bg-[#DCD2BC] shadow-xl">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src={c.sekilas.imgUtama}
+                    alt={c.sekilas.imgUtamaAlt}
+                    fill
+                    sizes="(min-width: 1024px) 40vw, 90vw"
+                    className="object-cover"
+                  />
+                </div>
               </div>
-            ))}
+              {/* foto kecil menimpa di kanan bawah */}
+              <div className="absolute -right-2 bottom-0 w-36 rotate-[4deg] overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] shadow-lg sm:-right-6 sm:w-44">
+                <div className="relative aspect-square bg-[#DCD2BC]">
+                  <Image
+                    src={c.sekilas.imgKecil}
+                    alt={c.sekilas.imgKecilAlt}
+                    fill
+                    sizes="200px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <figcaption className="absolute bottom-4 left-4 rotate-[-1.5deg] rounded-full bg-[#2E4230] px-4 py-2 text-xs font-medium text-[#F3EDE0] shadow-lg">
+                📍 {c.sekilas.imgCaption}
+              </figcaption>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ================= 3. POTENSI UNGGULAN ================= */}
+        <section id="potensi" aria-labelledby="potensi-heading" className="relative bg-[#EAE1CD]">
+          <Wave fill="#F3EDE0" flip className="absolute inset-x-0 top-0" />
+          <div className="pattern-anyaman absolute inset-0" aria-hidden="true" />
+          {/* aksen tiga produk bertebaran samar */}
+          <DaunBambu className="pointer-events-none absolute top-28 left-[6%] hidden h-5 w-14 -rotate-12 text-[#4E7248]/30 md:block" />
+          <BijiKopi className="pointer-events-none absolute top-36 right-[7%] hidden h-10 w-8 rotate-12 text-[#6B4226]/25 md:block" />
+          <BatokKelapa className="pointer-events-none absolute bottom-16 left-[8%] hidden h-9 w-14 -rotate-6 text-[#8B5E3C]/25 md:block" />
+          <LidiBiting className="pointer-events-none absolute right-[4%] bottom-24 hidden h-28 w-auto rotate-6 text-[#4E7248]/20 lg:block" />
+
+          <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-20 sm:pt-32 sm:pb-24">
+            <div className="text-center">
+              <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Produk Warga</p>
+              <h2 id="potensi-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+                {c.potensi.heading}
+              </h2>
+              <p className="mx-auto mt-3 max-w-xl text-[#4A3B2C]/80">{c.potensi.intro}</p>
+            </div>
+
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {c.potensi.items.map((item) => (
+                <article
+                  key={item.slug}
+                  className="group relative overflow-hidden rounded-2xl border border-[#3A2E22]/10 bg-[#F8F4EA] shadow-md transition hover:-translate-y-1.5 hover:shadow-xl motion-reduce:hover:translate-y-0"
+                >
+                  <span aria-hidden="true" className="absolute inset-x-0 top-0 z-10 h-1.5" style={{ backgroundColor: item.aksen }} />
+                  <Link href={item.slug} className="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2E4230]">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#DCD2BC]">
+                      <Image
+                        src={item.img}
+                        alt={item.alt}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition duration-500 group-hover:scale-105 motion-reduce:group-hover:scale-100"
+                      />
+                      <span
+                        className="absolute top-3 left-3 rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide text-[#F3EDE0] shadow"
+                        style={{ backgroundColor: item.aksen }}
+                      >
+                        {item.kategori}
+                      </span>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="font-display text-xl font-semibold text-[#2E4230]">{item.nama}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-[#4A3B2C]/85">{item.pancingan}</p>
+                      <span
+                        className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold transition-all group-hover:gap-2.5 motion-reduce:group-hover:gap-1.5"
+                        style={{ color: item.aksen }}
+                      >
+                        Lihat selengkapnya <span aria-hidden="true">→</span>
+                      </span>
+                    </div>
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= 4. KENAPA BEDA ================= */}
+        <section aria-labelledby="keunggulan-heading" className="relative overflow-hidden">
+          <svg aria-hidden="true" viewBox="0 0 200 200" className="pointer-events-none absolute -bottom-24 -left-20 h-72 w-72 text-[#2E4230] opacity-[0.07]">
+            <path d="M100 10 C 40 60, 30 140, 100 190 C 170 140, 160 60, 100 10 Z M100 30 L 100 175" fill="currentColor" />
+          </svg>
+          {/* watermark kopi & batok: tiga produk hadir dalam satu bingkai */}
+          <BijiKopi className="pointer-events-none absolute -top-8 right-10 h-36 w-28 rotate-[18deg] text-[#6B4226] opacity-[0.06]" />
+          <BatokKelapa className="pointer-events-none absolute right-1/4 -bottom-14 h-32 w-48 text-[#8B5E3C] opacity-[0.06]" />
+
+          <div className="relative mx-auto max-w-6xl px-6 py-20 sm:py-24">
+            <div className="max-w-2xl">
+              <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Nilai Kami</p>
+              <h2 id="keunggulan-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+                {c.keunggulan.heading}
+              </h2>
+              <p className="mt-3 text-[#4A3B2C]/80">{c.keunggulan.intro}</p>
+            </div>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+              {c.keunggulan.items.map((item, i) => (
+                <div
+                  key={item.judul}
+                  className="relative rounded-2xl border border-[#3A2E22]/10 bg-gradient-to-b from-[#F8F4EA] to-[#EFE7D4] p-6 shadow-sm transition hover:shadow-md"
+                >
+                  <span aria-hidden="true" className="absolute inset-x-6 top-0 h-1 rounded-b-full bg-gradient-to-r from-[#2E4230] via-[#7FA36F] to-[#8B5E3C]" />
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#2E4230] text-[#F3EDE0] shadow-inner ring-4 ring-[#2E4230]/10">
+                    {keunggulanIcons[i]}
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-[#2E4230]">{item.judul}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#4A3B2C]/85">{item.deskripsi}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* kutipan warga */}
+            <figure className="relative mt-10 overflow-hidden rounded-3xl bg-[#EAE1CD] px-6 py-10 text-center sm:px-16">
+              <span aria-hidden="true" className="font-display absolute top-2 left-6 text-7xl text-[#8B5E3C]/25">“</span>
+              <DaunBambu className="absolute -right-3 -bottom-2 h-8 w-24 rotate-[-12deg] text-[#4E7248]/20" />
+              <blockquote className="font-display mx-auto max-w-2xl text-xl leading-relaxed text-[#4A3524] italic sm:text-2xl">
+                {c.keunggulan.kutipan}
+              </blockquote>
+              <figcaption className="mt-4 text-sm font-medium text-[#7A5C3E]">— {c.keunggulan.kutipanSumber}</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        {/* ================= 5. GALERI ================= */}
+        <section id="galeri" aria-labelledby="galeri-heading" className="relative bg-[#2E4230] text-[#F3EDE0]">
+          <Wave fill="#F3EDE0" className="absolute inset-x-0 top-0 rotate-180" />
+          <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-30" />
+          <DaunBambu className="pointer-events-none absolute top-24 right-10 h-6 w-16 rotate-12 text-[#9DBE85]/20" />
+          <BijiKopi className="pointer-events-none absolute bottom-44 left-8 h-11 w-8 -rotate-12 text-[#C9BC9C]/15" />
+          {/* siluet pegunungan samar di dasar galeri */}
+          <div aria-hidden="true" className="absolute inset-x-0 bottom-6 opacity-40">
+            <Pegunungan belakang="#263C28" depan="#1F3320" className="h-32" />
           </div>
 
-          {/* kutipan warga */}
-          <figure className="relative mt-10 overflow-hidden rounded-3xl bg-[#EAE1CD] px-6 py-10 text-center sm:px-16">
-            <span aria-hidden="true" className="font-display absolute top-2 left-6 text-7xl text-[#8B5E3C]/25">“</span>
-            <DaunBambu className="absolute -right-3 -bottom-2 h-8 w-24 rotate-[-12deg] text-[#4E7248]/20" />
-            <blockquote className="font-display mx-auto max-w-2xl text-xl leading-relaxed text-[#4A3524] italic sm:text-2xl">
-              {c.keunggulan.kutipan}
-            </blockquote>
-            <figcaption className="mt-4 text-sm font-medium text-[#7A5C3E]">— {c.keunggulan.kutipanSumber}</figcaption>
-          </figure>
-        </div>
-      </section>
+          <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-24 sm:pt-32 sm:pb-28">
+            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#C9BC9C]">Dokumentasi</p>
+            <h2 id="galeri-heading" className="font-display text-3xl font-semibold sm:text-4xl">
+              {c.galeri.heading}
+            </h2>
+            <p className="mt-3 max-w-xl text-[#F3EDE0]/75">{c.galeri.intro}</p>
 
-      {/* ================= 5. GALERI ================= */}
-      <section id="galeri" aria-labelledby="galeri-heading" className="relative bg-[#2E4230] text-[#F3EDE0]">
-        <Wave fill="#F3EDE0" className="absolute inset-x-0 top-0 rotate-180" />
-        <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-30" />
-        <DaunBambu className="pointer-events-none absolute top-24 right-10 h-6 w-16 rotate-12 text-[#9DBE85]/20" />
-        <BijiKopi className="pointer-events-none absolute bottom-44 left-8 h-11 w-8 -rotate-12 text-[#C9BC9C]/15" />
-        {/* siluet pegunungan samar di dasar galeri */}
-        <div aria-hidden="true" className="absolute inset-x-0 bottom-6 opacity-40">
-          <Pegunungan belakang="#263C28" depan="#1F3320" className="h-32" />
-        </div>
-
-        <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-24 sm:pt-32 sm:pb-28">
-          <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#C9BC9C]">Dokumentasi</p>
-          <h2 id="galeri-heading" className="font-display text-3xl font-semibold sm:text-4xl">
-            {c.galeri.heading}
-          </h2>
-          <p className="mt-3 max-w-xl text-[#F3EDE0]/75">{c.galeri.intro}</p>
-
-          {/* video dokumentasi: autoplay senyap + berulang, tetap ada kontrol
+            {/* video dokumentasi: autoplay senyap + berulang, tetap ada kontrol
               (browser hanya mengizinkan autoplay jika muted) */}
-          {/* <div className="mt-10 overflow-hidden rounded-3xl border-[6px] border-[#F8F4EA] bg-[#1F3320] shadow-2xl">
+            {/* <div className="mt-10 overflow-hidden rounded-3xl border-[6px] border-[#F8F4EA] bg-[#1F3320] shadow-2xl">
             <video
               src={c.galeri.videoSrc}
               autoPlay
@@ -892,144 +907,145 @@ export default function HomePage() {
             </video>
           </div> */}
 
-          {/* mozaik: foto pertama tampil besar */}
-          <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-            {c.galeri.items.map((foto, i) => (
-              <li
-                key={i}
-                className={`overflow-hidden rounded-xl border-[6px] border-[#F8F4EA] bg-[#3E5A3B] shadow-lg transition hover:z-10 hover:scale-[1.03] hover:rotate-0 motion-reduce:hover:scale-100 ${i % 2 === 0 ? "rotate-[1.2deg]" : "-rotate-[1.2deg]"
-                  } ${i === 0 ? "col-span-2 row-span-2" : ""}`}
-              >
-                <div className={`relative ${i === 0 ? "h-full min-h-64" : "aspect-[4/3]"}`}>
-                  <Image
-                    src={foto.img}
-                    alt={foto.alt}
-                    fill
-                    sizes={i === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
-                    className="object-cover"
-                  />
-                </div>
-              </li>
+            {/* mozaik: foto pertama tampil besar */}
+            <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+              {c.galeri.items.map((foto, i) => (
+                <li
+                  key={i}
+                  className={`overflow-hidden rounded-xl border-[6px] border-[#F8F4EA] bg-[#3E5A3B] shadow-lg transition hover:z-10 hover:scale-[1.03] hover:rotate-0 motion-reduce:hover:scale-100 ${i % 2 === 0 ? "rotate-[1.2deg]" : "-rotate-[1.2deg]"
+                    } ${i === 0 ? "col-span-2 row-span-2" : ""}`}
+                >
+                  <div className={`relative ${i === 0 ? "h-full min-h-64" : "aspect-[4/3]"}`}>
+                    <Image
+                      src={foto.img}
+                      alt={foto.alt}
+                      fill
+                      sizes={i === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                      className="object-cover"
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <Wave fill="#F3EDE0" className="absolute inset-x-0 bottom-0" />
+        </section>
+
+        {/* ================= 6. PETA LOKASI ================= */}
+        <section id="lokasi" aria-labelledby="peta-heading" className="relative overflow-hidden py-20 sm:py-24">
+          {/* kontur perbukitan samar, meneruskan benang merah lereng Kawi */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 900 600"
+            className="pointer-events-none absolute top-4 -left-24 h-[380px] w-auto -scale-x-100 text-[#4E7248] opacity-[0.1]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            {[0, 42, 84, 126, 168].map((o) => (
+              <path key={o} d={`M0 ${300 + o} C 180 ${180 + o}, 320 ${380 + o}, 520 ${240 + o} S 820 ${160 + o}, 900 ${260 + o}`} />
             ))}
-          </ul>
-        </div>
+          </svg>
+          <BatokKelapa className="pointer-events-none absolute top-16 right-[6%] hidden h-10 w-16 rotate-6 text-[#8B5E3C]/25 md:block" />
 
-        <Wave fill="#F3EDE0" className="absolute inset-x-0 bottom-0" />
-      </section>
-
-      {/* ================= 6. PETA LOKASI ================= */}
-      <section id="lokasi" aria-labelledby="peta-heading" className="relative overflow-hidden py-20 sm:py-24">
-        {/* kontur perbukitan samar, meneruskan benang merah lereng Kawi */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 900 600"
-          className="pointer-events-none absolute top-4 -left-24 h-[380px] w-auto -scale-x-100 text-[#4E7248] opacity-[0.1]"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          {[0, 42, 84, 126, 168].map((o) => (
-            <path key={o} d={`M0 ${300 + o} C 180 ${180 + o}, 320 ${380 + o}, 520 ${240 + o} S 820 ${160 + o}, 900 ${260 + o}`} />
-          ))}
-        </svg>
-        <BatokKelapa className="pointer-events-none absolute top-16 right-[6%] hidden h-10 w-16 rotate-6 text-[#8B5E3C]/25 md:block" />
-
-        <div className="relative mx-auto max-w-6xl px-6">
-          <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Kunjungi Kami</p>
-          <h2 id="peta-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-            {c.peta.heading}
-          </h2>
-          <p className="mt-3 max-w-2xl text-[#4A3B2C]/80">{c.peta.intro}</p>
-          <div className="mt-8">
-            <PetaLokasi />
-          </div>
-        </div>
-      </section>
-
-      {/* ================= 7. CTA KONTAK ================= */}
-      <section aria-labelledby="kontak-heading" className="px-6 pb-24">
-        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl bg-gradient-to-br from-[#4A3524] to-[#332417] px-6 py-14 text-center text-[#F3EDE0] shadow-2xl sm:px-12">
-          <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-25" />
-          <BijiKopi className="absolute -top-4 -left-3 h-20 w-16 rotate-[-18deg] text-[#8B5E3C]/50" />
-          <BijiKopi className="absolute top-10 right-6 h-12 w-9 rotate-[24deg] text-[#8B5E3C]/40" />
-          <BijiKopi className="absolute -bottom-5 left-1/4 h-16 w-12 rotate-[10deg] text-[#8B5E3C]/40" />
-          <DaunBambu className="absolute right-10 -bottom-2 h-6 w-20 rotate-[-10deg] text-[#7FA36F]/30" />
-
-          <div className="relative">
-            <h2 id="kontak-heading" className="font-display text-3xl font-semibold sm:text-4xl">
-              {c.kontak.heading}
+          <div className="relative mx-auto max-w-6xl px-6">
+            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Kunjungi Kami</p>
+            <h2 id="peta-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+              {c.peta.heading}
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[#F3EDE0]/85">{c.kontak.deskripsi}</p>
-
-            <ul className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
-              {c.kontak.infoChips.map((chip) => (
-                <li key={chip} className="rounded-full border border-[#F3EDE0]/20 bg-[#F3EDE0]/10 px-4 py-1.5 text-xs font-medium">
-                  {chip}
-                </li>
-              ))}
-            </ul>
-
-            <a
-              href={waHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#F3EDE0] px-7 py-3.5 font-semibold text-[#4A3524] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#EAE1CD] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F3EDE0] motion-reduce:hover:translate-y-0"
-            >
-              {c.kontak.ctaLabel} <span aria-hidden="true">→</span>
-            </a>
+            <p className="mt-3 max-w-2xl text-[#4A3B2C]/80">{c.peta.intro}</p>
+            <div className="mt-8">
+              <PetaLokasi />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ================= 8. FOOTER ================= */}
-      <footer className="relative bg-[#22331F] text-[#F3EDE0]">
-        <div aria-hidden="true" className="absolute inset-x-0 top-0 opacity-60">
-          <Pegunungan belakang="#2E4230" depan="#22331F" className="h-14" />
-        </div>
+        {/* ================= 7. CTA KONTAK ================= */}
+        <section aria-labelledby="kontak-heading" className="px-6 pb-24">
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl bg-gradient-to-br from-[#4A3524] to-[#332417] px-6 py-14 text-center text-[#F3EDE0] shadow-2xl sm:px-12">
+            <div aria-hidden="true" className="pattern-titik absolute inset-0 opacity-25" />
+            <BijiKopi className="absolute -top-4 -left-3 h-20 w-16 rotate-[-18deg] text-[#8B5E3C]/50" />
+            <BijiKopi className="absolute top-10 right-6 h-12 w-9 rotate-[24deg] text-[#8B5E3C]/40" />
+            <BijiKopi className="absolute -bottom-5 left-1/4 h-16 w-12 rotate-[10deg] text-[#8B5E3C]/40" />
+            <DaunBambu className="absolute right-10 -bottom-2 h-6 w-20 rotate-[-10deg] text-[#7FA36F]/30" />
 
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-20 pb-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="sm:col-span-2">
-            <p className="flex items-center gap-2.5 font-display text-xl font-semibold">
-              <LogoBambu className="h-7 w-auto" />
-              {c.footer.brand}
+            <div className="relative">
+              <h2 id="kontak-heading" className="font-display text-3xl font-semibold sm:text-4xl">
+                {c.kontak.heading}
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-[#F3EDE0]/85">{c.kontak.deskripsi}</p>
+
+              <ul className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
+                {c.kontak.infoChips.map((chip) => (
+                  <li key={chip} className="rounded-full border border-[#F3EDE0]/20 bg-[#F3EDE0]/10 px-4 py-1.5 text-xs font-medium">
+                    {chip}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#F3EDE0] px-7 py-3.5 font-semibold text-[#4A3524] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#EAE1CD] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F3EDE0] motion-reduce:hover:translate-y-0"
+              >
+                {c.kontak.ctaLabel} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= 8. FOOTER ================= */}
+        <footer className="relative bg-[#22331F] text-[#F3EDE0]">
+          <div aria-hidden="true" className="absolute inset-x-0 top-0 opacity-60">
+            <Pegunungan belakang="#2E4230" depan="#22331F" className="h-14" />
+          </div>
+
+          <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-20 pb-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="sm:col-span-2">
+              <p className="flex items-center gap-2.5 font-display text-xl font-semibold">
+                <LogoBambu className="h-7 w-auto" />
+                {c.footer.brand}
+              </p>
+              <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#F3EDE0]/70">{c.footer.tagline}</p>
+              <p className="mt-4 text-sm text-[#F3EDE0]/60">📍 {c.footer.alamat}</p>
+            </div>
+
+            <nav aria-label="Produk">
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#9DBE85]">Produk</p>
+              <ul className="mt-4 space-y-2.5 text-sm text-[#F3EDE0]/80">
+                {c.footer.kolomProduk.map((n) => (
+                  <li key={n.href}>
+                    <Link href={n.href} className="transition hover:text-[#F3EDE0] hover:underline">
+                      {n.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="Halaman">
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#9DBE85]">Jelajah</p>
+              <ul className="mt-4 space-y-2.5 text-sm text-[#F3EDE0]/80">
+                {c.footer.kolomHalaman.map((n) => (
+                  <li key={n.href}>
+                    <a href={n.href} className="transition hover:text-[#F3EDE0] hover:underline">
+                      {n.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          <div className="relative border-t border-[#F3EDE0]/10">
+            <p className="mx-auto max-w-6xl px-6 py-5 text-center text-xs text-[#F3EDE0]/50 sm:text-left">
+              {c.footer.kredit}
             </p>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#F3EDE0]/70">{c.footer.tagline}</p>
-            <p className="mt-4 text-sm text-[#F3EDE0]/60">📍 {c.footer.alamat}</p>
           </div>
-
-          <nav aria-label="Produk">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#9DBE85]">Produk</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-[#F3EDE0]/80">
-              {c.footer.kolomProduk.map((n) => (
-                <li key={n.href}>
-                  <Link href={n.href} className="transition hover:text-[#F3EDE0] hover:underline">
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <nav aria-label="Halaman">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#9DBE85]">Jelajah</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-[#F3EDE0]/80">
-              {c.footer.kolomHalaman.map((n) => (
-                <li key={n.href}>
-                  <a href={n.href} className="transition hover:text-[#F3EDE0] hover:underline">
-                    {n.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-
-        <div className="relative border-t border-[#F3EDE0]/10">
-          <p className="mx-auto max-w-6xl px-6 py-5 text-center text-xs text-[#F3EDE0]/50 sm:text-left">
-            {c.footer.kredit}
-          </p>
-        </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
+    </>
   );
 }
