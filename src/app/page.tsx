@@ -118,7 +118,7 @@ const content = {
         kategori: "Kerajinan",
         pancingan:
           "Lidi bambu tipis nan presisi untuk dupa, sempol, hingga sate, diserut satu per satu dengan tangan.",
-        img: "/images/biting.jpg",
+        img: "/images/dokum_biting10.webp",
         alt: "Ikatan biting bambu hasil serutan tangan warga Dusun Segelan, Desa Balesari",
         aksen: "#4E7248",
       },
@@ -128,7 +128,7 @@ const content = {
         kategori: "Hasil Kebun",
         pancingan:
           "Biji kopi lereng Gunung Kawi, dipetik merah dan disangrai tradisional hingga harum pekat.",
-        img: IMG,
+        img: "/images/dokum_kopi5.webp",
         alt: "Biji kopi sangrai dari kebun warga Desa Balesari di lereng Gunung Kawi",
         aksen: "#6B4226",
       },
@@ -175,12 +175,30 @@ const content = {
     // TODO: taruh file video di public/images/dokumentasi.mp4 (atau ganti src ini sesuai nama filenya)
     videoSrc: "/images/cuplikan_biting.mp4",
     items: [
-      { img: IMG, alt: "Warga menyerut bambu menjadi biting di teras rumah" },
-      { img: IMG, alt: "Proses penjemuran biji kopi di halaman rumah warga Balesari" },
-      { img: IMG, alt: "Penyangraian kopi secara tradisional menggunakan wajan tanah" },
-      { img: IMG, alt: "Pembakaran batok kelapa menjadi arang di Dusun Segelan" },
-      { img: IMG, alt: "Pemandangan kebun dan rumpun bambu Desa Balesari" },
-      { img: IMG, alt: "Warga mengikat biting bambu yang sudah jadi ke dalam bal" },
+      {
+        img: "/images/dokum_biting3.jpg",
+        alt: "Warga menyerut bambu menjadi biting di teras rumah",
+      },
+      {
+        img: "/images/dokum_kopi2.webp",
+        alt: "Proses penjemuran biji kopi di halaman rumah warga Balesari",
+      },
+      {
+        img: "/images/dokum_kopi4.webp",
+        alt: "Penyangraian kopi secara tradisional menggunakan wajan tanah",
+      },
+      {
+        img: "/images/dokum_biting8.webp",
+        alt: "Pembakaran batok kelapa menjadi arang di Dusun Segelan",
+      },
+      {
+        img: "/images/dokum_kopi3.webp",
+        alt: "Pemandangan kebun dan rumpun bambu Desa Balesari",
+      },
+      {
+        img: "/images/dokum_biting10.webp",
+        alt: "Warga mengikat biting bambu yang sudah jadi ke dalam bal",
+      },
     ],
   },
   peta: {

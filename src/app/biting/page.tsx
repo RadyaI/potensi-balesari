@@ -206,22 +206,22 @@ const content = {
         judul: "Menjemur",
         deskripsi:
           "Lidi dijemur sampai benar-benar kering. Saat panas terik, sehari saja cukup.",
-        img: "",
-        alt: "",
+        video: "images/cuplikan_biting3.MOV",
+        alt: "Menjemur Agar Kering",
       },
       {
         judul: "Menyortir & mengikat",
         deskripsi:
           "Lidi dipilah menurut panjang dan mutu, lalu diikat rapi per bal, siap ditimbang.",
-        img: "",
+        video: "images/cuplikan_biting2.MOV",
         alt: "",
       },
       {
         judul: "Menyetor ke pengepul",
         deskripsi:
           "Hasil serutan, bisa sampai kuintalan per keluarga, dijemput mobil pengepul dan dibayar tunai di tempat.",
-        img: "",
-        alt: "",
+        img: "/images/dokum_biting9.webp",
+        alt: "Menyetor ke pengepul",
       },
     ],
     kendala: {
@@ -305,7 +305,7 @@ const content = {
       { img: "/images/dokum_biting2.jpg", alt: "Warga menyerut bambu menjadi biting di teras rumah" },
       { img: "/images/dokum_biting4.jpg", alt: "Ikatan biting bambu tersusun siap disetor ke pengepul" },
       { img: "/images/dokum_biting1.jpg", alt: "Penjemuran lidi biting di halaman rumah warga" },
-      { img: "/images/dokum_biting3.jpg", alt: "Rumpun bambu petung di Dusun Segelan" },
+      { img: "/images/dokum_biting11.webp", alt: "Rumpun bambu petung di Dusun Segelan" },
     ],
   },
   lainnya: {
@@ -998,6 +998,21 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[3].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[3].deskripsi}</p>
+                {c.proses.langkah[3].video && (
+                  <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
+                    <video
+                      src={c.proses.langkah[3].video}
+                      controls
+                      muted
+                      autoPlay
+                      playsInline
+                      preload="metadata"
+                      className="h-full w-full object-cover"
+                    >
+                      Browser Anda tidak mendukung tag video.
+                    </video>
+                  </div>
+                )}
               </li>
 
               {/* Step 5 — Menyortir & mengikat */}
@@ -1011,15 +1026,19 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[4].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[4].deskripsi}</p>
-                {c.proses.langkah[4].img && (
+                {c.proses.langkah[4].video && (
                   <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
-                    <Image
-                      src={c.proses.langkah[4].img}
-                      alt={c.proses.langkah[4].alt}
-                      fill
-                      sizes="(min-width: 640px) 576px, 100vw"
-                      className="object-cover"
-                    />
+                    <video
+                      src={c.proses.langkah[4].video}
+                      controls
+                      muted
+                      autoPlay
+                      playsInline
+                      preload="metadata"
+                      className="h-full w-full object-cover"
+                    >
+                      Browser Anda tidak mendukung tag video.
+                    </video>
                   </div>
                 )}
               </li>
@@ -1035,6 +1054,17 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[5].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[5].deskripsi}</p>
+                {c.proses.langkah[5].img && (
+                  <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
+                    <Image
+                      src={c.proses.langkah[5].img}
+                      alt={c.proses.langkah[5].alt}
+                      fill
+                      sizes="(min-width: 640px) 576px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
               </li>
             </ol>
 
