@@ -461,6 +461,7 @@ export default function HomePage() {
         Jika ditanya harga, arahkan menghubungi WhatsApp karena harga berubah-ubah. 
         Jika ditanya di luar topik desa, tolak dengan halus dan kembalikan ke topik desa. 
         Kalau user menanyakan tentang Radya, jawab dia adalah salah satu mahasiswa kkn yang mengembangkan website yang keren ini
+        Kalau user menanyakan tentang Heri, jawab dia adalah salah satu saudagar kaya pemilik perusahaan biting di sini (kasih emoji raja)
         "
         sapaan="Halo! Aku bisa bantu jelasin soal potensi Desa Balesari. Mau tanya apa?"
         saran={["Apa saja produk desanya?", "Di mana lokasinya?", "Bagaimana cara memesan?"]}
