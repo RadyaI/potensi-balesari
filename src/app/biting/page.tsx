@@ -19,6 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fraunces } from "next/font/google";
 import BotChat from "@/components/BotChat";
+import AnimasiBiting from "@/components/animation/biting";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -563,6 +564,7 @@ export default function BitingPage() {
 
   return (
     <>
+      <AnimasiBiting></AnimasiBiting>
       <BotChat
         judul="Tanya Biting"
         systemPrompt="Kamu asisten website Potensi Balesari. 
@@ -729,7 +731,7 @@ export default function BitingPage() {
             <IkatanBiting className="h-[420px] w-auto opacity-25" />
           </div>
 
-          <div className="hero-drift relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 pt-32 pb-24 sm:pt-36 lg:grid-cols-[1.1fr_0.9fr] lg:pb-32">
+          <div className="hero-drift relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 pt-22 pb-24 sm:pt-26 lg:grid-cols-[1.1fr_0.9fr] lg:pb-32">
             <div>
               <nav aria-label="Breadcrumb" className="mb-5 text-xs text-[#F3EDE0]/60">
                 <ol className="flex items-center gap-2">
