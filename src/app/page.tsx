@@ -16,6 +16,7 @@ import { Fraunces } from "next/font/google";
 import PetaLokasi from "@/components/potensi/PetaLokasi";
 import BotChat from "@/components/BotChat";
 import Reveal from "@/components/Reveal";
+import TeksBergantian from "@/components/TextBergantian";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ const fraunces = Fraunces({
    ============================================================ */
 export const metadata: Metadata = {
   title:
-    "Potensi Balesari — Biting, Kopi & Batok Kelapa | Desa Balesari, Ngajum, Malang",
+    "Potensi Balesari - Biting, Kopi & Batok Kelapa | Desa Balesari, Ngajum, Malang",
   description:
     "Jelajahi potensi UMKM Dusun Segelan, Desa Balesari, Kecamatan Ngajum, Kabupaten Malang: kerajinan biting bambu, kopi lereng Gunung Kawi, dan olahan batok kelapa buatan tangan warga.",
   keywords: [
@@ -71,8 +72,17 @@ const content = {
   },
   hero: {
     eyebrow: "Dusun Segelan · Desa Balesari · Ngajum · Kab. Malang",
-    title:
+    title_default:
       "Potensi Desa Balesari: Biting, Kopi & Batok Kelapa dari Kaki Gunung Kawi",
+    titleLengkap:
+      "Potensi Desa Balesari: Biting, Kopi & Batok Kelapa dari Kaki Gunung Kawi",
+    titleAwal: "Potensi Desa Balesari:",
+    titleKata: [
+      { teks: "Biting Bambu", warna: "#9DBE85" },
+      { teks: "Kopi", warna: "#C89A6B" },
+      { teks: "Batok Kelapa", warna: "#B08968" },
+    ],
+    titleAkhir: "dari Kaki Gunung Kawi",
     subtitle:
       "Tiga hasil bumi dan kerajinan yang lahir dari tangan warga, dikerjakan manual dan diwariskan turun-temurun.",
     ctaUtama: "Jelajahi Potensi",
@@ -103,7 +113,7 @@ const content = {
     imgKecilAlt: "Suasana keseharian warga Dusun Segelan, Desa Balesari",
     imgCaption: "Dusun Segelan, Desa Balesari",
     stats: [
-      { angka: "650–900", satuan: "mdpl", label: "Ketinggian desa" },
+      { angka: "650-900", satuan: "mdpl", label: "Ketinggian desa" },
       { angka: "±2.400", satuan: "mm/thn", label: "Curah hujan" },
       { angka: "Kawi", satuan: "lereng timur", label: "Kaki gunung" },
     ],
@@ -457,7 +467,7 @@ export default function HomePage() {
         UMKM Dusun Segelan, Desa Balesari, Kecamatan Ngajum, Kabupaten Malang, di lereng timur Gunung Kawi. 
         Desa ini punya tiga potensi utama: biting bambu (lidi untuk tusuk pentol, sempol, sate, dan rangka dupa), kopi, serta olahan batok kelapa. 
         Pengunjung sedang membuka halaman utama. 
-        Jawab singkat dalam bahasa Indonesia yang santai dan sopan, maksimal 3 kalimat. 
+        Jawab singkat tapi excited dalam bahasa Indonesia yang santai dan sopan, maksimal 3 kalimat. 
         Jika ditanya harga, arahkan menghubungi WhatsApp karena harga berubah-ubah. 
         Jika ditanya di luar topik desa, tolak dengan halus dan kembalikan ke topik desa. 
         Kalau user menanyakan tentang Radya, jawab dia adalah salah satu mahasiswa kkn yang mengembangkan website yang keren ini
@@ -572,7 +582,14 @@ export default function HomePage() {
         <header className="navbar-glass fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#2E4230]/30 backdrop-blur-md">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
             <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-semibold text-[#F3EDE0]">
-              <LogoBambu className="h-7 w-auto" />
+              <Image
+                src="/images/logo.png"
+                alt="Logo Potensi Balesari"
+                width={45}
+                height={45}
+                priority
+                className="h-9 w-auto"
+              />
               {c.nav.brand}
             </Link>
             <nav aria-label="Navigasi utama" className="hidden md:block">
@@ -649,8 +666,17 @@ export default function HomePage() {
             <p className="mb-5 inline-block rounded-full border border-[#F3EDE0]/25 bg-[#F3EDE0]/10 px-4 py-1.5 text-xs tracking-[0.18em] uppercase backdrop-blur-sm">
               {c.hero.eyebrow}
             </p>
+            {/* <h1 className="font-display text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
+              {c.hero.title_default}
+            </h1> */}
             <h1 className="font-display text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
-              {c.hero.title}
+              <span className="sr-only">{c.hero.titleLengkap}</span>
+
+              <span aria-hidden="true">
+                <span className="block">{c.hero.titleAwal}</span>
+                <TeksBergantian kata={c.hero.titleKata} className="block" />
+                <span className="block">{c.hero.titleAkhir}</span>
+              </span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-base text-[#F3EDE0]/85 sm:text-lg">
               {c.hero.subtitle}

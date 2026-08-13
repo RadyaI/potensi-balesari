@@ -1,10 +1,11 @@
 // src/components/Reveal.tsx
-// Pembungkus animasi "muncul saat di-scroll", pengganti .reveal versi CSS.
+// Pembungkus animasi "muncul saat di-scroll".
 //
 // Pakai:
-//   <Reveal>...</Reveal>                       // default: fade-up
+//   <Reveal>...</Reveal>                       // default: fade-up, sekali jalan
 //   <Reveal type="from-left" delay={150}>...</Reveal>
 //   <Reveal as="li" className="rounded-xl">...</Reveal>
+//   <Reveal ulang>...</Reveal>                 // ikut memudar lagi saat keluar layar
 //
 // Untuk grid berisi banyak kartu, pakai index supaya munculnya berurutan:
 //   {items.map((item, i) => (
@@ -12,10 +13,8 @@
 //   ))}
 //
 // Catatan:
-// - Animasi berjalan sekali saja, tidak diulang saat di-scroll balik.
 // - Hanya opacity + transform, jadi ringan dan tidak memicu hitung ulang layout.
-// - Jika pengguna menyalakan "kurangi gerakan" di perangkatnya, isi langsung
-//   tampil tanpa animasi.
+// - Jika pengguna menyalakan "kurangi gerakan", isi langsung tampil tanpa animasi.
 // - Butuh: npm i motion
 
 "use client";
@@ -54,6 +53,12 @@ type Props = {
   className?: string;
   /** Lama animasi dalam detik. Default: 0.5 */
   duration?: number;
+  /**
+   * Ulangi animasi tiap kali elemen masuk layar, dan pudarkan lagi
+   * saat keluar. Default false (sekali jalan) karena kalau semua
+   * elemen memakai ini, scroll bolak-balik jadi ramai.
+   */
+  ulang?: boolean;
 };
 
 export default function Reveal({
@@ -64,6 +69,7 @@ export default function Reveal({
   as = "div",
   className,
   duration = 0.5,
+  ulang = false,
 }: Props) {
   const kurangiGerakan = useReducedMotion();
   const Tag = motion[as as keyof typeof motion] as typeof motion.div;
@@ -79,7 +85,7 @@ export default function Reveal({
       className={className}
       initial={posisiAwal[type]}
       whileInView={posisiAkhir}
-      viewport={{ once: true, amount: 0.2, margin: "0px 0px -60px 0px" }}
+      viewport={{ once: !ulang, amount: 0.2, margin: "0px 0px -60px 0px" }}
       transition={{
         duration,
         delay: delay / 1000 + index * JEDA_BERURUTAN,

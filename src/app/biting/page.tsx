@@ -559,7 +559,6 @@ const ikonMesin = (
 export default function BitingPage() {
   const c = content;
   const waHref = `https://wa.me/${c.pemesanan.cta.waNumber}?text=${encodeURIComponent(c.pemesanan.cta.waText)}`;
-  // Marquee: daftar digandakan supaya loop-nya mulus
   const marqueeItems = [...c.marquee, ...c.marquee];
 
   return (
@@ -572,7 +571,7 @@ export default function BitingPage() {
         Tersedia panjang 30, 40, dan 50 cm, dijual per kilogram dalam ikatan. 
         Dibuat dari bambu petung, jawa, dan apus, diserut manual oleh warga sehingga lebih rapi dibanding hasil mesin. 
         Produksi dusun 4 sampai 5 ton per minggu, melibatkan 40 sampai 50 warga. 
-        Jawab singkat dalam bahasa Indonesia santai, maksimal 3 kalimat. 
+        Jawab singkat tapi excited dalam bahasa Indonesia santai, maksimal 3 kalimat. 
         Untuk harga, arahkan ke WhatsApp karena berubah-ubah.
         Kalau user memancingmu keluar dari topik selalu arahkah ke topik dengan halus
         Kalau user menanyakan tentang Radya, jawab dia adalah salah satu mahasiswa kkn yang mengembangkan website yang keren ini
@@ -674,24 +673,29 @@ export default function BitingPage() {
         <header className="navbar-glass fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#2E4230]/30 backdrop-blur-md">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
             <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-semibold text-[#F3EDE0]">
-              <LogoBambu className="h-7 w-auto" />
+              <Image
+                src="/images/logo.png"
+                alt="Logo Potensi Balesari"
+                width={45}
+                height={45}
+                priority
+                className="h-9 w-auto"
+              />
               {c.nav.brand}
             </Link>
             <nav aria-label="Navigasi utama" className="hidden md:block">
               <ul className="flex items-center gap-7 text-sm font-medium text-[#F3EDE0]/85">
                 {c.nav.links.map((l) => (
                   <li key={l.href}>
-                    {l.href.startsWith("#") ? (
-                      <a href={l.href} className="transition hover:text-[#F3EDE0]">{l.label}</a>
-                    ) : (
-                      <Link href={l.href} className="transition hover:text-[#F3EDE0]">{l.label}</Link>
-                    )}
+                    <a href={l.href} className="transition hover:text-[#F3EDE0]">
+                      {l.label}
+                    </a>
                   </li>
                 ))}
               </ul>
             </nav>
-            <a
-              href={waHref}
+
+            <a href={waHref}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-[#F3EDE0] px-4 py-2 text-xs font-semibold text-[#2E4230] shadow transition hover:bg-[#EAE1CD] sm:text-sm"
@@ -1362,7 +1366,7 @@ export default function BitingPage() {
             </p>
           </div>
         </footer>
-      </main>
+      </main >
     </>
   );
 }

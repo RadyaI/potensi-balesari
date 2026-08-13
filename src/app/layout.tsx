@@ -22,7 +22,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Potensi Balesari — UMKM & Hasil Bumi Desa Balesari, Ngajum, Malang",
+  title: "Potensi Balesari - UMKM & Hasil Bumi Desa Balesari, Ngajum, Malang",
   description:
     "Profil potensi dan UMKM Dusun Segelan, Desa Balesari, Kecamatan Ngajum, Kabupaten Malang: biting bambu, kopi, dan olahan batok kelapa buatan tangan warga dari lereng Gunung Kawi.",
   keywords: [
