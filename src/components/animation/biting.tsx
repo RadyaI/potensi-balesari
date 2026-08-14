@@ -1,71 +1,109 @@
 // src/components/animation/biting.tsx
-// Hujan biting: lidi bambu berjatuhan dari atas layar, mendarat menumpuk
-// di dasar layar, diam sekitar 5 detik, lalu jatuh lagi sampai hilang.
+// Hujan biting: lidi bambu berjatuhan dari atas layar.
+//
+// Ada dua perilaku, dipilih lewat prop "diamDiBawah":
+//   true  (default) : memantul di dasar layar, rebah menumpuk, diam sekitar
+//                     5 detik, lalu jatuh lagi sampai hilang
+//   false           : langsung jatuh menembus layar tanpa berhenti
 //
 // Pakai di halaman /biting:
 //   import HujanBiting from "@/components/animation/biting";
 //   ...
-//   <HujanBiting />
-//   <HujanBiting jumlah={12} berulang />
+//   <HujanBiting />                                  // mantul lalu diam
+//   <HujanBiting diamDiBawah={false} berulang />     // hujan lidi terus-menerus
+//   <HujanBiting jumlah={24} />
 //
-// Catatan:
+// SOAL RASA JATUHNYA:
+// Jatuh bebas itu kuadratik, jaraknya sebanding waktu pangkat dua, jadi
+// percepatannya harus galak sejak awal. Kurva GRAVITASI di bawah memakai
+// cubic-bezier(0.11, 0, 0.5, 0) yang meniru easeInQuad. Kurva yang lebih
+// lembut membuat bendanya seperti melayang di bulan.
+// Benda jatuh setinggi layar di dunia nyata hanya butuh sekitar satu detik,
+// jadi durasi jatuhnya memang harus sependek itu.
+//
+// Catatan lain:
 // - Murni CSS, tanpa state, jadi tetap bisa dipakai di server component.
 // - Perputaran memakai titik tengah lidi. Karena itu tiap lidi diberi
 //   margin atas setengah panjangnya, supaya nilai --darat langsung
 //   menjadi posisi batangnya, tidak lagi bergantung panjang lidi.
-// - Nilai tiap lidi ditulis tetap (bukan acak) supaya hasil render di
-//   server dan di browser selalu sama.
+// - Sudut rebahnya sengaja bervariasi jauh dari 90 derajat agar lidi
+//   saling menyilang seperti tumpukan sungguhan.
+// - Nilai tiap lidi dibangkitkan dengan pengacak bersumbu tetap, jadi
+//   hasilnya bervariasi tapi selalu sama antara server dan browser.
 // - Lapisan ini pointer-events-none, jadi tidak menghalangi klik apa pun.
 // - Otomatis tidak tampil jika pengguna menyalakan "kurangi gerakan".
 
+const MAKS_LIDI = 60;
+
 type Lidi = {
-  /** Posisi mendatar, persen dari lebar layar */
   x: number;
-  /** Panjang lidi dalam piksel */
   panjang: number;
-  /** Lama satu putaran animasi, detik */
   durasi: number;
-  /** Jeda sebelum lidi ini mulai jatuh, detik */
   jeda: number;
-  /** Ketinggian batang saat tergeletak, vh dari atas (100 = tepat dasar) */
   darat: number;
-  /** Sudut awal saat masih di atas */
   rotasiAwal: number;
-  /** Sudut saat menyentuh dasar (masih berputar) */
   rotasiDarat: number;
-  /** Sudut akhir setelah rebah. 90 = mendatar sempurna */
   rotasiRebah: number;
-  /** Geser mendatar selama melayang, piksel */
   goyang: number;
-  /** Ketebalan tampilan, 1 = normal */
   skala: number;
 };
 
-/* Disusun manual supaya sebarannya rata dan tumpukannya terlihat wajar.
-   Sudut rebah sengaja bervariasi jauh dari 90 derajat agar lidi saling
-   menyilang seperti tumpukan sungguhan, bukan berbaris sejajar. */
-const DAFTAR_LIDI: Lidi[] = [
-  { x: 4,  panjang: 150, durasi: 9.0,  jeda: 0.0, darat: 97.5, rotasiAwal: -18, rotasiDarat: 128, rotasiRebah: 76,  goyang: 22,  skala: 1.0 },
-  { x: 11, panjang: 120, durasi: 9.8,  jeda: 1.4, darat: 99.0, rotasiAwal: 34,  rotasiDarat: 196, rotasiRebah: 104, goyang: -18, skala: 0.9 },
-  { x: 18, panjang: 168, durasi: 8.6,  jeda: 0.7, darat: 96.4, rotasiAwal: -6,  rotasiDarat: 154, rotasiRebah: 63,  goyang: 14,  skala: 1.1 },
-  { x: 25, panjang: 134, durasi: 9.4,  jeda: 2.3, darat: 98.6, rotasiAwal: 22,  rotasiDarat: 238, rotasiRebah: 117, goyang: -26, skala: 0.95 },
-  { x: 32, panjang: 158, durasi: 8.9,  jeda: 0.4, darat: 97.0, rotasiAwal: -30, rotasiDarat: 118, rotasiRebah: 84,  goyang: 19,  skala: 1.05 },
-  { x: 39, panjang: 112, durasi: 10.1, jeda: 3.1, darat: 99.2, rotasiAwal: 12,  rotasiDarat: 212, rotasiRebah: 96,  goyang: -12, skala: 0.85 },
-  { x: 46, panjang: 172, durasi: 8.4,  jeda: 1.8, darat: 96.0, rotasiAwal: -24, rotasiDarat: 142, rotasiRebah: 71,  goyang: 24,  skala: 1.1 },
-  { x: 53, panjang: 128, durasi: 9.6,  jeda: 0.9, darat: 98.8, rotasiAwal: 40,  rotasiDarat: 224, rotasiRebah: 110, goyang: -20, skala: 0.9 },
-  { x: 60, panjang: 146, durasi: 9.1,  jeda: 2.7, darat: 97.6, rotasiAwal: -12, rotasiDarat: 166, rotasiRebah: 88,  goyang: 16,  skala: 1.0 },
-  { x: 67, panjang: 162, durasi: 8.7,  jeda: 1.1, darat: 96.6, rotasiAwal: 28,  rotasiDarat: 132, rotasiRebah: 58,  goyang: -23, skala: 1.05 },
-  { x: 74, panjang: 118, durasi: 10.0, jeda: 3.6, darat: 99.4, rotasiAwal: -36, rotasiDarat: 204, rotasiRebah: 122, goyang: 13,  skala: 0.88 },
-  { x: 81, panjang: 154, durasi: 8.8,  jeda: 0.2, darat: 97.2, rotasiAwal: 8,   rotasiDarat: 148, rotasiRebah: 80,  goyang: -17, skala: 1.0 },
-  { x: 88, panjang: 138, durasi: 9.5,  jeda: 2.0, darat: 98.4, rotasiAwal: -20, rotasiDarat: 188, rotasiRebah: 99,  goyang: 21,  skala: 0.95 },
-  { x: 94, panjang: 166, durasi: 8.5,  jeda: 1.6, darat: 96.2, rotasiAwal: 16,  rotasiDarat: 136, rotasiRebah: 67,  goyang: -15, skala: 1.08 },
-  { x: 8,  panjang: 126, durasi: 9.9,  jeda: 4.2, darat: 99.0, rotasiAwal: -8,  rotasiDarat: 218, rotasiRebah: 113, goyang: 18,  skala: 0.9 },
-  { x: 57, panjang: 144, durasi: 9.2,  jeda: 4.8, darat: 97.8, rotasiAwal: 26,  rotasiDarat: 160, rotasiRebah: 92,  goyang: -21, skala: 1.0 },
-  { x: 29, panjang: 132, durasi: 9.7,  jeda: 5.4, darat: 98.2, rotasiAwal: -28, rotasiDarat: 198, rotasiRebah: 106, goyang: 12,  skala: 0.92 },
-  { x: 71, panjang: 156, durasi: 8.9,  jeda: 6.0, darat: 97.4, rotasiAwal: 18,  rotasiDarat: 144, rotasiRebah: 74,  goyang: -19, skala: 1.03 },
-  { x: 15, panjang: 148, durasi: 9.3,  jeda: 6.6, darat: 96.8, rotasiAwal: -14, rotasiDarat: 174, rotasiRebah: 86,  goyang: 20,  skala: 1.0 },
-  { x: 84, panjang: 122, durasi: 10.2, jeda: 7.2, darat: 99.2, rotasiAwal: 32,  rotasiDarat: 230, rotasiRebah: 101, goyang: -14, skala: 0.87 },
-];
+/* Pengacak bersumbu tetap (mulberry32). Dipakai supaya tiap lidi dapat
+   nilai yang berbeda-beda, tapi urutannya selalu sama tiap kali dijalankan,
+   sehingga render di server dan di browser tidak berselisih. */
+function pengacak(sumbu: number) {
+  let a = sumbu;
+  return () => {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function buatDaftarLidi(jumlah: number, diamDiBawah: boolean): Lidi[] {
+  const acak = pengacak(20260814);
+  const antara = (min: number, maks: number) => min + acak() * (maks - min);
+
+  return Array.from({ length: jumlah }, (_, i) => {
+    // sebar merata sepanjang lebar layar, lalu digeser sedikit acak
+    const lebarJatah = 100 / jumlah;
+    const x = Math.min(96, Math.max(4, (i + 0.5) * lebarJatah + antara(-lebarJatah * 0.35, lebarJatah * 0.35)));
+
+    const panjang = antara(112, 172);
+
+    /* Mode diam: durasi ini mencakup SELURUH siklus. Bagian jatuhnya
+       hanya 11 persen pertama, jadi sekitar satu detik saja.
+       Mode langsung: seluruh durasi habis untuk turun, maka angkanya
+       memang harus sekitar satu detik. */
+    const durasi = diamDiBawah
+      ? antara(8.4, 10.2)
+      : antara(0.85, 1.35) + (172 - panjang) * 0.0015;
+
+    /* Jeda mulai. Untuk mode langsung, jedanya disebar cukup rapat
+       supaya hujannya turun terus-menerus dan tidak menggerombol. */
+    const jeda = diamDiBawah
+      ? antara(0, Math.min(8, jumlah * 0.42))
+      : antara(0, 3.0);
+
+    return {
+      x,
+      panjang,
+      durasi,
+      jeda,
+      darat: antara(96.0, 99.4),
+      rotasiAwal: antara(-42, 42),
+      // di mode langsung lidinya hanya sempat berputar sedikit,
+      // karena jatuhnya cepat sekali
+      rotasiDarat: diamDiBawah ? antara(118, 240) : antara(40, 130),
+      // 90 derajat berarti mendatar sempurna; dijauhkan agar saling menyilang
+      rotasiRebah: antara(58, 122),
+      goyang: (acak() < 0.5 ? -1 : 1) * antara(12, 26),
+      skala: antara(0.85, 1.1),
+    };
+  });
+}
 
 /* Satu batang lidi bambu */
 function BatangLidi({ id }: { id: number }) {
@@ -95,14 +133,28 @@ function BatangLidi({ id }: { id: number }) {
 }
 
 type Props = {
-  /** Berapa lidi yang dijatuhkan. Maksimal 20. Default 16. */
+  /** Berapa lidi yang dijatuhkan. Maksimal 60. Default 16. */
   jumlah?: number;
   /** Ulangi terus-menerus. Default false, jadi hanya sekali saat halaman dibuka. */
   berulang?: boolean;
+  /**
+   * true  : memantul lalu rebah menumpuk dan diam sekitar 5 detik di dasar
+   *         layar sebelum jatuh lagi dan hilang. (default)
+   * false : langsung jatuh menembus layar tanpa berhenti, seperti hujan.
+   */
+  diamDiBawah?: boolean;
 };
 
-export default function HujanBiting({ jumlah = 16, berulang = false }: Props) {
-  const lidi = DAFTAR_LIDI.slice(0, Math.min(jumlah, DAFTAR_LIDI.length));
+export default function HujanBiting({
+  jumlah = 16,
+  berulang = false,
+  diamDiBawah = false,
+}: Props) {
+  const lidi = buatDaftarLidi(Math.min(Math.max(jumlah, 1), MAKS_LIDI), diamDiBawah);
+
+  // Nama animasi dipilih di sini; keyframes-nya ada dua set di bawah.
+  const kelasTurun = diamDiBawah ? "biting-turun" : "biting-lewat";
+  const kelasPutar = diamDiBawah ? "biting-putar" : "biting-putar-lewat";
 
   return (
     <div
@@ -115,136 +167,156 @@ export default function HujanBiting({ jumlah = 16, berulang = false }: Props) {
           .hujan-biting { display: none; }
         }
 
-        .biting-turun {
+        .biting-turun, .biting-lewat {
           position: absolute;
           top: 0;
           will-change: transform, opacity;
-          animation-name: biting-turun;
           animation-duration: var(--dur);
           animation-delay: var(--jeda);
           animation-fill-mode: both;
           animation-iteration-count: var(--ulang, 1);
         }
-        .biting-putar {
+        .biting-putar, .biting-putar-lewat {
           width: 100%;
           height: 100%;
           will-change: transform;
-          animation-name: biting-putar;
           animation-duration: var(--dur);
           animation-delay: var(--jeda);
           animation-fill-mode: both;
           animation-iteration-count: var(--ulang, 1);
         }
 
-        /* ---- Gerak turun ----
+        .biting-turun       { animation-name: biting-turun; }
+        .biting-putar       { animation-name: biting-putar; }
+        /* kurva gravitasi sungguhan: percepatannya galak sejak awal */
+        .biting-lewat       { animation-name: biting-lewat; animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0); }
+        .biting-putar-lewat { animation-name: biting-putar-lewat; animation-timing-function: linear; }
+
+        /* ================= MODE 1: mantul lalu diam =================
            Nilai translateY di sini adalah posisi TITIK TENGAH lidi,
            karena tiap lidi sudah digeser ke atas setengah panjangnya.
-           0-20%   : melayang turun, makin cepat (percepatan gravitasi)
-           20-31%  : menyentuh dasar, memantul dua kali lalu diam
-           31-85%  : tergeletak diam (sekitar 5 detik)
-           85-97%  : jatuh lagi menembus dasar layar sambil memudar     */
+           0-11%   : JATUH, dengan percepatan gravitasi (sekitar 1 detik)
+           11-23%  : menyentuh dasar, memantul dua kali lalu rebah
+           23-80%  : tergeletak diam (sekitar 5 detik)
+           80-91%  : jatuh lagi menembus dasar layar sambil memudar
+           91-100% : jeda kosong sebelum putaran berikutnya              */
         @keyframes biting-turun {
           0% {
             transform: translate3d(0, -25vh, 0);
             opacity: 0;
-            animation-timing-function: cubic-bezier(0.45, 0, 0.85, 0.55);
+            animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
           }
-          4% { opacity: 1; }
-          20% {
+          2% { opacity: 1; }
+          11% {
             transform: translate3d(var(--goyang), calc(var(--darat) * 1vh), 0);
             opacity: 1;
-            animation-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
+            /* memantul naik: melambat karena melawan gravitasi */
+            animation-timing-function: cubic-bezier(0.16, 0.84, 0.44, 1);
           }
-          24% {
-            /* pantulan pertama, cukup terasa */
+          14.5% {
             transform: translate3d(var(--goyang), calc(var(--darat) * 1vh - 26px), 0);
-            animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.6);
+            animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
           }
-          27.5% {
+          18% {
             transform: translate3d(var(--goyang), calc(var(--darat) * 1vh), 0);
-            animation-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
+            animation-timing-function: cubic-bezier(0.16, 0.84, 0.44, 1);
           }
-          29.5% {
+          20% {
             /* pantulan kedua, tinggal sisa tenaga */
             transform: translate3d(var(--goyang), calc(var(--darat) * 1vh - 7px), 0);
-            animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.6);
+            animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
           }
-          31% {
+          23% {
             transform: translate3d(var(--goyang), calc(var(--darat) * 1vh), 0);
             animation-timing-function: linear;
           }
-          85% {
+          80% {
             transform: translate3d(var(--goyang), calc(var(--darat) * 1vh), 0);
             opacity: 1;
-            animation-timing-function: cubic-bezier(0.45, 0, 0.85, 0.55);
+            animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
           }
-          97% {
-            transform: translate3d(var(--goyang), 145vh, 0);
-            opacity: 0;
-          }
-          100% {
+          91%, 100% {
             transform: translate3d(var(--goyang), 145vh, 0);
             opacity: 0;
           }
         }
 
-        /* ---- Perputaran ----
-           Berputar sambil melayang, lalu rebah dengan sudut yang
-           berbeda-beda supaya lidi saling menyilang saat menumpuk. */
         @keyframes biting-putar {
           0% {
             transform: rotate(var(--rot-awal));
             animation-timing-function: linear;
           }
-          20% {
+          11% {
             transform: rotate(var(--rot-darat));
             animation-timing-function: cubic-bezier(0.3, 0.9, 0.4, 1);
           }
-          24% { transform: rotate(calc(var(--rot-rebah) + 11deg)); }
-          28% { transform: rotate(calc(var(--rot-rebah) - 5deg)); }
-          31% {
+          14.5% { transform: rotate(calc(var(--rot-rebah) + 11deg)); }
+          19%   { transform: rotate(calc(var(--rot-rebah) - 5deg)); }
+          23% {
             transform: rotate(var(--rot-rebah));
             animation-timing-function: linear;
           }
-          85% {
+          80% {
             transform: rotate(var(--rot-rebah));
-            animation-timing-function: ease-in;
+            animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
           }
           100% { transform: rotate(calc(var(--rot-rebah) + 46deg)); }
+        }
+
+        /* ================= MODE 2: langsung jatuh =================
+           Tanpa pantulan, tanpa berhenti. Percepatannya diatur lewat
+           animation-timing-function di kelasnya, jadi keyframes ini
+           cukup menyatakan titik awal dan titik akhir saja.            */
+        @keyframes biting-lewat {
+          0% {
+            transform: translate3d(0, -25vh, 0);
+            opacity: 0;
+          }
+          8% { opacity: 1; }
+          92% { opacity: 1; }
+          100% {
+            transform: translate3d(var(--goyang), 132vh, 0);
+            opacity: 0;
+          }
+        }
+
+        @keyframes biting-putar-lewat {
+          0%   { transform: rotate(var(--rot-awal)); }
+          100% { transform: rotate(calc(var(--rot-awal) + var(--rot-darat))); }
         }
       `}</style>
 
       {lidi.map((l, i) => (
         <div
           key={i}
-          className="biting-turun"
+          className={kelasTurun}
           style={
             {
-              left: `${l.x}%`,
-              width: `${10 * l.skala}px`,
-              height: `${l.panjang}px`,
-              marginLeft: `${-5 * l.skala}px`,
+              left: `${l.x.toFixed(2)}%`,
+              width: `${(10 * l.skala).toFixed(1)}px`,
+              height: `${l.panjang.toFixed(0)}px`,
+              marginLeft: `${(-5 * l.skala).toFixed(1)}px`,
               // digeser setengah panjang, supaya --darat menjadi posisi
               // titik tengah lidi (titik putarnya) dan tidak lagi
               // bergantung pada panjang tiap lidi
-              marginTop: `${-l.panjang / 2}px`,
-              "--dur": `${l.durasi}s`,
-              "--jeda": `${l.jeda}s`,
-              "--darat": l.darat,
-              "--goyang": `${l.goyang}px`,
+              marginTop: `${(-l.panjang / 2).toFixed(1)}px`,
+              "--dur": `${l.durasi.toFixed(2)}s`,
+              "--jeda": `${l.jeda.toFixed(2)}s`,
+              "--darat": l.darat.toFixed(2),
+              "--goyang": `${l.goyang.toFixed(1)}px`,
               "--ulang": berulang ? "infinite" : 1,
             } as React.CSSProperties
           }
         >
           <div
-            className="biting-putar"
+            className={kelasPutar}
             style={
               {
-                "--rot-awal": `${l.rotasiAwal}deg`,
-                "--rot-darat": `${l.rotasiDarat}deg`,
-                "--rot-rebah": `${l.rotasiRebah}deg`,
-                "--dur": `${l.durasi}s`,
-                "--jeda": `${l.jeda}s`,
+                "--rot-awal": `${l.rotasiAwal.toFixed(1)}deg`,
+                "--rot-darat": `${l.rotasiDarat.toFixed(1)}deg`,
+                "--rot-rebah": `${l.rotasiRebah.toFixed(1)}deg`,
+                "--dur": `${l.durasi.toFixed(2)}s`,
+                "--jeda": `${l.jeda.toFixed(2)}s`,
                 "--ulang": berulang ? "infinite" : 1,
               } as React.CSSProperties
             }
