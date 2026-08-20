@@ -29,6 +29,7 @@ import {
 import Reveal from "@/components/Reveal";
 import AnimasiKopi from "@/components/animation/kopi";
 import BotChat from "@/components/BotChat";
+import { IMG_HERO, IMG_JEMUR, IMG_KEBUN, IMG_SANGRAI, IMG_BIJI } from "@/data/kopiImages";
 
 const fraunces = Fraunces({
     subsets: ["latin"],
@@ -65,12 +66,10 @@ export const metadata: Metadata = {
 
 /* ============================================================
    GAMBAR
+   IMG_HERO..IMG_BIJI dipindah ke src/data/kopiImages.ts supaya
+   src/data/gallery.ts (dipakai /galeri) bisa memakai foto yang sama
+   tanpa menduplikasi path. Nilainya identik dengan sebelumnya.
    ============================================================ */
-const IMG_HERO = "/images/dokum_kopi1.webp";
-const IMG_JEMUR = "/images/dokum_kopi2.webp";
-const IMG_KEBUN = "/images/dokum_kopi3.webp";
-const IMG_SANGRAI = "/images/dokum_kopi4.webp";
-const IMG_BIJI = "/images/dokum_kopi5.webp";
 const IMG_BITING = "/images/dokum_biting10.webp";
 const IMG_DESA = "/images/desa-balesari.jpeg";
 
@@ -307,6 +306,8 @@ const content = {
     },
     galeri: {
         heading: "Sekilas dari Kebun",
+        ctaLabel: "Lihat Selengkapnya",
+        ctaHref: "/galeri?kategori=kopi",
         items: [
             { img: IMG_HERO, alt: "Buah kopi merah siap petik di kebun Dusun Segelan" },
             { img: IMG_JEMUR, alt: "Penjemuran biji kopi di halaman rumah warga" },
@@ -1149,10 +1150,20 @@ export default function KopiPage() {
 
                     <div className="relative mx-auto max-w-6xl px-6">
                         <Reveal>
-                            <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-[#7A5C3E] uppercase">Dokumentasi</p>
-                            <h2 id="galeri-heading" className="font-display text-3xl font-semibold text-[#4A3524] sm:text-4xl">
-                                {c.galeri.heading}
-                            </h2>
+                            <div className="flex flex-wrap items-end justify-between gap-4">
+                                <div>
+                                    <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-[#7A5C3E] uppercase">Dokumentasi</p>
+                                    <h2 id="galeri-heading" className="font-display text-3xl font-semibold text-[#4A3524] sm:text-4xl">
+                                        {c.galeri.heading}
+                                    </h2>
+                                </div>
+                                <Link
+                                    href={c.galeri.ctaHref}
+                                    className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#4A3524]/25 px-5 py-2.5 text-sm font-semibold text-[#4A3524] transition hover:bg-[#4A3524]/5"
+                                >
+                                    {c.galeri.ctaLabel} <span aria-hidden="true">→</span>
+                                </Link>
+                            </div>
                         </Reveal>
 
                         <ul className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">

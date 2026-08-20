@@ -80,7 +80,7 @@ const content = {
     titleKata: [
       { teks: "Biting Bambu", warna: "#9DBE85" },
       { teks: "Kopi", warna: "#C89A6B" },
-      { teks: "Batok Kelapa", warna: "#B08968" },
+      { teks: "Kerajinan Tangan", warna: "#B08968" },
     ],
     titleAkhir: "dari Kaki Gunung Kawi",
     subtitle:
@@ -89,13 +89,13 @@ const content = {
     chips: [
       { label: "Biting Bambu", href: "/biting", warna: "#9DBE85" },
       { label: "Kopi Balesari", href: "/kopi", warna: "#C89A6B" },
-      { label: "Batok Kelapa", href: "/batok-kelapa", warna: "#B08968" },
+      { label: "Kerajinan Tangan", href: "/kerajinan-tangan", warna: "#B08968" },
     ],
   },
   marquee: [
     "Biting Bambu",
     "Kopi Lereng Kawi",
-    "Batok Kelapa",
+    "Kerajinan Tangan",
     "Dusun Segelan",
     "Buatan Tangan",
     "Turun-Temurun",

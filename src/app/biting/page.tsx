@@ -20,6 +20,15 @@ import Link from "next/link";
 import { Fraunces } from "next/font/google";
 import BotChat from "@/components/BotChat";
 import AnimasiBiting from "@/components/animation/biting";
+import {
+  FOTO_HERO,
+  FOTO_PENGRAJIN,
+  FOTO_PENGEPUL,
+  FOTO_MENYERUT,
+  FOTO_IKATAN_SETOR,
+  FOTO_JEMUR,
+  FOTO_RUMPUN,
+} from "@/data/bitingImages";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -83,7 +92,7 @@ const content = {
     title: "Biting Bambu: Lidi Untuk Tusuk Pentol, Sempol, dan Sate",
     subtitle:
       "Dari pentol di gerobak langganan sampai sate di angkringan, banyak jajanan bertumpu pada lidi bambu kecil ini. Dupa pun memakainya sebagai rangka. Dari Dusun Segelan, lidi-lidi itu diserut satu per satu oleh tangan warga, sudah lebih dari dua puluh tahun.",
-    img: "/images/dokum_biting5.jpg",
+    img: FOTO_HERO,
     imgAlt:
       "Ikatan biting bambu hasil serutan tangan pengrajin Dusun Segelan, Desa Balesari",
     stats: [
@@ -221,7 +230,7 @@ const content = {
         judul: "Menyetor ke pengepul",
         deskripsi:
           "Hasil serutan, bisa sampai kuintalan per keluarga, dijemput mobil pengepul dan dibayar tunai di tempat.",
-        img: "/images/dokum_biting9.webp",
+        img: FOTO_PENGEPUL,
         alt: "Menyetor ke pengepul",
       },
     ],
@@ -259,7 +268,7 @@ const content = {
       "Biting di dusun ini dikerjakan oleh keluarga-keluarga penyerut, kebanyakan pasangan suami-istri yang bekerja dari rumah. Ada yang sudah dua puluh tahun menekuninya, dengan keterampilan yang diturunkan dari orang tua ke anak.",
       "Setiap keluarga bisa menghasilkan hingga kuintalan lidi per minggu. Hasilnya dijemput langsung dari rumah dan dibayar di tempat, menjadi penghasilan yang menghidupi dapur sehari-hari.",
     ],
-    img: "/images/dokum_biting7.jpg",
+    img: FOTO_PENGRAJIN,
     alt: "Warga Dusun Segelan menyerut bambu menjadi biting di teras rumah",
     // TODO: ganti dengan kutipan verbatim hasil rekaman wawancara
     kutipan:
@@ -302,11 +311,13 @@ const content = {
   },
   galeri: {
     heading: "Sekilas dari Dapur Produksi",
+    ctaLabel: "Lihat Selengkapnya",
+    ctaHref: "/galeri?kategori=biting",
     items: [
-      { img: "/images/dokum_biting2.jpg", alt: "Warga menyerut bambu menjadi biting di teras rumah" },
-      { img: "/images/dokum_biting4.jpg", alt: "Ikatan biting bambu tersusun siap disetor ke pengepul" },
-      { img: "/images/dokum_biting1.jpg", alt: "Penjemuran lidi biting di halaman rumah warga" },
-      { img: "/images/dokum_biting11.webp", alt: "Rumpun bambu petung di Dusun Segelan" },
+      { img: FOTO_MENYERUT, alt: "Warga menyerut bambu menjadi biting di teras rumah" },
+      { img: FOTO_IKATAN_SETOR, alt: "Ikatan biting bambu tersusun siap disetor ke pengepul" },
+      { img: FOTO_JEMUR, alt: "Penjemuran lidi biting di halaman rumah warga" },
+      { img: FOTO_RUMPUN, alt: "Rumpun bambu petung di Dusun Segelan" },
     ],
   },
   lainnya: {
@@ -1278,10 +1289,20 @@ export default function BitingPage() {
           <DaunBambu className="pointer-events-none absolute top-16 right-[6%] hidden h-5 w-14 rotate-12 text-[#4E7248]/25 md:block" />
 
           <div className="relative mx-auto max-w-6xl px-6">
-            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Dokumentasi</p>
-            <h2 id="galeri-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
-              {c.galeri.heading}
-            </h2>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#7A5C3E]">Dokumentasi</p>
+                <h2 id="galeri-heading" className="font-display text-3xl font-semibold text-[#2E4230] sm:text-4xl">
+                  {c.galeri.heading}
+                </h2>
+              </div>
+              <Link
+                href={c.galeri.ctaHref}
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#2E4230]/25 px-5 py-2.5 text-sm font-semibold text-[#2E4230] transition hover:bg-[#2E4230]/5"
+              >
+                {c.galeri.ctaLabel} <span aria-hidden="true">→</span>
+              </Link>
+            </div>
             <ul className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
               {c.galeri.items.map((foto, i) => (
                 <li
