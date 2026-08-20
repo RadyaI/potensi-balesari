@@ -193,46 +193,55 @@ const content = {
     },
     langkah: [
       {
-        judul: "Menebang & memotong",
-        deskripsi: "Bambu tua dipotong per ruas, dipilih bagian yang lurus dan mulus.",
+        judul: "Memotong & membelah",
+        deskripsi: "Bambu tua dipotong per ruas lalu dibelah memanjang, dipilih bagian yang lurus dan mulus.",
         img: "",
         alt: "",
       },
       {
-        judul: "Membelah & membuang hati bambu",
-        deskripsi:
-          "Ruas dibelah memanjang, lalu bagian dalam yang lunak, disebut hati bambu, dibuang karena mudah patah.",
-        img: "",
-        alt: "",
-      },
-      {
-        judul: "Merajang jadi lidi",
-        deskripsi:
-          "Bilah bambu dirajang dan diserut menjadi lidi-lidi tipis berukuran seragam. Tahap inilah yang paling menuntut jam terbang.",
-        video: "/images/cuplikan_biting.mp4",
-        alt: "Tangan pengrajin menyerut bilah bambu menjadi lidi biting",
+        judul: "Merajang jadi biting",
+        deskripsi: "Bilah bambu dirajang atau dipotong kecil-kecil menjadi calon biting.",
+        video: "",
+        alt: "Tangan pengrajin merajang bilah bambu menjadi biting",
       },
       {
         judul: "Menjemur",
-        deskripsi:
-          "Lidi dijemur sampai benar-benar kering. Saat panas terik, sehari saja cukup.",
+        deskripsi: "Biting dijemur sampai benar-benar kering. Saat panas terik, sehari saja cukup.",
         video: "images/cuplikan_biting3.MOV",
-        alt: "Menjemur Agar Kering",
+        alt: "Menjemur biting agar kering",
       },
       {
-        judul: "Menyortir & mengikat",
-        deskripsi:
-          "Lidi dipilah menurut panjang dan mutu, lalu diikat rapi per bal, siap ditimbang.",
+        judul: "Menyerut pakai mesin",
+        deskripsi: "Biting yang sudah kering diserut menggunakan mesin hingga halus dan seragam ukurannya.",
+        video: "/images/cuplikan_biting.mp4",
+        alt: "",
+      },
+      {
+        judul: "Menyortir",
+        deskripsi: "Biting dipilah menurut mutunya, yang terlalu tipis dan mudah patah disisihkan.",
+        img: "",
+        alt: "",
+      },
+      {
+        judul: "Mengikat",
+        deskripsi: "Biting yang lolos sortir diikat rapi per bal, siap ditimbang.",
         video: "images/cuplikan_biting2.MOV",
         alt: "",
       },
       {
-        judul: "Menyetor ke pengepul",
+        judul: "Membelerang",
         deskripsi:
-          "Hasil serutan, bisa sampai kuintalan per keluarga, dijemput mobil pengepul dan dibayar tunai di tempat.",
-        img: FOTO_PENGEPUL,
-        alt: "Menyetor ke pengepul",
+          "Biting dibelerang selama 2-4 hari (biasanya 3 hari) agar tidak berjamur dan warnanya tidak berubah.",
+        video: "images/Biting_dibelerang.mp4",
+        alt: "",
       },
+      // {
+      //   judul: "Menyetor ke pengepul",
+      //   deskripsi:
+      //     "Hasil biting yang sudah jadi, bisa sampai kuintalan per keluarga, dijemput mobil pengepul dan dibayar tunai di tempat.",
+      //   img: FOTO_PENGEPUL,
+      //   alt: "Menyetor ke pengepul",
+      // },
     ],
     kendala: {
       judul: "Bagaimana Saat Musim Hujan?",
@@ -359,6 +368,46 @@ const content = {
     ],
   },
 };
+
+// Komponen kecil: otomatis render <video> kalau field `video` keisi,
+// atau <Image> kalau field `img` keisi, atau gak render apa-apa kalau dua-duanya kosong
+function MediaLangkah({
+  video,
+  img,
+  alt,
+}: {
+  video?: string;
+  img?: string;
+  alt?: string;
+}) {
+  if (video) {
+    return (
+      <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
+        <video
+          src={video}
+          controls
+          muted
+          autoPlay
+          playsInline
+          preload="metadata"
+          className="h-full w-full object-cover"
+        >
+          Browser Anda tidak mendukung tag video.
+        </video>
+      </div>
+    );
+  }
+
+  if (img) {
+    return (
+      <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
+        <Image src={img} alt={alt ?? ""} fill sizes="(min-width: 640px) 576px, 100vw" className="object-cover" />
+      </div>
+    );
+  }
+
+  return null;
+}
 
 /* ============================================================
    ORNAMEN SVG
@@ -940,7 +989,7 @@ export default function BitingPage() {
 
             {/* langkah-langkah: timeline vertikal */}
             <ol className="relative mt-14 space-y-11 border-l-2 border-[#4E7248]/25 pl-8 sm:pl-12">
-              {/* Step 1 — Menebang & memotong */}
+              {/* Step 1 — Memotong & membelah */}
               <li className="reveal relative">
                 <span
                   aria-hidden="true"
@@ -951,20 +1000,10 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[0].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[0].deskripsi}</p>
-                {c.proses.langkah[0].img && (
-                  <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
-                    <Image
-                      src={c.proses.langkah[0].img}
-                      alt={c.proses.langkah[0].alt}
-                      fill
-                      sizes="(min-width: 640px) 576px, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                )}
+                <MediaLangkah {...c.proses.langkah[0]} />
               </li>
 
-              {/* Step 2 — Membelah & membuang hati bambu (tanpa media) */}
+              {/* Step 2 — Merajang jadi biting */}
               <li className="reveal relative">
                 <span
                   aria-hidden="true"
@@ -975,9 +1014,10 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[1].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[1].deskripsi}</p>
+                <MediaLangkah {...c.proses.langkah[1]} />
               </li>
 
-              {/* Step 3 — Merajang jadi lidi (VIDEO) */}
+              {/* Step 3 — Menjemur */}
               <li className="reveal relative">
                 <span
                   aria-hidden="true"
@@ -988,24 +1028,10 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[2].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[2].deskripsi}</p>
-                {c.proses.langkah[2].video && (
-                  <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
-                    <video
-                      src={c.proses.langkah[2].video}
-                      controls
-                      muted
-                      autoPlay
-                      playsInline
-                      preload="metadata"
-                      className="h-full w-full object-cover"
-                    >
-                      Browser Anda tidak mendukung tag video.
-                    </video>
-                  </div>
-                )}
+                <MediaLangkah {...c.proses.langkah[2]} />
               </li>
 
-              {/* Step 4 — Menjemur (tanpa media) */}
+              {/* Step 4 — Menyerut pakai mesin */}
               <li className="reveal relative">
                 <span
                   aria-hidden="true"
@@ -1016,24 +1042,10 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[3].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[3].deskripsi}</p>
-                {c.proses.langkah[3].video && (
-                  <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
-                    <video
-                      src={c.proses.langkah[3].video}
-                      controls
-                      muted
-                      autoPlay
-                      playsInline
-                      preload="metadata"
-                      className="h-full w-full object-cover"
-                    >
-                      Browser Anda tidak mendukung tag video.
-                    </video>
-                  </div>
-                )}
+                <MediaLangkah {...c.proses.langkah[3]} />
               </li>
 
-              {/* Step 5 — Menyortir & mengikat */}
+              {/* Step 5 — Menyortir */}
               <li className="reveal relative">
                 <span
                   aria-hidden="true"
@@ -1044,24 +1056,10 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[4].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[4].deskripsi}</p>
-                {c.proses.langkah[4].video && (
-                  <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
-                    <video
-                      src={c.proses.langkah[4].video}
-                      controls
-                      muted
-                      autoPlay
-                      playsInline
-                      preload="metadata"
-                      className="h-full w-full object-cover"
-                    >
-                      Browser Anda tidak mendukung tag video.
-                    </video>
-                  </div>
-                )}
+                <MediaLangkah {...c.proses.langkah[4]} />
               </li>
 
-              {/* Step 6 — Menyetor ke pengepul (tanpa media) */}
+              {/* Step 6 — Mengikat */}
               <li className="reveal relative">
                 <span
                   aria-hidden="true"
@@ -1072,18 +1070,36 @@ export default function BitingPage() {
                 </span>
                 <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[5].judul}</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[5].deskripsi}</p>
-                {c.proses.langkah[5].img && (
-                  <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-2xl border-[6px] border-[#F8F4EA] bg-[#DCD2BC] shadow-lg rotate-[0.8deg]">
-                    <Image
-                      src={c.proses.langkah[5].img}
-                      alt={c.proses.langkah[5].alt}
-                      fill
-                      sizes="(min-width: 640px) 576px, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                )}
+                <MediaLangkah {...c.proses.langkah[5]} />
               </li>
+
+              {/* Step 7 — Membelerang */}
+              <li className="reveal relative">
+                <span
+                  aria-hidden="true"
+                  className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
+                  style={{ backgroundColor: AKSEN }}
+                >
+                  7
+                </span>
+                <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[6].judul}</h3>
+                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[6].deskripsi}</p>
+                <MediaLangkah {...c.proses.langkah[6]} />
+              </li>
+
+              {/* Step 8 — Menyetor ke pengepul */}
+              {/* <li className="reveal relative">
+                <span
+                  aria-hidden="true"
+                  className="font-display absolute top-0 -left-[51px] flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-[#F3EDE0] shadow sm:-left-[69px] sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base"
+                  style={{ backgroundColor: AKSEN }}
+                >
+                  8
+                </span>
+                <h3 className="font-display pt-1 text-xl font-semibold text-[#2E4230] sm:pt-1.5">{c.proses.langkah[7].judul}</h3>
+                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#4A3B2C]/85 sm:text-base">{c.proses.langkah[7].deskripsi}</p>
+                <MediaLangkah {...c.proses.langkah[7]} />
+              </li> */}
             </ol>
 
             {/* kendala musim hujan */}
