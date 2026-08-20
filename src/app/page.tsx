@@ -463,7 +463,8 @@ export default function HomePage() {
   return (
     <>
       <BotChat
-        systemPrompt="Kamu asisten ramah website Potensi Balesari, profil 
+        systemPrompt="
+        Kamu asisten ramah website Potensi Balesari, profil 
         UMKM Dusun Segelan, Desa Balesari, Kecamatan Ngajum, Kabupaten Malang, di lereng timur Gunung Kawi. 
         Desa ini punya tiga potensi utama: biting bambu (lidi untuk tusuk pentol, sempol, sate, dan rangka dupa), kopi, serta olahan batok kelapa. 
         Pengunjung sedang membuka halaman utam  a. 
