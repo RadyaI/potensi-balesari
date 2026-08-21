@@ -195,13 +195,13 @@ const content = {
       {
         judul: "Memotong & membelah",
         deskripsi: "Bambu tua dipotong per ruas lalu dibelah memanjang, dipilih bagian yang lurus dan mulus.",
-        img: "",
+        video: "/images/potong_bambu.mp4",
         alt: "",
       },
       {
         judul: "Merajang jadi biting",
         deskripsi: "Bilah bambu dirajang atau dipotong kecil-kecil menjadi calon biting.",
-        video: "",
+        video: "images/merajang_bambu.mp4",
         alt: "Tangan pengrajin merajang bilah bambu menjadi biting",
       },
       {
@@ -219,7 +219,7 @@ const content = {
       {
         judul: "Menyortir",
         deskripsi: "Biting dipilah menurut mutunya, yang terlalu tipis dan mudah patah disisihkan.",
-        img: "",
+        video: "/images/menyortir_bambu.mp4",
         alt: "",
       },
       {
