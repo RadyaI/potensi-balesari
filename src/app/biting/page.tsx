@@ -386,7 +386,7 @@ function MediaLangkah({
         <video
           src={video}
           controls
-          muted 
+          muted
           playsInline
           preload="metadata"
           className="h-full w-full object-cover"

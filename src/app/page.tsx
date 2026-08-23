@@ -111,7 +111,7 @@ const content = {
       "Pemandangan Desa Balesari di lereng timur Gunung Kawi, Kecamatan Ngajum, Kabupaten Malang",
     imgKecil: IMG,
     imgKecilAlt: "Suasana keseharian warga Dusun Segelan, Desa Balesari",
-    imgCaption: "Dusun Segelan, Desa Balesari",
+    imgCaption: "Desa Balesari",
     stats: [
       { angka: "650-900", satuan: "mdpl", label: "Ketinggian desa" },
       { angka: "±2.400", satuan: "mm/thn", label: "Curah hujan" },
@@ -143,12 +143,12 @@ const content = {
         aksen: "#6B4226",
       },
       {
-        slug: "/batok-kelapa",
+        slug: "/kerajinan-tangan",
         nama: "Batok Kelapa",
         kategori: "Olahan",
         pancingan:
           "Tempurung kelapa yang biasanya terbuang, diolah jadi arang dan kerajinan bernilai.",
-        img: IMG,
+        img: "/images/batok_kelapa.jpg",
         alt: "Olahan batok kelapa berupa arang dan kerajinan buatan warga Desa Balesari",
         aksen: "#8B5E3C",
       },
