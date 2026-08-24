@@ -336,15 +336,15 @@ const content = {
         slug: "/kopi",
         nama: "Kopi Balesari",
         pancingan: "Biji kopi lereng Gunung Kawi, disangrai tradisional.",
-        img: IMG,
+        img: "/images/dokum_kopi5.webp",
         alt: "Biji kopi dari kebun warga Desa Balesari",
         aksen: "#6B4226",
       },
       {
-        slug: "/batok-kelapa",
-        nama: "Batok Kelapa",
+        slug: "/kerajinan-tangan",
+        nama: "Kerajinan Tangan",
         pancingan: "Tempurung kelapa diolah jadi arang dan kerajinan.",
-        img: IMG,
+        img: "/images/kerajinan_batok.jpg",
         alt: "Olahan batok kelapa buatan warga Desa Balesari",
         aksen: "#8B5E3C",
       },
@@ -1334,8 +1334,43 @@ export default function BitingPage() {
           </div>
         </section>
 
+        {/* ================= 8.5 VIDEO DOKUMENTER ================= */}
+        <section aria-labelledby="dokumenter-heading" className="relative overflow-hidden bg-[#22331F] py-20 sm:py-24">
+          <div className="relative mx-auto max-w-6xl px-6">
+            <div className="mb-10 text-center">
+              <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#9DBE85]">Video Dokumenter</p>
+              <h2 id="dokumenter-heading" className="font-display text-3xl font-semibold text-[#F3EDE0] sm:text-4xl">
+                Cerita di Balik Setiap Biting
+              </h2>
+              <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#F3EDE0]/70 sm:text-base">
+                Simak perjalanan biting bambu Dusun Segelan, dari kebun bambu hingga ke tangan pengrajin.
+              </p>
+            </div>
+
+            <div className="reveal group relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-3xl border border-[#F3EDE0]/10 shadow-2xl">
+              <video
+                src="/images/Dokumenter_Biting.mp4"
+                controls
+                playsInline
+                preload="metadata"
+                // autoPlay
+                poster="/images/dokum_biting5.jpg"
+                className="h-full w-full object-cover"
+              >
+                Browser Anda tidak mendukung tag video.
+              </video>
+
+              {/* vignette halus di tepi, biar video nyatu sama background gelap */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_20px_rgba(0,0,0,0.35)]"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* ================= 9. POTENSI LAINNYA ================= */}
-        <section aria-labelledby="lainnya-heading" className="relative mx-auto max-w-6xl px-6 pb-24">
+        <section aria-labelledby="lainnya-heading" className="relative mt-5 mx-auto max-w-6xl px-6 pb-24">
           <h2 id="lainnya-heading" className="font-display text-2xl font-semibold text-[#2E4230] sm:text-3xl">
             {c.lainnya.heading}
           </h2>

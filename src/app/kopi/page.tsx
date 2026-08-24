@@ -327,10 +327,10 @@ const content = {
                 aksen: "#4E7248",
             },
             {
-                slug: "/batok-kelapa",
-                nama: "Batok Kelapa",
+                slug: "/kerajinan-tangan",
+                nama: "Kerajinan Tangan",
                 pancingan: "Tempurung kelapa diolah jadi arang dan kerajinan.",
-                img: IMG_DESA,
+                img: "/images/hasil_batok.jpg",
                 alt: "Olahan batok kelapa buatan warga Desa Balesari",
                 aksen: "#8B5E3C",
             },
@@ -1057,14 +1057,14 @@ export default function KopiPage() {
                             </Reveal>
                         </div>
 
-                        <Reveal as="figure" ulang className="relative mt-14 overflow-hidden rounded-3xl border border-[#F3EDE0]/12 bg-[#F3EDE0]/8 px-6 py-10 text-center backdrop-blur-sm sm:px-16">
+                        {/* <Reveal as="figure" ulang className="relative mt-14 overflow-hidden rounded-3xl border border-[#F3EDE0]/12 bg-[#F3EDE0]/8 px-6 py-10 text-center backdrop-blur-sm sm:px-16">
                             <span aria-hidden="true" className="font-display absolute top-2 left-6 text-7xl text-[#C89A6B]/30">“</span>
                             <BijiKopi className="pointer-events-none absolute -right-2 -bottom-3 h-16 w-11 rotate-12 text-[#C89A6B]/15" />
                             <blockquote className="font-display mx-auto max-w-2xl text-xl leading-relaxed italic sm:text-2xl">
                                 {c.petani.kutipan}
                             </blockquote>
                             <figcaption className="mt-4 text-sm font-medium text-[#C89A6B]">{c.petani.kutipanSumber}</figcaption>
-                        </Reveal>
+                        </Reveal> */}
                     </div>
 
                     <Wave fill="#F3EDE0" className="absolute inset-x-0 bottom-0" />
